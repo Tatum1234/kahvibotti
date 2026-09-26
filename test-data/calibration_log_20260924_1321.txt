@@ -1,0 +1,1430 @@
+Restored: carafe on, basket on, pot 0 g
+t=   6521910 us  left :       30 raw   right:      -32 raw    rawT=       -2
+>>> state: Tyhjä
+Kahvibotti running. Serial: k = /kahvi answer, # <label> = mark
+t=  10145542 us  left :      -29 raw   right:      -30 raw    rawT=      -59
+t=  11298768 us  left :      -17 raw   right:      -48 raw    rawT=      -65
+t=  12122617 us  left :      -18 raw   right:        0 raw    rawT=      -18
+t=  12946452 us  left :      -75 raw   right:      -26 raw    rawT=     -101
+t=  13687906 us  left :      -71 raw   right:       -5 raw    rawT=      -76
+t=  14511751 us  left :       -5 raw   right:       25 raw    rawT=       20
+t=  15335604 us  left :      -47 raw   right:       -8 raw    rawT=      -55
+t=  16077046 us  left :      -62 raw   right:      -16 raw    rawT=      -78
+t=  16900873 us  left :      -52 raw   right:       -5 raw    rawT=      -57
+t=  17724704 us  left :      -19 raw   right:      -15 raw    rawT=      -34
+t=  18466150 us  left :      -56 raw   right:       -8 raw    rawT=      -64
+t=  19289980 us  left :      -29 raw   right:        8 raw    rawT=      -21
+t=  20113820 us  left :      -21 raw   right:       -8 raw    rawT=      -29
+t=  20855301 us  left :      -17 raw   right:      -52 raw    rawT=      -69
+t=  21679151 us  left :      -11 raw   right:     -107 raw    rawT=     -118
+t=  22502999 us  left :       -8 raw   right:      -71 raw    rawT=      -79
+t=  23244449 us  left :      -17 raw   right:      -49 raw    rawT=      -66
+t=  24068301 us  left :      -67 raw   right:      -51 raw    rawT=     -118
+t=  24892123 us  left :      -19 raw   right:      -56 raw    rawT=      -75
+t=  25633596 us  left :      -57 raw   right:       -1 raw    rawT=      -58
+t=  26457426 us  left :      -14 raw   right:      -27 raw    rawT=      -41
+t=  27281265 us  left :      -63 raw   right:     -104 raw    rawT=     -167
+t=  28022792 us  left :       -8 raw   right:     -114 raw    rawT=     -122
+t=  28846596 us  left :      -43 raw   right:       -6 raw    rawT=      -49
+t=  29670436 us  left :      -48 raw   right:      -95 raw    rawT=     -143
+
+############ MARK t=  29675659 us: J0 ready empty, baseline ############
+
+t=  30494216 us  left :      -18 raw   right:     -211 raw    rawT=     -229
+t=  31235506 us  left :      -42 raw   right:      -73 raw    rawT=     -115
+t=  32059145 us  left :       -7 raw   right:      -97 raw    rawT=     -104
+t=  32882788 us  left :      -24 raw   right:       10 raw    rawT=      -14
+t=  33624063 us  left :      -23 raw   right:       -1 raw    rawT=      -24
+t=  34447700 us  left :      -20 raw   right:      -42 raw    rawT=      -62
+t=  35271344 us  left :      -22 raw   right:       40 raw    rawT=       18
+t=  36012621 us  left :      -52 raw   right:      -13 raw    rawT=      -65
+t=  36836253 us  left :       -9 raw   right:      -14 raw    rawT=      -23
+t=  37659898 us  left :      -64 raw   right:      -57 raw    rawT=     -121
+t=  38401181 us  left :      -41 raw   right:     -148 raw    rawT=     -189
+t=  39224847 us  left :      -34 raw   right:     -111 raw    rawT=     -145
+t=  40048525 us  left :      -36 raw   right:     -153 raw    rawT=     -189
+t=  40789910 us  left :       -5 raw   right:      -20 raw    rawT=      -25
+t=  41613773 us  left :      -84 raw   right:     -294 raw    rawT=     -378
+t=  42437636 us  left :    14702 raw   right:    13980 raw    rawT=    28682
+t=  43179099 us  left :    -3190 raw   right:    13775 raw    rawT=    10585
+t=  44002950 us  left :    -3233 raw   right:    13723 raw    rawT=    10490
+t=  44826787 us  left :    -5771 raw   right:     8278 raw    rawT=     2507
+t=  45568257 us  left :   154007 raw   right:     -445 raw    rawT=   153562
+t=  46392124 us  left :    87919 raw   right:    73555 raw    rawT=   161474
+t=  47215957 us  left :    14334 raw   right:    16542 raw    rawT=    30876
+t=  48039796 us  left :   -35494 raw   right:    14003 raw    rawT=   -21491
+t=  48781249 us  left :     8456 raw   right:    14187 raw    rawT=    22643
+t=  49604919 us  left :     8197 raw   right:    14096 raw    rawT=    22293
+t=  50431312 us  left :     7942 raw   right:    14165 raw    rawT=    22107
+t=  51169831 us  left :     7759 raw   right:    14178 raw    rawT=    21937
+t=  51993483 us  left :     7629 raw   right:    14228 raw    rawT=    21857
+t=  52817116 us  left :     7544 raw   right:    14224 raw    rawT=    21768
+t=  53558381 us  left :     7465 raw   right:    14204 raw    rawT=    21669
+
+############ MARK t=  53563625 us: J1 bask cover OFF ############
+
+t=  54382183 us  left :     7387 raw   right:    14105 raw    rawT=    21492
+t=  55206038 us  left :     7328 raw   right:    14100 raw    rawT=    21428
+t=  55947486 us  left :     7322 raw   right:    14109 raw    rawT=    21431
+t=  56771338 us  left :     7251 raw   right:    14129 raw    rawT=    21380
+t=  57595203 us  left :     7225 raw   right:    14099 raw    rawT=    21324
+t=  58336679 us  left :     7222 raw   right:    14106 raw    rawT=    21328
+t=  59160541 us  left :     7232 raw   right:    14121 raw    rawT=    21353
+t=  59984387 us  left :     7168 raw   right:    14082 raw    rawT=    21250
+t=  60725859 us  left :     7144 raw   right:    14073 raw    rawT=    21217
+t=  61549737 us  left :     7146 raw   right:    14089 raw    rawT=    21235
+t=  62373582 us  left :     7148 raw   right:    14104 raw    rawT=    21252
+t=  63115059 us  left :     7083 raw   right:    14047 raw    rawT=    21130
+t=  63938926 us  left :     6230 raw   right:    14215 raw    rawT=    20445
+t=  64762777 us  left :     6797 raw   right:    14278 raw    rawT=    21075
+t=  65504234 us  left :     6685 raw   right:    14241 raw    rawT=    20926
+t=  66328061 us  left :     6926 raw   right:    14139 raw    rawT=    21065
+t=  67151883 us  left :     7019 raw   right:    14159 raw    rawT=    21178
+t=  67975714 us  left :     6999 raw   right:    14077 raw    rawT=    21076
+t=  68717175 us  left :     6999 raw   right:    14055 raw    rawT=    21054
+t=  69540977 us  left :     6936 raw   right:    14073 raw    rawT=    21009
+t=  70364794 us  left :     6971 raw   right:    14156 raw    rawT=    21127
+t=  71106249 us  left :     6977 raw   right:    13594 raw    rawT=    20571
+t=  71930088 us  left :     6977 raw   right:    13660 raw    rawT=    20637
+t=  72753918 us  left :     6962 raw   right:    13989 raw    rawT=    20951
+t=  73495372 us  left :     6998 raw   right:    14146 raw    rawT=    21144
+t=  74319191 us  left :     6924 raw   right:    14087 raw    rawT=    21011
+t=  75143017 us  left :     6936 raw   right:    14000 raw    rawT=    20936
+t=  75884463 us  left :     6877 raw   right:    13972 raw    rawT=    20849
+t=  76708289 us  left :    17196 raw   right:    -4038 raw    rawT=    13158
+t=  77532129 us  left :    41326 raw   right:    -4764 raw    rawT=    36562
+t=  78273569 us  left :    28079 raw   right:   -59586 raw    rawT=   -31507
+t=  79097384 us  left :     7316 raw   right:   -48100 raw    rawT=   -40784
+t=  79921211 us  left :    10329 raw   right:    11935 raw    rawT=    22264
+t=  80662659 us  left :     7443 raw   right:    11670 raw    rawT=    19113
+t=  81486498 us  left :     7519 raw   right:    11657 raw    rawT=    19176
+t=  82310341 us  left :     7438 raw   right:    11421 raw    rawT=    18859
+t=  83051803 us  left :     7341 raw   right:    11429 raw    rawT=    18770
+t=  83875632 us  left :     7360 raw   right:    11488 raw    rawT=    18848
+t=  84699455 us  left :     7320 raw   right:    11583 raw    rawT=    18903
+t=  85440709 us  left :     7375 raw   right:    11423 raw    rawT=    18798
+t=  86264322 us  left :     7321 raw   right:    11591 raw    rawT=    18912
+t=  87087928 us  left :     7320 raw   right:    11562 raw    rawT=    18882
+t=  87911540 us  left :     7262 raw   right:    11591 raw    rawT=    18853
+t=  88652783 us  left :     7263 raw   right:    11440 raw    rawT=    18703
+t=  89476395 us  left :     7227 raw   right:    11544 raw    rawT=    18771
+t=  90300014 us  left :     7217 raw   right:    11471 raw    rawT=    18688
+t=  91041266 us  left :     7218 raw   right:    11496 raw    rawT=    18714
+t=  91864868 us  left :     7173 raw   right:    11568 raw    rawT=    18741
+t=  92688496 us  left :     7194 raw   right:    11594 raw    rawT=    18788
+t=  93429716 us  left :     7183 raw   right:    11618 raw    rawT=    18801
+t=  94253452 us  left :     7117 raw   right:    72989 raw    rawT=    80106
+t=  95077277 us  left :     7820 raw   right:     9237 raw    rawT=    17057
+t=  95818726 us  left :     7821 raw   right:    23906 raw    rawT=    31727
+t=  96642560 us  left :     7819 raw   right:     9828 raw    rawT=    17647
+t=  97466375 us  left :     7785 raw   right:     9665 raw    rawT=    17450
+t=  98207836 us  left :     7769 raw   right:    17317 raw    rawT=    25086
+t=  99031674 us  left :     7765 raw   right:     9405 raw    rawT=    17170
+t=  99855515 us  left :     7770 raw   right:    10596 raw    rawT=    18366
+t= 100596950 us  left :     7723 raw   right:    47419 raw    rawT=    55142
+t= 101420783 us  left :     7743 raw   right:     9914 raw    rawT=    17657
+t= 102244629 us  left :     8464 raw   right:     8237 raw    rawT=    16701
+t= 102986085 us  left :     8337 raw   right:     8153 raw    rawT=    16490
+t= 103809895 us  left :     8372 raw   right:   124789 raw    rawT=   133161
+t= 104633747 us  left :     8332 raw   right:     9050 raw    rawT=    17382
+t= 105375074 us  left :     8342 raw   right:   301684 raw    rawT=   310026
+t= 106198687 us  left :     8393 raw   right:     7995 raw    rawT=    16388
+t= 107022290 us  left :     8346 raw   right:   222913 raw    rawT=   231259
+t= 107845920 us  left :     8269 raw   right:    89166 raw    rawT=    97435
+t= 108587360 us  left :     8662 raw   right:     6286 raw    rawT=    14948
+t= 109411169 us  left :     8670 raw   right:     6217 raw    rawT=    14887
+t= 110234985 us  left :     8635 raw   right:    46916 raw    rawT=    55551
+t= 110976422 us  left :     8619 raw   right:    45585 raw    rawT=    54204
+t= 111800251 us  left :     8675 raw   right:   153891 raw    rawT=   162566
+t= 112624087 us  left :     8636 raw   right:   144650 raw    rawT=   153286
+t= 113365538 us  left :     8631 raw   right:    24245 raw    rawT=    32876
+t= 114189370 us  left :     8613 raw   right:    53448 raw    rawT=    62061
+t= 115013206 us  left :     8614 raw   right:    67414 raw    rawT=    76028
+t= 115754646 us  left :     9099 raw   right:     5954 raw    rawT=    15053
+t= 116578459 us  left :     9156 raw   right:     4271 raw    rawT=    13427
+t= 117402262 us  left :     9083 raw   right:    37397 raw    rawT=    46480
+t= 118143690 us  left :     9140 raw   right:     4619 raw    rawT=    13759
+t= 118967511 us  left :     9180 raw   right:     4295 raw    rawT=    13475
+t= 119791355 us  left :     9175 raw   right:     4402 raw    rawT=    13577
+t= 120532799 us  left :     9172 raw   right:    78232 raw    rawT=    87404
+t= 121356623 us  left :     9176 raw   right:   207411 raw    rawT=   216587
+t= 122180443 us  left :     9174 raw   right:   159554 raw    rawT=   168728
+t= 122921883 us  left :     9208 raw   right:   163862 raw    rawT=   173070
+t= 123745709 us  left :     9483 raw   right:     9394 raw    rawT=    18877
+t= 124569536 us  left :     9100 raw   right:     4123 raw    rawT=    13223
+t= 125393221 us  left :     9226 raw   right:    22457 raw    rawT=    31683
+t= 126134474 us  left :     9227 raw   right:     4075 raw    rawT=    13302
+t= 126958079 us  left :     9085 raw   right:   167628 raw    rawT=   176713
+t= 127781691 us  left :     9085 raw   right:   178468 raw    rawT=   187553
+t= 128522956 us  left :     9238 raw   right:    63469 raw    rawT=    72707
+t= 129346558 us  left :     9175 raw   right:     3754 raw    rawT=    12929
+t= 130170178 us  left :     9156 raw   right:    51909 raw    rawT=    61065
+t= 130911413 us  left :     9081 raw   right:     3702 raw    rawT=    12783
+t= 131735016 us  left :     9074 raw   right:    12385 raw    rawT=    21459
+t= 132558632 us  left :     9124 raw   right:    50336 raw    rawT=    59460
+
+############ MARK t= 132563704 us: J2 paper + 28 g grounds in, basket in place ############
+
+t= 133299863 us  left :     9099 raw   right:    45725 raw    rawT=    54824
+t= 134123483 us  left :     9134 raw   right:   298441 raw    rawT=   307575
+t= 134947085 us  left :     9075 raw   right:     3750 raw    rawT=    12825
+t= 135688328 us  left :     9132 raw   right:     3714 raw    rawT=    12846
+t= 136511958 us  left :     9135 raw   right:     3729 raw    rawT=    12864
+t= 137335562 us  left :     9155 raw   right:     8258 raw    rawT=    17413
+t= 138076767 us  left :     9129 raw   right:    31562 raw    rawT=    40691
+t= 138900354 us  left :     9152 raw   right:   184804 raw    rawT=   193956
+t= 139723953 us  left :     9168 raw   right:    13244 raw    rawT=    22412
+t= 140465175 us  left :     9133 raw   right:   109706 raw    rawT=   118839
+t= 141288809 us  left :     9146 raw   right:     3825 raw    rawT=    12971
+t= 142112631 us  left :     8127 raw   right:       67 raw    rawT=     8194
+t= 142936439 us  left :  -280628 raw   right:     7315 raw    rawT=  -273313
+t= 143677889 us  left :    -5153 raw   right:     2496 raw    rawT=    -2657
+t= 144501697 us  left :   -10066 raw   right:   -13691 raw    rawT=   -23757
+t= 145325521 us  left :     2328 raw   right:   -12189 raw    rawT=    -9861
+t= 146066929 us  left :    -5677 raw   right:     5055 raw    rawT=     -622
+t= 146890756 us  left :    -1061 raw   right:     9629 raw    rawT=     8568
+t= 147714572 us  left :       29 raw   right:    40032 raw    rawT=    40061
+t= 148455994 us  left :   -23855 raw   right:    17254 raw    rawT=    -6601
+t= 149279817 us  left :     -467 raw   right:     4657 raw    rawT=     4190
+t= 150103622 us  left :    -6486 raw   right:    -8423 raw    rawT=   -14909
+t= 150845052 us  left :     3084 raw   right:   -11057 raw    rawT=    -7973
+t= 151668880 us  left :     3210 raw   right:   -10917 raw    rawT=    -7707
+t= 152494977 us  left :     3262 raw   right:   -10928 raw    rawT=    -7666
+t= 153234136 us  left :     3342 raw   right:   -10907 raw    rawT=    -7565
+t= 154057941 us  left :     3331 raw   right:   -10795 raw    rawT=    -7464
+t= 154881741 us  left :     3380 raw   right:   -10908 raw    rawT=    -7528
+t= 155623177 us  left :     3369 raw   right:   -10831 raw    rawT=    -7462
+t= 156446971 us  left :     3396 raw   right:   -10715 raw    rawT=    -7319
+
+############ MARK t= 156452622 us: J3 bask cover ON ############
+
+t= 157270769 us  left :     3440 raw   right:   -10796 raw    rawT=    -7356
+t= 158012201 us  left :     3442 raw   right:   -10794 raw    rawT=    -7352
+t= 158835999 us  left :     3413 raw   right:   -10722 raw    rawT=    -7309
+t= 159659810 us  left :     3429 raw   right:   -10716 raw    rawT=    -7287
+t= 160483519 us  left :     3473 raw   right:   -10814 raw    rawT=    -7341
+t= 161224735 us  left :     3452 raw   right:   -10752 raw    rawT=    -7300
+t= 162048439 us  left :     3473 raw   right:   -10835 raw    rawT=    -7362
+t= 162872248 us  left :     3479 raw   right:   -10810 raw    rawT=    -7331
+t= 163613669 us  left :     3497 raw   right:   -10773 raw    rawT=    -7276
+t= 164437456 us  left :     3457 raw   right:   -10709 raw    rawT=    -7252
+t= 165261259 us  left :     3471 raw   right:   -10694 raw    rawT=    -7223
+t= 166002680 us  left :     3505 raw   right:   -10724 raw    rawT=    -7219
+t= 166826477 us  left :     3500 raw   right:   -10677 raw    rawT=    -7177
+t= 167650303 us  left :     1125 raw   right:   -13219 raw    rawT=   -12094
+t= 168391751 us  left :    13472 raw   right:    -6687 raw    rawT=     6785
+t= 169215604 us  left :    13400 raw   right:    -6886 raw    rawT=     6514
+t= 170039455 us  left :    13395 raw   right:    -6975 raw    rawT=     6420
+t= 170780911 us  left :    13403 raw   right:    -6857 raw    rawT=     6546
+t= 171604649 us  left :    13433 raw   right:    -6561 raw    rawT=     6872
+
+############ MARK t= 171605311 us: J4 res cover OFF ############
+
+t= 172428268 us  left :    13406 raw   right:    -7211 raw    rawT=     6195
+t= 173169557 us  left :    13422 raw   right:    -6656 raw    rawT=     6766
+t= 173993174 us  left :    13410 raw   right:    -6600 raw    rawT=     6810
+t= 174816806 us  left :    13386 raw   right:    -6581 raw    rawT=     6805
+t= 175558085 us  left :    13425 raw   right:    -5884 raw    rawT=     7541
+t= 176381730 us  left :    13434 raw   right:    -6423 raw    rawT=     7011
+t= 177205387 us  left :    13405 raw   right:    -5599 raw    rawT=     7806
+t= 177946682 us  left :    13397 raw   right:    -6551 raw    rawT=     6846
+t= 178687966 us  left :    13420 raw   right:    -6637 raw    rawT=     6783
+t= 179511614 us  left :    13431 raw   right:    -7049 raw    rawT=     6382
+t= 180252865 us  left :    13421 raw   right:    -6799 raw    rawT=     6622
+t= 181076499 us  left :    13436 raw   right:    -6425 raw    rawT=     7011
+t= 181900109 us  left :    13420 raw   right:    -6518 raw    rawT=     6902
+t= 182641369 us  left :    13439 raw   right:    -6507 raw    rawT=     6932
+t= 183464993 us  left :    13490 raw   right:    -6435 raw    rawT=     7055
+t= 184288788 us  left :    13584 raw   right:    -6467 raw    rawT=     7117
+t= 185030250 us  left :    12636 raw   right:    -6619 raw    rawT=     6017
+t= 185854079 us  left :    12953 raw   right:    -6461 raw    rawT=     6492
+t= 186677936 us  left :    13121 raw   right:    -6493 raw    rawT=     6628
+t= 187419376 us  left :    13318 raw   right:    -6394 raw    rawT=     6924
+t= 188243204 us  left :    13362 raw   right:    -6424 raw    rawT=     6938
+t= 189067037 us  left :    13333 raw   right:    -6456 raw    rawT=     6877
+t= 189890856 us  left :    13375 raw   right:    -6375 raw    rawT=     7000
+t= 190632310 us  left :    13440 raw   right:    -6294 raw    rawT=     7146
+t= 191456139 us  left :    13432 raw   right:    -6331 raw    rawT=     7101
+t= 192279957 us  left :    13425 raw   right:    -6368 raw    rawT=     7057
+t= 193021398 us  left :    13435 raw   right:    -6630 raw    rawT=     6805
+t= 193845112 us  left :    13423 raw   right:    -6425 raw    rawT=     6998
+t= 194668732 us  left :    13389 raw   right:    -6559 raw    rawT=     6830
+t= 195409976 us  left :    13357 raw   right:    -6718 raw    rawT=     6639
+t= 196233600 us  left :    13393 raw   right:    -7685 raw    rawT=     5708
+t= 197057190 us  left :     3269 raw   right:   -17708 raw    rawT=   -14439
+t= 197798445 us  left :    -1084 raw   right:   -23619 raw    rawT=   -24703
+t= 198622058 us  left :   -16779 raw   right:   -22675 raw    rawT=   -39454
+t= 199445681 us  left :   -15537 raw   right:   -22277 raw    rawT=   -37814
+t= 200186933 us  left :   -15030 raw   right:   -22275 raw    rawT=   -37305
+t= 201010578 us  left :   -14942 raw   right:   -21761 raw    rawT=   -36703
+t= 201834172 us  left :   -14643 raw   right:   -21749 raw    rawT=   -36392
+t= 202575414 us  left :   -14591 raw   right:   -21659 raw    rawT=   -36250
+t= 203399032 us  left :   -14428 raw   right:   -21782 raw    rawT=   -36210
+t= 204222632 us  left :   -14395 raw   right:   -21643 raw    rawT=   -36038
+t= 204963869 us  left :   -14310 raw   right:   -21667 raw    rawT=   -35977
+t= 205787484 us  left :   -14284 raw   right:   -21897 raw    rawT=   -36181
+t= 206611077 us  left :   -14291 raw   right:   -24331 raw    rawT=   -38622
+t= 207434688 us  left :   -20274 raw   right:   -38010 raw    rawT=   -58284
+t= 208175954 us  left :   -43472 raw   right:   -37786 raw    rawT=   -81258
+t= 208999556 us  left :   -46786 raw   right:   -38016 raw    rawT=   -84802
+t= 209823155 us  left :   -45267 raw   right:   -37794 raw    rawT=   -83061
+t= 210564414 us  left :   -46027 raw   right:   -37661 raw    rawT=   -83688
+t= 211387992 us  left :   -46177 raw   right:   -37279 raw    rawT=   -83456
+t= 212211601 us  left :   -45194 raw   right:   -37306 raw    rawT=   -82500
+t= 212952834 us  left :   -46021 raw   right:   -37444 raw    rawT=   -83465
+t= 213776429 us  left :   -45754 raw   right:   -37164 raw    rawT=   -82918
+t= 214600033 us  left :   -45741 raw   right:   -37311 raw    rawT=   -83052
+t= 215341293 us  left :   -46111 raw   right:   -37279 raw    rawT=   -83390
+t= 216164859 us  left :   -45487 raw   right:   -38010 raw    rawT=   -83497
+t= 216988436 us  left :   -49467 raw   right:   -39908 raw    rawT=   -89375
+t= 217729680 us  left :   -52111 raw   right:   -40142 raw    rawT=   -92253
+t= 218553271 us  left :   -52186 raw   right:   -40438 raw    rawT=   -92624
+t= 219376893 us  left :   -52387 raw   right:   -40544 raw    rawT=   -92931
+t= 220118121 us  left :   -52895 raw   right:   -40815 raw    rawT=   -93710
+t= 220941725 us  left :   -53355 raw   right:   -40674 raw    rawT=   -94029
+t= 221765329 us  left :   -52811 raw   right:   -40564 raw    rawT=   -93375
+t= 222506577 us  left :   -53176 raw   right:   -40480 raw    rawT=   -93656
+t= 223330155 us  left :   -52762 raw   right:   -40324 raw    rawT=   -93086
+t= 224153763 us  left :   -52407 raw   right:   -41224 raw    rawT=   -93631
+t= 224977343 us  left :   -52880 raw   right:   -40569 raw    rawT=   -93449
+t= 225718592 us  left :   -52950 raw   right:   -40490 raw    rawT=   -93440
+t= 226542182 us  left :   -53271 raw   right:   -40328 raw    rawT=   -93599
+t= 227365783 us  left :   -53016 raw   right:   -40392 raw    rawT=   -93408
+t= 228107027 us  left :   -53170 raw   right:   -40437 raw    rawT=   -93607
+t= 228930619 us  left :   -52947 raw   right:   -40333 raw    rawT=   -93280
+t= 229754228 us  left :   -53118 raw   right:   -40364 raw    rawT=   -93482
+t= 230495455 us  left :   -53068 raw   right:   -40260 raw    rawT=   -93328
+t= 231319057 us  left :   -53069 raw   right:   -40283 raw    rawT=   -93352
+t= 232142686 us  left :   -53107 raw   right:   -40241 raw    rawT=   -93348
+t= 232883899 us  left :   -52951 raw   right:   -40347 raw    rawT=   -93298
+t= 233707511 us  left :   -53097 raw   right:   -40280 raw    rawT=   -93377
+
+############ MARK t= 233708187 us: J5 reservoir 5 dl poured ############
+
+t= 234531103 us  left :   -52999 raw   right:   -40214 raw    rawT=   -93213
+t= 235272351 us  left :   -53010 raw   right:   -40272 raw    rawT=   -93282
+t= 236095963 us  left :   -52971 raw   right:   -40106 raw    rawT=   -93077
+t= 236919743 us  left :   -53008 raw   right:   -40082 raw    rawT=   -93090
+t= 237661182 us  left :   -52993 raw   right:   -40038 raw    rawT=   -93031
+t= 238484969 us  left :   -52923 raw   right:   -39997 raw    rawT=   -92920
+t= 239308784 us  left :   -52967 raw   right:   -40025 raw    rawT=   -92992
+t= 240050210 us  left :   -52938 raw   right:   -39942 raw    rawT=   -92880
+t= 240874008 us  left :   -52987 raw   right:   -39970 raw    rawT=   -92957
+t= 241697832 us  left :   -52963 raw   right:   -40007 raw    rawT=   -92970
+t= 242521661 us  left :   -52925 raw   right:   -39944 raw    rawT=   -92869
+t= 243263085 us  left :   -52935 raw   right:   -39940 raw    rawT=   -92875
+t= 244086904 us  left :   -52905 raw   right:   -39990 raw    rawT=   -92895
+t= 244910709 us  left :   -53002 raw   right:   -39917 raw    rawT=   -92919
+t= 245652113 us  left :   -55643 raw   right:   -45912 raw    rawT=  -101555
+t= 246475934 us  left :   -63249 raw   right:   -46026 raw    rawT=  -109275
+t= 247299764 us  left :   -63173 raw   right:   -45903 raw    rawT=  -109076
+t= 248041169 us  left :   -63108 raw   right:   -45978 raw    rawT=  -109086
+t= 248864755 us  left :   -63159 raw   right:   -45787 raw    rawT=  -108946
+t= 249688348 us  left :   -63116 raw   right:   -45661 raw    rawT=  -108777
+
+############ MARK t= 249743620 us: J6 res cover ON ############
+
+t= 250429584 us  left :   -63101 raw   right:   -45649 raw    rawT=  -108750
+t= 251253188 us  left :   -63079 raw   right:   -45648 raw    rawT=  -108727
+t= 252076803 us  left :   -63077 raw   right:   -45759 raw    rawT=  -108836
+t= 252818063 us  left :   -63052 raw   right:   -45735 raw    rawT=  -108787
+t= 253641665 us  left :   -63076 raw   right:   -45541 raw    rawT=  -108617
+t= 254465244 us  left :   -63083 raw   right:   -45568 raw    rawT=  -108651
+t= 255206484 us  left :   -63039 raw   right:   -45504 raw    rawT=  -108543
+t= 256030076 us  left :   -63077 raw   right:   -45487 raw    rawT=  -108564
+t= 256853681 us  left :   -63054 raw   right:   -45435 raw    rawT=  -108489
+t= 257594926 us  left :   -63058 raw   right:   -45386 raw    rawT=  -108444
+t= 258418527 us  left :   -63081 raw   right:   -45320 raw    rawT=  -108401
+t= 259242117 us  left :   -63025 raw   right:   -45328 raw    rawT=  -108353
+t= 259983362 us  left :   -63082 raw   right:   -45338 raw    rawT=  -108420
+t= 260806963 us  left :   -60588 raw   right:   -51277 raw    rawT=  -111865
+t= 261630561 us  left :   -25396 raw   right:   -46238 raw    rawT=   -71634
+t= 262371777 us  left :   -62249 raw   right:   -46004 raw    rawT=  -108253
+t= 263195362 us  left :   -62658 raw   right:   -45907 raw    rawT=  -108565
+t= 264018978 us  left :   -62690 raw   right:   -45904 raw    rawT=  -108594
+t= 264760204 us  left :   -62812 raw   right:   -45866 raw    rawT=  -108678
+
+############ MARK t= 264765602 us: J7 switch on ############
+
+t= 265583797 us  left :   -62828 raw   right:   -45815 raw    rawT=  -108643
+t= 266407383 us  left :   -62862 raw   right:   -45763 raw    rawT=  -108625
+t= 267230984 us  left :   -62886 raw   right:   -45671 raw    rawT=  -108557
+t= 267972212 us  left :   -62837 raw   right:   -45678 raw    rawT=  -108515
+t= 268795813 us  left :   -62879 raw   right:   -45670 raw    rawT=  -108549
+t= 269619409 us  left :   -62817 raw   right:   -45615 raw    rawT=  -108432
+t= 270360640 us  left :   -62834 raw   right:   -45614 raw    rawT=  -108448
+t= 271184221 us  left :   -62842 raw   right:   -45602 raw    rawT=  -108444
+t= 272007814 us  left :   -62871 raw   right:   -45614 raw    rawT=  -108485
+t= 272749055 us  left :   -62845 raw   right:   -45607 raw    rawT=  -108452
+t= 273572652 us  left :   -62832 raw   right:   -45527 raw    rawT=  -108359
+t= 274396235 us  left :   -62829 raw   right:   -45466 raw    rawT=  -108295
+t= 275137461 us  left :   -62785 raw   right:   -45471 raw    rawT=  -108256
+t= 275961093 us  left :   -62859 raw   right:   -45436 raw    rawT=  -108295
+t= 276784685 us  left :   -62833 raw   right:   -45476 raw    rawT=  -108309
+t= 277525930 us  left :   -62839 raw   right:   -45969 raw    rawT=  -108808
+t= 278349523 us  left :   -62875 raw   right:   -46301 raw    rawT=  -109176
+t= 279173099 us  left :   -62836 raw   right:   -46470 raw    rawT=  -109306
+t= 279914348 us  left :   -62820 raw   right:   -46527 raw    rawT=  -109347
+t= 280737932 us  left :   -62803 raw   right:   -46605 raw    rawT=  -109408
+t= 281561545 us  left :   -62793 raw   right:   -46776 raw    rawT=  -109569
+t= 282302783 us  left :   -62791 raw   right:   -46460 raw    rawT=  -109251
+t= 283126499 us  left :   -62710 raw   right:   -46507 raw    rawT=  -109217
+t= 283950324 us  left :   -62759 raw   right:   -46618 raw    rawT=  -109377
+t= 284691737 us  left :   -62762 raw   right:   -46493 raw    rawT=  -109255
+t= 285515557 us  left :   -62797 raw   right:   -46560 raw    rawT=  -109357
+t= 286339363 us  left :   -62791 raw   right:   -46371 raw    rawT=  -109162
+t= 287080804 us  left :   -62788 raw   right:   -46469 raw    rawT=  -109257
+t= 287904642 us  left :   -62759 raw   right:   -46583 raw    rawT=  -109342
+t= 288728459 us  left :   -62766 raw   right:   -46606 raw    rawT=  -109372
+t= 289552303 us  left :   -62794 raw   right:   -46515 raw    rawT=  -109309
+t= 290293588 us  left :   -62741 raw   right:   -46543 raw    rawT=  -109284
+t= 291117219 us  left :   -62727 raw   right:   -46635 raw    rawT=  -109362
+t= 291940863 us  left :   -62787 raw   right:   -46416 raw    rawT=  -109203
+t= 292682087 us  left :   -62267 raw   right:   -49502 raw    rawT=  -111769
+t= 293505701 us  left :   -58654 raw   right:   -50485 raw    rawT=  -109139
+t= 294329302 us  left :   -57202 raw   right:   -51398 raw    rawT=  -108600
+t= 295070576 us  left :   -57266 raw   right:   -51994 raw    rawT=  -109260
+t= 295894181 us  left :   -57275 raw   right:   -51915 raw    rawT=  -109190
+t= 296717785 us  left :   -57130 raw   right:   -51972 raw    rawT=  -109102
+t= 297459026 us  left :   -57059 raw   right:   -51929 raw    rawT=  -108988
+t= 298282651 us  left :   -57219 raw   right:   -53370 raw    rawT=  -110589
+t= 299106253 us  left :   -54103 raw   right:   -56149 raw    rawT=  -110252
+
+############ MARK t= 299111605 us: J8 first drip ############
+
+t= 299847508 us  left :   -52669 raw   right:   -57001 raw    rawT=  -109670
+t= 300671126 us  left :   -51964 raw   right:   -57006 raw    rawT=  -108970
+t= 301494722 us  left :   -52355 raw   right:   -57302 raw    rawT=  -109657
+t= 302236069 us  left :   -52073 raw   right:   -57290 raw    rawT=  -109363
+>>> state: Kahvi keittymässä – n. 4 kuppia, valmis ~3 min
+t= 303059884 us  left :   -51918 raw   right:   -57462 raw    rawT=  -109380
+t= 303883690 us  left :   -51181 raw   right:   -59318 raw    rawT=  -110499
+t= 304625114 us  left :   -47466 raw   right:   -62545 raw    rawT=  -110011
+t= 305448919 us  left :   -45801 raw   right:   -63709 raw    rawT=  -109510
+t= 306272726 us  left :   -45558 raw   right:   -63370 raw    rawT=  -108928
+t= 307014152 us  left :   -45508 raw   right:   -63467 raw    rawT=  -108975
+t= 307837945 us  left :   -45525 raw   right:   -63613 raw    rawT=  -109138
+>>> state: Kahvi keittymässä – n. 4 kuppia, valmis ~4 min
+t= 308661753 us  left :   -45609 raw   right:   -63638 raw    rawT=  -109247
+t= 309403178 us  left :   -45753 raw   right:   -64435 raw    rawT=  -110188
+t= 310226971 us  left :   -43000 raw   right:   -67259 raw    rawT=  -110259
+>>> state: Kahvi keittymässä – n. 4 kuppia, valmis ~3 min
+t= 311050765 us  left :   -42264 raw   right:   -66838 raw    rawT=  -109102
+t= 311792195 us  left :   -42523 raw   right:   -67207 raw    rawT=  -109730
+t= 312615952 us  left :   -42071 raw   right:   -68523 raw    rawT=  -110594
+t= 313439544 us  left :   -40415 raw   right:   -70012 raw    rawT=  -110427
+t= 314180772 us  left :   -39116 raw   right:   -70703 raw    rawT=  -109819
+t= 314922022 us  left :   -39535 raw   right:   -70169 raw    rawT=  -109704
+t= 315745626 us  left :   -39563 raw   right:   -70976 raw    rawT=  -110539
+t= 316486848 us  left :   -37325 raw   right:   -72953 raw    rawT=  -110278
+t= 317310503 us  left :   -36200 raw   right:   -74024 raw    rawT=  -110224
+t= 318134314 us  left :   -35835 raw   right:   -74643 raw    rawT=  -110478
+t= 318875735 us  left :   -35968 raw   right:   -74772 raw    rawT=  -110740
+t= 319699551 us  left :   -33963 raw   right:   -76632 raw    rawT=  -110595
+t= 320523360 us  left :   -33457 raw   right:   -76755 raw    rawT=  -110212
+t= 321264777 us  left :   -33932 raw   right:   -77214 raw    rawT=  -111146
+t= 322088590 us  left :   -32041 raw   right:   -79116 raw    rawT=  -111157
+t= 322912416 us  left :   -31278 raw   right:   -80428 raw    rawT=  -111706
+t= 323653852 us  left :   -30374 raw   right:   -80794 raw    rawT=  -111168
+t= 324477661 us  left :   -30231 raw   right:   -80450 raw    rawT=  -110681
+t= 325301336 us  left :   -29452 raw   right:   -82334 raw    rawT=  -111786
+t= 326042576 us  left :   -28112 raw   right:   -83542 raw    rawT=  -111654
+t= 326866189 us  left :   -27378 raw   right:   -83701 raw    rawT=  -111079
+t= 327689796 us  left :   -27619 raw   right:   -83719 raw    rawT=  -111338
+t= 328431046 us  left :   -27486 raw   right:   -84187 raw    rawT=  -111673
+t= 329254673 us  left :   -26121 raw   right:   -85578 raw    rawT=  -111699
+t= 330078252 us  left :   -24976 raw   right:   -86740 raw    rawT=  -111716
+t= 330819492 us  left :   -24561 raw   right:   -87639 raw    rawT=  -112200
+t= 331643090 us  left :   -23300 raw   right:   -89706 raw    rawT=  -113006
+t= 332466839 us  left :   -21531 raw   right:   -90273 raw    rawT=  -111804
+t= 333290659 us  left :   -21519 raw   right:   -90289 raw    rawT=  -111808
+t= 334032061 us  left :   -21380 raw   right:   -90545 raw    rawT=  -111925
+t= 334855855 us  left :   -21126 raw   right:   -91611 raw    rawT=  -112737
+t= 335679676 us  left :   -19659 raw   right:   -92454 raw    rawT=  -112113
+t= 336420924 us  left :   -19160 raw   right:   -94071 raw    rawT=  -113231
+t= 337244519 us  left :   -17151 raw   right:   -94979 raw    rawT=  -112130
+t= 338068096 us  left :   -17277 raw   right:   -95071 raw    rawT=  -112348
+t= 338809333 us  left :   -17257 raw   right:   -95033 raw    rawT=  -112290
+t= 339632936 us  left :   -16927 raw   right:   -96845 raw    rawT=  -113772
+t= 340456550 us  left :   -14548 raw   right:   -97924 raw    rawT=  -112472
+t= 341197792 us  left :   -13711 raw   right:   -98690 raw    rawT=  -112401
+t= 342021371 us  left :   -13841 raw   right:   -98700 raw    rawT=  -112541
+t= 342845137 us  left :   -13785 raw   right:   -99956 raw    rawT=  -113741
+t= 343586590 us  left :   -11752 raw   right:  -100946 raw    rawT=  -112698
+t= 344410383 us  left :   -10202 raw   right:  -102293 raw    rawT=  -112495
+>>> state: Kahvi keittymässä – n. 4 kuppia, valmis ~2 min
+t= 345234214 us  left :   -10354 raw   right:  -102109 raw    rawT=  -112463
+>>> state: Kahvi keittymässä – n. 4 kuppia, valmis ~3 min
+t= 345975632 us  left :   -10237 raw   right:  -102650 raw    rawT=  -112887
+t= 346799439 us  left :    -9984 raw   right:  -104100 raw    rawT=  -114084
+t= 347623247 us  left :    -8272 raw   right:  -105361 raw    rawT=  -113633
+>>> state: Kahvi keittymässä – n. 4 kuppia, valmis ~2 min
+t= 348364684 us  left :    -6916 raw   right:  -105777 raw    rawT=  -112693
+t= 349188489 us  left :    -7124 raw   right:  -105797 raw    rawT=  -112921
+t= 350012289 us  left :    -6969 raw   right:  -106969 raw    rawT=  -113938
+t= 350753735 us  left :    -5833 raw   right:  -107776 raw    rawT=  -113609
+t= 351577561 us  left :    -4308 raw   right:  -109597 raw    rawT=  -113905
+t= 352401383 us  left :    -2933 raw   right:  -110713 raw    rawT=  -113646
+t= 353142832 us  left :    -2667 raw   right:  -110982 raw    rawT=  -113649
+t= 353966682 us  left :    -2551 raw   right:  -111025 raw    rawT=  -113576
+t= 354790516 us  left :    -2198 raw   right:  -111839 raw    rawT=  -114037
+t= 355531927 us  left :    -1166 raw   right:  -112160 raw    rawT=  -113326
+t= 356355541 us  left :    -1095 raw   right:  -113405 raw    rawT=  -114500
+t= 357179148 us  left :      472 raw   right:  -114076 raw    rawT=  -113604
+t= 357920396 us  left :      778 raw   right:  -114599 raw    rawT=  -113821
+t= 358744008 us  left :     1845 raw   right:  -116112 raw    rawT=  -114267
+t= 359567610 us  left :     3186 raw   right:  -117322 raw    rawT=  -114136
+t= 360391197 us  left :     3673 raw   right:  -117439 raw    rawT=  -113766
+t= 361132474 us  left :     3558 raw   right:  -117437 raw    rawT=  -113879
+t= 361956295 us  left :     3901 raw   right:  -117941 raw    rawT=  -114040
+t= 362780372 us  left :     4786 raw   right:  -119766 raw    rawT=  -114980
+t= 363521545 us  left :     6722 raw   right:  -121429 raw    rawT=  -114707
+t= 364345208 us  left :     8498 raw   right:  -122569 raw    rawT=  -114071
+t= 365168801 us  left :     8879 raw   right:  -123365 raw    rawT=  -114486
+t= 365910037 us  left :     9569 raw   right:  -123439 raw    rawT=  -113870
+t= 366733664 us  left :     9345 raw   right:  -123415 raw    rawT=  -114070
+t= 367557260 us  left :    10537 raw   right:  -124720 raw    rawT=  -114183
+t= 368298485 us  left :    10794 raw   right:  -124839 raw    rawT=  -114045
+t= 369122078 us  left :    11293 raw   right:  -126543 raw    rawT=  -115250
+t= 369945682 us  left :    12731 raw   right:  -127278 raw    rawT=  -114547
+t= 370686914 us  left :    13352 raw   right:  -127538 raw    rawT=  -114186
+t= 371510511 us  left :    12883 raw   right:  -128342 raw    rawT=  -115459
+t= 372334105 us  left :    15530 raw   right:  -129705 raw    rawT=  -114175
+t= 373075359 us  left :    16450 raw   right:  -130875 raw    rawT=  -114425
+t= 373898968 us  left :    17517 raw   right:  -131012 raw    rawT=  -113495
+t= 374722559 us  left :    17043 raw   right:  -131080 raw    rawT=  -114037
+t= 375463786 us  left :    17483 raw   right:  -132536 raw    rawT=  -115053
+t= 376287382 us  left :    19427 raw   right:  -132988 raw    rawT=  -113561
+t= 377110987 us  left :    19268 raw   right:  -132755 raw    rawT=  -113487
+t= 377852205 us  left :    20762 raw   right:  -134541 raw    rawT=  -113779
+t= 378675804 us  left :    21419 raw   right:  -135131 raw    rawT=  -113712
+t= 379499405 us  left :    22256 raw   right:  -135908 raw    rawT=  -113652
+t= 380240651 us  left :    23985 raw   right:  -136754 raw    rawT=  -112769
+t= 381064265 us  left :    23876 raw   right:  -137047 raw    rawT=  -113171
+t= 381887862 us  left :    24697 raw   right:  -138974 raw    rawT=  -114277
+t= 382629093 us  left :    26816 raw   right:  -139909 raw    rawT=  -113093
+t= 383452694 us  left :    28116 raw   right:  -140804 raw    rawT=  -112688
+t= 384276325 us  left :    29201 raw   right:  -141675 raw    rawT=  -112474
+t= 385099903 us  left :    29849 raw   right:  -142336 raw    rawT=  -112487
+t= 385841126 us  left :    30422 raw   right:  -143014 raw    rawT=  -112592
+t= 386664714 us  left :    30409 raw   right:  -143911 raw    rawT=  -113502
+t= 387488302 us  left :    30874 raw   right:  -145215 raw    rawT=  -114341
+t= 388229548 us  left :    31712 raw   right:  -145993 raw    rawT=  -114281
+t= 389053124 us  left :    32406 raw   right:  -146012 raw    rawT=  -113606
+t= 389876737 us  left :    31408 raw   right:  -146459 raw    rawT=  -115051
+t= 390617951 us  left :    32564 raw   right:  -147316 raw    rawT=  -114752
+t= 391441554 us  left :    33793 raw   right:  -148492 raw    rawT=  -114699
+t= 392265140 us  left :    34405 raw   right:  -149738 raw    rawT=  -115333
+t= 393006376 us  left :    35647 raw   right:  -150735 raw    rawT=  -115088
+t= 393829973 us  left :    35990 raw   right:  -151278 raw    rawT=  -115288
+t= 394653710 us  left :    36337 raw   right:  -151471 raw    rawT=  -115134
+t= 395395138 us  left :    37039 raw   right:  -152741 raw    rawT=  -115702
+t= 396218917 us  left :    37071 raw   right:  -153495 raw    rawT=  -116424
+t= 397042720 us  left :    37396 raw   right:  -153604 raw    rawT=  -116208
+t= 397784133 us  left :    38023 raw   right:  -154621 raw    rawT=  -116598
+t= 398607935 us  left :    38054 raw   right:  -155668 raw    rawT=  -117614
+t= 399431735 us  left :    38475 raw   right:  -156555 raw    rawT=  -118080
+t= 400173153 us  left :    38512 raw   right:  -157267 raw    rawT=  -118755
+t= 400996960 us  left :    38622 raw   right:  -157335 raw    rawT=  -118713
+t= 401820764 us  left :    38940 raw   right:  -158001 raw    rawT=  -119061
+t= 402562203 us  left :    39011 raw   right:  -158575 raw    rawT=  -119564
+t= 403385988 us  left :    39251 raw   right:  -159055 raw    rawT=  -119804
+t= 404209782 us  left :    39446 raw   right:  -159404 raw    rawT=  -119958
+
+############ MARK t= 404214627 us: J9 reservoir empty ############
+
+t= 404951185 us  left :    39572 raw   right:  -159981 raw    rawT=  -120409
+t= 405774807 us  left :    39946 raw   right:  -160448 raw    rawT=  -120502
+t= 406598443 us  left :    40142 raw   right:  -160828 raw    rawT=  -120686
+t= 407339873 us  left :    40331 raw   right:  -161025 raw    rawT=  -120694
+t= 408163674 us  left :    40436 raw   right:  -161224 raw    rawT=  -120788
+t= 408987479 us  left :    40531 raw   right:  -161614 raw    rawT=  -121083
+t= 409728911 us  left :    40725 raw   right:  -161604 raw    rawT=  -120879
+t= 410552705 us  left :    40751 raw   right:  -161625 raw    rawT=  -120874
+t= 411376516 us  left :    40802 raw   right:  -161635 raw    rawT=  -120833
+t= 412202899 us  left :    40843 raw   right:  -161675 raw    rawT=  -120832
+>>> state: Kahvi keittymässä – n. 4 kuppia, valmis ~1 min
+t= 412941731 us  left :    40940 raw   right:  -161656 raw    rawT=  -120716
+t= 413765538 us  left :    40980 raw   right:  -161637 raw    rawT=  -120657
+t= 414589343 us  left :    41030 raw   right:  -161647 raw    rawT=  -120617
+t= 415330771 us  left :    41147 raw   right:  -161729 raw    rawT=  -120582
+t= 416154583 us  left :    41092 raw   right:  -161754 raw    rawT=  -120662
+t= 416978399 us  left :    41177 raw   right:  -161715 raw    rawT=  -120538
+t= 417719855 us  left :    41299 raw   right:  -161715 raw    rawT=  -120416
+t= 418543664 us  left :    41338 raw   right:  -161892 raw    rawT=  -120554
+t= 419367465 us  left :    41177 raw   right:  -161716 raw    rawT=  -120539
+t= 420108865 us  left :    41042 raw   right:  -161801 raw    rawT=  -120759
+t= 420932674 us  left :    41011 raw   right:  -161695 raw    rawT=  -120684
+t= 421756478 us  left :    41039 raw   right:  -161690 raw    rawT=  -120651
+t= 422497893 us  left :    41041 raw   right:  -161687 raw    rawT=  -120646
+t= 423321709 us  left :    41074 raw   right:  -161684 raw    rawT=  -120610
+t= 424145503 us  left :    41087 raw   right:  -161657 raw    rawT=  -120570
+t= 424886958 us  left :    41145 raw   right:  -161629 raw    rawT=  -120484
+t= 425710789 us  left :    41131 raw   right:  -161616 raw    rawT=  -120485
+t= 426534600 us  left :    41149 raw   right:  -161598 raw    rawT=  -120449
+t= 427276006 us  left :    41209 raw   right:  -161607 raw    rawT=  -120398
+>>> state: Kahvi keittymässä – n. 4 kuppia, valmis alle minuutissa
+t= 428099811 us  left :    41154 raw   right:  -161524 raw    rawT=  -120370
+t= 428923648 us  left :    41270 raw   right:  -161495 raw    rawT=  -120225
+t= 429665075 us  left :    41289 raw   right:  -161503 raw    rawT=  -120214
+t= 430488899 us  left :    41343 raw   right:  -161481 raw    rawT=  -120138
+t= 431312719 us  left :    41325 raw   right:  -161494 raw    rawT=  -120169
+t= 432054147 us  left :    41367 raw   right:  -161425 raw    rawT=  -120058
+t= 432877976 us  left :    41404 raw   right:  -161431 raw    rawT=  -120027
+t= 433701643 us  left :    41421 raw   right:  -161412 raw    rawT=  -119991
+t= 434442848 us  left :    41481 raw   right:  -161344 raw    rawT=  -119863
+t= 435266439 us  left :    41496 raw   right:  -161359 raw    rawT=  -119863
+t= 436090030 us  left :    41508 raw   right:  -161341 raw    rawT=  -119833
+t= 436831260 us  left :    41486 raw   right:  -161303 raw    rawT=  -119817
+t= 437654874 us  left :    41535 raw   right:  -161249 raw    rawT=  -119714
+t= 438478465 us  left :    41422 raw   right:  -161170 raw    rawT=  -119748
+t= 439219702 us  left :    41617 raw   right:  -160928 raw    rawT=  -119311
+t= 440043289 us  left :    41625 raw   right:  -160882 raw    rawT=  -119257
+t= 440866905 us  left :    41689 raw   right:  -160875 raw    rawT=  -119186
+t= 441608125 us  left :    41680 raw   right:  -160842 raw    rawT=  -119162
+t= 442431728 us  left :    41709 raw   right:  -160780 raw    rawT=  -119071
+t= 443255335 us  left :    41767 raw   right:  -160790 raw    rawT=  -119023
+t= 444078940 us  left :    41766 raw   right:  -160777 raw    rawT=  -119011
+t= 444820195 us  left :    41759 raw   right:  -160754 raw    rawT=  -118995
+t= 445643812 us  left :    41792 raw   right:  -160663 raw    rawT=  -118871
+t= 446467420 us  left :    41832 raw   right:  -160656 raw    rawT=  -118824
+t= 447208683 us  left :    41832 raw   right:  -160653 raw    rawT=  -118821
+t= 448032295 us  left :    41822 raw   right:  -160638 raw    rawT=  -118816
+t= 448855999 us  left :    41888 raw   right:  -160625 raw    rawT=  -118737
+t= 449597438 us  left :    41914 raw   right:  -160585 raw    rawT=  -118671
+t= 450421265 us  left :    41912 raw   right:  -160597 raw    rawT=  -118685
+t= 451245097 us  left :    41927 raw   right:  -160549 raw    rawT=  -118622
+t= 451986526 us  left :    41946 raw   right:  -160500 raw    rawT=  -118554
+t= 452810342 us  left :    41994 raw   right:  -160488 raw    rawT=  -118494
+t= 453634160 us  left :    42001 raw   right:  -160869 raw    rawT=  -118868
+t= 454375630 us  left :    42023 raw   right:  -160949 raw    rawT=  -118926
+t= 455199438 us  left :    42073 raw   right:  -160939 raw    rawT=  -118866
+t= 456023250 us  left :    42063 raw   right:  -161079 raw    rawT=  -119016
+t= 456764695 us  left :    42019 raw   right:  -161042 raw    rawT=  -119023
+t= 457588505 us  left :    41955 raw   right:  -161061 raw    rawT=  -119106
+t= 458412310 us  left :    42081 raw   right:  -161071 raw    rawT=  -118990
+t= 459153753 us  left :    42047 raw   right:  -161069 raw    rawT=  -119022
+t= 459977582 us  left :    42078 raw   right:  -161057 raw    rawT=  -118979
+t= 460801413 us  left :    42079 raw   right:  -161044 raw    rawT=  -118965
+t= 461542887 us  left :    42119 raw   right:  -160983 raw    rawT=  -118864
+t= 462366699 us  left :    42093 raw   right:  -160940 raw    rawT=  -118847
+t= 463190533 us  left :    42031 raw   right:  -160965 raw    rawT=  -118934
+t= 463931977 us  left :    42132 raw   right:  -160957 raw    rawT=  -118825
+t= 464755802 us  left :    42187 raw   right:  -160969 raw    rawT=  -118782
+t= 465579656 us  left :    42135 raw   right:  -160978 raw    rawT=  -118843
+t= 466321103 us  left :    42178 raw   right:  -160952 raw    rawT=  -118774
+t= 467144947 us  left :    42190 raw   right:  -160942 raw    rawT=  -118752
+t= 467968784 us  left :    42208 raw   right:  -160952 raw    rawT=  -118744
+t= 468710241 us  left :    42231 raw   right:  -160910 raw    rawT=  -118679
+t= 469534060 us  left :    42269 raw   right:  -160927 raw    rawT=  -118658
+t= 470357888 us  left :    42264 raw   right:  -160811 raw    rawT=  -118547
+t= 471099331 us  left :    42266 raw   right:  -160844 raw    rawT=  -118578
+t= 471923160 us  left :    42287 raw   right:  -160787 raw    rawT=  -118500
+t= 472746997 us  left :    42318 raw   right:  -160758 raw    rawT=  -118440
+t= 473488453 us  left :    42313 raw   right:  -160726 raw    rawT=  -118413
+t= 474312280 us  left :    42290 raw   right:  -160672 raw    rawT=  -118382
+t= 475136110 us  left :    42317 raw   right:  -160645 raw    rawT=  -118328
+t= 475959945 us  left :    42319 raw   right:  -160615 raw    rawT=  -118296
+t= 476701409 us  left :    42332 raw   right:  -160654 raw    rawT=  -118322
+t= 477525226 us  left :    42295 raw   right:  -160605 raw    rawT=  -118310
+t= 478348854 us  left :    42326 raw   right:  -160531 raw    rawT=  -118205
+t= 479090099 us  left :    42359 raw   right:  -160613 raw    rawT=  -118254
+t= 479913713 us  left :    42366 raw   right:  -160536 raw    rawT=  -118170
+t= 480737338 us  left :    42385 raw   right:  -160524 raw    rawT=  -118139
+t= 481478599 us  left :    42362 raw   right:  -160510 raw    rawT=  -118148
+t= 482302201 us  left :    42379 raw   right:  -160493 raw    rawT=  -118114
+t= 483125804 us  left :    42357 raw   right:  -160444 raw    rawT=  -118087
+t= 483867067 us  left :    42390 raw   right:  -160458 raw    rawT=  -118068
+t= 484690667 us  left :    42391 raw   right:  -160396 raw    rawT=  -118005
+t= 485514262 us  left :    42329 raw   right:  -160381 raw    rawT=  -118052
+t= 486255512 us  left :    42384 raw   right:  -160359 raw    rawT=  -117975
+t= 487079123 us  left :    42388 raw   right:  -160329 raw    rawT=  -117941
+t= 487904824 us  left :    42411 raw   right:  -160312 raw    rawT=  -117901
+>>> state: 4 kuppia (keitetty klo 13.29)
+t= 488643985 us  left :    42404 raw   right:  -160253 raw    rawT=  -117849
+t= 489467822 us  left :    42427 raw   right:  -160244 raw    rawT=  -117817
+t= 490291658 us  left :    42432 raw   right:  -160188 raw    rawT=  -117756
+t= 491033099 us  left :    42417 raw   right:  -160198 raw    rawT=  -117781
+t= 491856925 us  left :    42445 raw   right:  -160192 raw    rawT=  -117747
+t= 492680768 us  left :    42432 raw   right:  -160136 raw    rawT=  -117704
+t= 493422193 us  left :    42429 raw   right:  -160105 raw    rawT=  -117676
+t= 494246027 us  left :    42429 raw   right:  -160058 raw    rawT=  -117629
+t= 495069794 us  left :    42490 raw   right:  -160057 raw    rawT=  -117567
+t= 495811238 us  left :    42477 raw   right:  -159991 raw    rawT=  -117514
+t= 496635063 us  left :    42494 raw   right:  -159970 raw    rawT=  -117476
+t= 497458890 us  left :    42500 raw   right:  -159947 raw    rawT=  -117447
+t= 498200340 us  left :    42532 raw   right:  -159924 raw    rawT=  -117392
+t= 499024159 us  left :    42491 raw   right:  -159892 raw    rawT=  -117401
+t= 499848008 us  left :    42485 raw   right:  -159834 raw    rawT=  -117349
+t= 500589445 us  left :    42482 raw   right:  -159830 raw    rawT=  -117348
+t= 501413280 us  left :    42488 raw   right:  -159779 raw    rawT=  -117291
+t= 502237122 us  left :    42498 raw   right:  -159790 raw    rawT=  -117292
+t= 502978600 us  left :    42494 raw   right:  -159725 raw    rawT=  -117231
+t= 503802427 us  left :    42497 raw   right:  -159718 raw    rawT=  -117221
+t= 504626272 us  left :    42587 raw   right:  -159684 raw    rawT=  -117097
+t= 505367725 us  left :    42487 raw   right:  -159672 raw    rawT=  -117185
+t= 506109154 us  left :    42495 raw   right:  -159590 raw    rawT=  -117095
+t= 506932977 us  left :    42498 raw   right:  -159639 raw    rawT=  -117141
+t= 507674430 us  left :    42563 raw   right:  -159570 raw    rawT=  -117007
+t= 508498256 us  left :    42524 raw   right:  -159584 raw    rawT=  -117060
+t= 509322079 us  left :    42567 raw   right:  -159557 raw    rawT=  -116990
+t= 510063548 us  left :    42579 raw   right:  -159584 raw    rawT=  -117005
+t= 510887366 us  left :    42585 raw   right:  -159599 raw    rawT=  -117014
+t= 511711105 us  left :    42572 raw   right:  -159600 raw    rawT=  -117028
+t= 512452358 us  left :    42597 raw   right:  -159600 raw    rawT=  -117003
+t= 513275968 us  left :    42622 raw   right:  -159619 raw    rawT=  -116997
+t= 514099588 us  left :    42619 raw   right:  -159595 raw    rawT=  -116976
+t= 514840843 us  left :    42460 raw   right:  -159641 raw    rawT=  -117181
+t= 515664476 us  left :    42540 raw   right:  -159481 raw    rawT=  -116941
+t= 516488090 us  left :    42626 raw   right:  -159504 raw    rawT=  -116878
+t= 517229583 us  left :    42638 raw   right:  -159541 raw    rawT=  -116903
+t= 518053395 us  left :    42619 raw   right:  -159549 raw    rawT=  -116930
+t= 518877230 us  left :    42615 raw   right:  -159590 raw    rawT=  -116975
+t= 519618651 us  left :    42643 raw   right:  -159571 raw    rawT=  -116928
+t= 520442474 us  left :    42641 raw   right:  -159529 raw    rawT=  -116888
+
+############ MARK t= 520447634 us: J10 dripping stopped ############
+
+t= 521266287 us  left :    42617 raw   right:  -159517 raw    rawT=  -116900
+t= 522007726 us  left :    42627 raw   right:  -159531 raw    rawT=  -116904
+t= 522831546 us  left :    42695 raw   right:  -159445 raw    rawT=  -116750
+t= 523655374 us  left :    42671 raw   right:  -159444 raw    rawT=  -116773
+t= 524396820 us  left :    42682 raw   right:  -159436 raw    rawT=  -116754
+t= 525138258 us  left :    42663 raw   right:  -159320 raw    rawT=  -116657
+t= 525962082 us  left :    42659 raw   right:  -159312 raw    rawT=  -116653
+t= 526703541 us  left :    42700 raw   right:  -159248 raw    rawT=  -116548
+t= 527527352 us  left :    42682 raw   right:  -159245 raw    rawT=  -116563
+t= 528351177 us  left :    42702 raw   right:  -159239 raw    rawT=  -116537
+t= 529092621 us  left :    42739 raw   right:  -159200 raw    rawT=  -116461
+t= 529916431 us  left :    42728 raw   right:  -159126 raw    rawT=  -116398
+t= 530740252 us  left :    42733 raw   right:  -159182 raw    rawT=  -116449
+t= 531481563 us  left :    52043 raw   right:  -159859 raw    rawT=  -107816
+t= 532305179 us  left :    39245 raw   right:  -147361 raw    rawT=  -108116
+t= 533128812 us  left :    38994 raw   right:  -147359 raw    rawT=  -108365
+t= 533870062 us  left :    38961 raw   right:  -147387 raw    rawT=  -108426
+t= 534693673 us  left :    38991 raw   right:  -147291 raw    rawT=  -108300
+t= 535517264 us  left :    39008 raw   right:  -147229 raw    rawT=  -108221
+t= 536258520 us  left :    38967 raw   right:  -147242 raw    rawT=  -108275
+t= 537082122 us  left :    38984 raw   right:  -147207 raw    rawT=  -108223
+t= 537905714 us  left :    38992 raw   right:  -147174 raw    rawT=  -108182
+t= 538646950 us  left :    38992 raw   right:  -147137 raw    rawT=  -108145
+t= 539470556 us  left :    38971 raw   right:  -147096 raw    rawT=  -108125
+t= 540294131 us  left :    38971 raw   right:  -147074 raw    rawT=  -108103
+t= 541035365 us  left :    38976 raw   right:  -147077 raw    rawT=  -108101
+t= 541858955 us  left :    38999 raw   right:  -147036 raw    rawT=  -108037
+
+############ MARK t= 541859673 us: J11 bask cover OFF ############
+
+t= 542682579 us  left :    38984 raw   right:  -147031 raw    rawT=  -108047
+t= 543506184 us  left :    38990 raw   right:  -146931 raw    rawT=  -107941
+t= 544247444 us  left :    39002 raw   right:  -146959 raw    rawT=  -107957
+t= 545071037 us  left :    38917 raw   right:  -146911 raw    rawT=  -107994
+t= 545894859 us  left :    38961 raw   right:  -146843 raw    rawT=  -107882
+t= 546636311 us  left :    38979 raw   right:  -146804 raw    rawT=  -107825
+t= 547460122 us  left :    38920 raw   right:  -146749 raw    rawT=  -107829
+t= 548283927 us  left :    38935 raw   right:  -146667 raw    rawT=  -107732
+t= 549025378 us  left :    38929 raw   right:  -146624 raw    rawT=  -107695
+t= 549849178 us  left :    38983 raw   right:  -146595 raw    rawT=  -107612
+t= 550672999 us  left :    38936 raw   right:  -146537 raw    rawT=  -107601
+t= 551414454 us  left :    38935 raw   right:  -146458 raw    rawT=  -107523
+t= 552238283 us  left :    38947 raw   right:  -146409 raw    rawT=  -107462
+t= 553062095 us  left :    38987 raw   right:  -146289 raw    rawT=  -107302
+t= 553803543 us  left :    38962 raw   right:  -146274 raw    rawT=  -107312
+t= 554627361 us  left :    38967 raw   right:  -146213 raw    rawT=  -107246
+t= 555451181 us  left :    39003 raw   right:  -146131 raw    rawT=  -107128
+t= 556192648 us  left :    38957 raw   right:  -146077 raw    rawT=  -107120
+t= 557016450 us  left :    38984 raw   right:  -146000 raw    rawT=  -107016
+t= 557840110 us  left :    38984 raw   right:  -145940 raw    rawT=  -106956
+t= 558581386 us  left :    39037 raw   right:  -145871 raw    rawT=  -106834
+t= 559404979 us  left :    39031 raw   right:  -145890 raw    rawT=  -106859
+t= 560228768 us  left :    39019 raw   right:  -145831 raw    rawT=  -106812
+t= 560970191 us  left :    39014 raw   right:  -145764 raw    rawT=  -106750
+t= 561793984 us  left :    43938 raw   right:  -141742 raw    rawT=   -97804
+t= 562617782 us  left :   221215 raw   right:    11225 raw    rawT=   232440
+t= 563359221 us  left :   221214 raw   right:   -17263 raw    rawT=   203951
+t= 564183027 us  left :   202809 raw   right:  -145884 raw    rawT=    56925
+t= 565006847 us  left :    69357 raw   right:  -145937 raw    rawT=   -76580
+t= 565748290 us  left :    61903 raw   right:  -145163 raw    rawT=   -83260
+t= 566572110 us  left :    53833 raw   right:  -154138 raw    rawT=  -100305
+t= 567395923 us  left :    48385 raw   right:  -121404 raw    rawT=   -73019
+t= 568137178 us  left :    49071 raw   right:  -118556 raw    rawT=   -69485
+t= 568960793 us  left :    47525 raw   right:  -118420 raw    rawT=   -70895
+t= 569787300 us  left :    46922 raw   right:  -118323 raw    rawT=   -71401
+t= 570525685 us  left :    46610 raw   right:  -118210 raw    rawT=   -71600
+t= 571349284 us  left :    46380 raw   right:  -118168 raw    rawT=   -71788
+t= 572172888 us  left :    46050 raw   right:  -118127 raw    rawT=   -72077
+t= 572996650 us  left :    45711 raw   right:  -118035 raw    rawT=   -72324
+t= 573738085 us  left :    45518 raw   right:  -117981 raw    rawT=   -72463
+t= 574561907 us  left :    45394 raw   right:  -117818 raw    rawT=   -72424
+t= 575385740 us  left :    45291 raw   right:  -117790 raw    rawT=   -72499
+t= 576127158 us  left :    45096 raw   right:  -117791 raw    rawT=   -72695
+t= 576950966 us  left :    44983 raw   right:  -117672 raw    rawT=   -72689
+t= 577774787 us  left :    44919 raw   right:  -117670 raw    rawT=   -72751
+
+############ MARK t= 577779680 us: J12 wet grounds out, basket in place ############
+
+t= 578516228 us  left :    44812 raw   right:  -117640 raw    rawT=   -72828
+t= 579340049 us  left :    44706 raw   right:  -117651 raw    rawT=   -72945
+t= 580163877 us  left :    44633 raw   right:  -117617 raw    rawT=   -72984
+t= 580905327 us  left :    44599 raw   right:  -117545 raw    rawT=   -72946
+t= 581729147 us  left :    44506 raw   right:  -117583 raw    rawT=   -73077
+t= 582552971 us  left :    44486 raw   right:  -117524 raw    rawT=   -73038
+t= 583294386 us  left :    44375 raw   right:  -117489 raw    rawT=   -73114
+t= 584118217 us  left :    44377 raw   right:  -117435 raw    rawT=   -73058
+t= 584942040 us  left :    44354 raw   right:  -117449 raw    rawT=   -73095
+t= 585683324 us  left :    44295 raw   right:  -117401 raw    rawT=   -73106
+t= 586506940 us  left :    44215 raw   right:  -117394 raw    rawT=   -73179
+t= 587330567 us  left :    44249 raw   right:  -117362 raw    rawT=   -73113
+t= 588071903 us  left :    44197 raw   right:  -117350 raw    rawT=   -73153
+t= 588895723 us  left :    44121 raw   right:  -117308 raw    rawT=   -73187
+t= 589719572 us  left :    44157 raw   right:  -117343 raw    rawT=   -73186
+t= 590460983 us  left :    44089 raw   right:  -117358 raw    rawT=   -73269
+t= 591284798 us  left :    44074 raw   right:  -117299 raw    rawT=   -73225
+t= 592108628 us  left :    44056 raw   right:  -117318 raw    rawT=   -73262
+t= 592850060 us  left :    44003 raw   right:  -117855 raw    rawT=   -73852
+t= 593673878 us  left :    43476 raw   right:  -108056 raw    rawT=   -64580
+t= 594497697 us  left :    46379 raw   right:  -144446 raw    rawT=   -98067
+t= 595239145 us  left :   -23654 raw   right:  -232153 raw    rawT=  -255807
+t= 596062970 us  left :  -338104 raw   right:  -209811 raw    rawT=  -547915
+t= 596886817 us  left :    32365 raw   right:  -146110 raw    rawT=  -113745
+t= 597628236 us  left :    37556 raw   right:  -146724 raw    rawT=  -109168
+t= 598452054 us  left :    38862 raw   right:  -146890 raw    rawT=  -108028
+t= 599277979 us  left :    39424 raw   right:  -147000 raw    rawT=  -107576
+t= 600017324 us  left :    39769 raw   right:  -147022 raw    rawT=  -107253
+t= 600841148 us  left :    40002 raw   right:  -147026 raw    rawT=  -107024
+
+############ MARK t= 600841930 us: J13 wet grounds back in, basket in place ############
+
+t= 601664973 us  left :    40132 raw   right:  -146964 raw    rawT=  -106832
+t= 602406416 us  left :    40297 raw   right:  -146959 raw    rawT=  -106662
+t= 603230245 us  left :    40389 raw   right:  -146896 raw    rawT=  -106507
+t= 604054084 us  left :    40442 raw   right:  -146856 raw    rawT=  -106414
+t= 604877890 us  left :    40514 raw   right:  -146798 raw    rawT=  -106284
+t= 605619321 us  left :    40581 raw   right:  -146784 raw    rawT=  -106203
+t= 606443147 us  left :    40611 raw   right:  -146702 raw    rawT=  -106091
+t= 607266967 us  left :    40701 raw   right:  -146713 raw    rawT=  -106012
+t= 608008404 us  left :    40687 raw   right:  -146656 raw    rawT=  -105969
+t= 608832216 us  left :    40743 raw   right:  -146581 raw    rawT=  -105838
+t= 609656041 us  left :    40746 raw   right:  -146582 raw    rawT=  -105836
+t= 610397493 us  left :    40768 raw   right:  -146510 raw    rawT=  -105742
+t= 611221312 us  left :    40768 raw   right:  -146465 raw    rawT=  -105697
+t= 612045130 us  left :    40831 raw   right:  -146435 raw    rawT=  -105604
+t= 612786573 us  left :    40848 raw   right:  -146374 raw    rawT=  -105526
+t= 613610387 us  left :    40877 raw   right:  -146443 raw    rawT=  -105566
+t= 614434050 us  left :    41029 raw   right:  -140476 raw    rawT=   -99447
+t= 615175301 us  left :    16396 raw   right:    30221 raw    rawT=    46617
+t= 615998908 us  left :   -21040 raw   right:    98220 raw    rawT=    77180
+t= 616822533 us  left :   -21543 raw   right:    97379 raw    rawT=    75836
+t= 617563799 us  left :   -21848 raw   right:    96847 raw    rawT=    74999
+t= 618390405 us  left :   -22013 raw   right:    96553 raw    rawT=    74540
+>>> state: Pannu on jonkun kädessä – kysy hetken päästä uudelleen.
+t= 619211062 us  left :   -22174 raw   right:    96319 raw    rawT=    74145
+t= 619952309 us  left :   -22319 raw   right:    96132 raw    rawT=    73813
+t= 620775945 us  left :   -22410 raw   right:    95985 raw    rawT=    73575
+t= 621599558 us  left :   -22526 raw   right:    95783 raw    rawT=    73257
+t= 622340803 us  left :   -22604 raw   right:    95749 raw    rawT=    73145
+t= 623164410 us  left :   -22695 raw   right:    95637 raw    rawT=    72942
+
+############ MARK t= 623224660 us: J14 carafe OUT for pour 1 ############
+
+t= 623988016 us  left :   -22755 raw   right:    95545 raw    rawT=    72790
+t= 624729250 us  left :   -22805 raw   right:    95487 raw    rawT=    72682
+t= 625552858 us  left :   -22851 raw   right:    95430 raw    rawT=    72579
+t= 626376433 us  left :   -22903 raw   right:    95395 raw    rawT=    72492
+t= 627117660 us  left :   -22932 raw   right:    95333 raw    rawT=    72401
+t= 627941256 us  left :   -22989 raw   right:    95307 raw    rawT=    72318
+t= 628764857 us  left :   -23043 raw   right:    95233 raw    rawT=    72190
+t= 629506089 us  left :   -23059 raw   right:    95195 raw    rawT=    72136
+t= 630329668 us  left :   -23145 raw   right:    95153 raw    rawT=    72008
+t= 631153246 us  left :   -23146 raw   right:    95153 raw    rawT=    72007
+t= 631976825 us  left :   -23171 raw   right:    95140 raw    rawT=    71969
+t= 632718053 us  left :   -23177 raw   right:    95085 raw    rawT=    71908
+t= 633541648 us  left :   -23220 raw   right:    95065 raw    rawT=    71845
+t= 634365224 us  left :   -23269 raw   right:    95075 raw    rawT=    71806
+t= 635106445 us  left :   -23214 raw   right:    95078 raw    rawT=    71864
+t= 635930038 us  left :   -23649 raw   right:    94366 raw    rawT=    70717
+t= 636753633 us  left :   -23632 raw   right:    95004 raw    rawT=    71372
+t= 637494856 us  left :   -23584 raw   right:    95159 raw    rawT=    71575
+t= 638318474 us  left :   -23579 raw   right:    95145 raw    rawT=    71566
+t= 639142103 us  left :   -23643 raw   right:    95077 raw    rawT=    71434
+t= 639883532 us  left :   -23638 raw   right:    95066 raw    rawT=    71428
+t= 640707345 us  left :   -23629 raw   right:    95070 raw    rawT=    71441
+t= 641531156 us  left :   -23696 raw   right:    95042 raw    rawT=    71346
+t= 642272529 us  left :   -23692 raw   right:    95102 raw    rawT=    71410
+t= 643096125 us  left :   -23682 raw   right:    95076 raw    rawT=    71394
+t= 643919734 us  left :   -23715 raw   right:    95099 raw    rawT=    71384
+t= 644660974 us  left :   -23710 raw   right:    95115 raw    rawT=    71405
+t= 645484591 us  left :   -23714 raw   right:    95141 raw    rawT=    71427
+t= 646308180 us  left :   -23732 raw   right:    95118 raw    rawT=    71386
+t= 647049436 us  left :   -23752 raw   right:    95103 raw    rawT=    71351
+t= 647873009 us  left :   -23760 raw   right:    95186 raw    rawT=    71426
+t= 648696613 us  left :   -23799 raw   right:    95181 raw    rawT=    71382
+t= 649437904 us  left :   -23716 raw   right:    94890 raw    rawT=    71174
+t= 650261717 us  left :   -23615 raw   right:    94321 raw    rawT=    70706
+t= 651085508 us  left :   -23985 raw   right:    94791 raw    rawT=    70806
+t= 651826923 us  left :   -23826 raw   right:    94788 raw    rawT=    70962
+t= 652650728 us  left :   -23836 raw   right:    94812 raw    rawT=    70976
+t= 653474541 us  left :   -23872 raw   right:    94815 raw    rawT=    70943
+t= 654215949 us  left :   -23839 raw   right:    94833 raw    rawT=    70994
+t= 655039678 us  left :   -23859 raw   right:    94857 raw    rawT=    70998
+t= 655863255 us  left :   -23857 raw   right:    94862 raw    rawT=    71005
+t= 656686866 us  left :   -23836 raw   right:    94870 raw    rawT=    71034
+t= 657428281 us  left :   -23822 raw   right:    94867 raw    rawT=    71045
+t= 658252095 us  left :   -23828 raw   right:    94866 raw    rawT=    71038
+t= 659075891 us  left :   -23852 raw   right:    94800 raw    rawT=    70948
+t= 659817330 us  left :   -23860 raw   right:    94791 raw    rawT=    70931
+t= 660641135 us  left :   -23890 raw   right:    94792 raw    rawT=    70902
+t= 661464931 us  left :   -23941 raw   right:    94706 raw    rawT=    70765
+t= 662206355 us  left :   -23982 raw   right:    94689 raw    rawT=    70707
+t= 663030181 us  left :   -24013 raw   right:    94657 raw    rawT=    70644
+t= 663853992 us  left :   -24035 raw   right:    94680 raw    rawT=    70645
+t= 664595398 us  left :   -23988 raw   right:    94665 raw    rawT=    70677
+t= 665419190 us  left :   -23987 raw   right:    94635 raw    rawT=    70648
+t= 666242992 us  left :   -24016 raw   right:    94691 raw    rawT=    70675
+t= 666984408 us  left :   -24026 raw   right:    94704 raw    rawT=    70678
+t= 667808222 us  left :   -24021 raw   right:    94740 raw    rawT=    70719
+t= 668632013 us  left :   -24060 raw   right:    94715 raw    rawT=    70655
+t= 669373436 us  left :   -24014 raw   right:    94699 raw    rawT=    70685
+t= 670197249 us  left :   -24059 raw   right:    94746 raw    rawT=    70687
+t= 671021032 us  left :   -24048 raw   right:    94692 raw    rawT=    70644
+t= 671762454 us  left :   -24089 raw   right:    94674 raw    rawT=    70585
+t= 672586250 us  left :   -24092 raw   right:    94689 raw    rawT=    70597
+t= 673410054 us  left :   -24067 raw   right:    94692 raw    rawT=    70625
+t= 674151491 us  left :   -24069 raw   right:    94723 raw    rawT=    70654
+t= 674975291 us  left :   -24046 raw   right:    94742 raw    rawT=    70696
+t= 675799070 us  left :   -24058 raw   right:    94727 raw    rawT=    70669
+t= 676540496 us  left :   -24069 raw   right:    94741 raw    rawT=    70672
+t= 677364320 us  left :   -24082 raw   right:    94707 raw    rawT=    70625
+t= 678188085 us  left :   -24035 raw   right:    75000 raw    rawT=    50965
+t= 678929391 us  left :    -9519 raw   right:   -25471 raw    rawT=   -34990
+t= 679752981 us  left :    19372 raw   right:  -147918 raw    rawT=  -128546
+t= 680576571 us  left :    31632 raw   right:   -58378 raw    rawT=   -26746
+t= 681317811 us  left :   -10913 raw   right:  -144232 raw    rawT=  -155145
+t= 682141428 us  left :    35370 raw   right:  -107440 raw    rawT=   -72070
+t= 682965082 us  left :    26300 raw   right:  -106768 raw    rawT=   -80468
+t= 683706639 us  left :    26160 raw   right:  -107429 raw    rawT=   -81269
+t= 684450415 us  left :    26304 raw   right:  -106329 raw    rawT=   -80025
+>>> state: 2 kuppia (keitetty klo 13.29)
+t= 685271753 us  left :    26241 raw   right:  -106844 raw    rawT=   -80603
+t= 686013184 us  left :    26355 raw   right:  -106191 raw    rawT=   -79836
+t= 686836995 us  left :    26318 raw   right:  -106342 raw    rawT=   -80024
+
+############ MARK t= 686837730 us: J15 carafe ON, poured 1.25 dl ############
+
+t= 687660815 us  left :    26406 raw   right:  -106426 raw    rawT=   -80020
+t= 688402237 us  left :    26428 raw   right:  -105889 raw    rawT=   -79461
+t= 689226044 us  left :    26431 raw   right:  -106238 raw    rawT=   -79807
+t= 690049838 us  left :    26497 raw   right:  -105660 raw    rawT=   -79163
+t= 690791257 us  left :    26497 raw   right:  -105940 raw    rawT=   -79443
+t= 691615059 us  left :    26557 raw   right:  -105629 raw    rawT=   -79072
+t= 692438855 us  left :    26550 raw   right:  -105390 raw    rawT=   -78840
+t= 693180294 us  left :    26591 raw   right:  -105566 raw    rawT=   -78975
+t= 694004090 us  left :    26637 raw   right:  -105244 raw    rawT=   -78607
+t= 694827906 us  left :    26640 raw   right:  -105431 raw    rawT=   -78791
+t= 695569183 us  left :    26655 raw   right:  -105159 raw    rawT=   -78504
+t= 696392931 us  left :    26658 raw   right:  -105260 raw    rawT=   -78602
+t= 697216734 us  left :    26711 raw   right:  -105222 raw    rawT=   -78511
+t= 697958171 us  left :    26721 raw   right:  -105132 raw    rawT=   -78411
+t= 698781988 us  left :    26744 raw   right:  -105202 raw    rawT=   -78458
+t= 699605793 us  left :    26792 raw   right:  -104994 raw    rawT=   -78202
+t= 700347221 us  left :    26803 raw   right:  -105081 raw    rawT=   -78278
+t= 701171017 us  left :    26797 raw   right:  -104930 raw    rawT=   -78133
+t= 701994818 us  left :    26769 raw   right:  -104866 raw    rawT=   -78097
+t= 702736245 us  left :    26803 raw   right:  -104852 raw    rawT=   -78049
+t= 703560051 us  left :    26836 raw   right:  -104746 raw    rawT=   -77910
+t= 704383875 us  left :    26839 raw   right:  -104753 raw    rawT=   -77914
+t= 705207806 us  left :    26832 raw   right:  -104620 raw    rawT=   -77788
+t= 705949038 us  left :    26829 raw   right:  -104716 raw    rawT=   -77887
+t= 706772587 us  left :    26876 raw   right:  -107860 raw    rawT=   -80984
+t= 707596153 us  left :   187050 raw   right:     7694 raw    rawT=   194744
+t= 708337373 us  left :   139246 raw   right:  -107126 raw    rawT=    32120
+t= 709160939 us  left :    42049 raw   right:  -105871 raw    rawT=   -63822
+t= 709984494 us  left :    26577 raw   right:   -82854 raw    rawT=   -56277
+t= 710725697 us  left :    31020 raw   right:   -79663 raw    rawT=   -48643
+t= 711549241 us  left :    30854 raw   right:   -79605 raw    rawT=   -48751
+t= 712375208 us  left :    30611 raw   right:   -79477 raw    rawT=   -48866
+t= 713114036 us  left :    30390 raw   right:   -79363 raw    rawT=   -48973
+t= 713937590 us  left :    30337 raw   right:   -79333 raw    rawT=   -48996
+t= 714761364 us  left :    30227 raw   right:   -79218 raw    rawT=   -48991
+t= 715502752 us  left :    30144 raw   right:   -79238 raw    rawT=   -49094
+t= 716326531 us  left :    30083 raw   right:   -79197 raw    rawT=   -49114
+
+############ MARK t= 716331680 us: J16 wet grounds out, basket in place ############
+
+t= 717150302 us  left :    29972 raw   right:   -79155 raw    rawT=   -49183
+t= 717891683 us  left :    29983 raw   right:   -79103 raw    rawT=   -49120
+t= 718715456 us  left :    29921 raw   right:   -79046 raw    rawT=   -49125
+t= 719539695 us  left :    29912 raw   right:   -79008 raw    rawT=   -49096
+t= 720280628 us  left :    29890 raw   right:   -79016 raw    rawT=   -49126
+t= 721104395 us  left :    29880 raw   right:   -78999 raw    rawT=   -49119
+t= 721928169 us  left :    29834 raw   right:   -78926 raw    rawT=   -49092
+t= 722669588 us  left :    29829 raw   right:   -78979 raw    rawT=   -49150
+t= 723493332 us  left :    29824 raw   right:   -78897 raw    rawT=   -49073
+t= 724317109 us  left :    29813 raw   right:   -78861 raw    rawT=   -49048
+t= 725058480 us  left :    29786 raw   right:   -78841 raw    rawT=   -49055
+t= 725882245 us  left :    29797 raw   right:   -78819 raw    rawT=   -49022
+t= 726706010 us  left :    29791 raw   right:   -78780 raw    rawT=   -48989
+t= 727447388 us  left :    29764 raw   right:   -78766 raw    rawT=   -49002
+t= 728271153 us  left :    29758 raw   right:   -78740 raw    rawT=   -48982
+t= 729094920 us  left :    29783 raw   right:   -78690 raw    rawT=   -48907
+t= 729836306 us  left :    29763 raw   right:   -78676 raw    rawT=   -48913
+t= 730660071 us  left :    29751 raw   right:   -78632 raw    rawT=   -48881
+t= 731483846 us  left :    29724 raw   right:   -78653 raw    rawT=   -48929
+t= 732225232 us  left :    29766 raw   right:   -78620 raw    rawT=   -48854
+t= 733049007 us  left :    29697 raw   right:   -78970 raw    rawT=   -49273
+t= 733872758 us  left :    38473 raw   right:  -110996 raw    rawT=   -72523
+t= 734696517 us  left :    35264 raw   right:  -108210 raw    rawT=   -72946
+t= 735437885 us  left :    35670 raw   right:  -106589 raw    rawT=   -70919
+t= 736261653 us  left :    35700 raw   right:  -106430 raw    rawT=   -70730
+t= 737085398 us  left :    35469 raw   right:  -127811 raw    rawT=   -92342
+t= 737826796 us  left :  -368635 raw   right:  -164183 raw    rawT=  -532818
+t= 738650593 us  left :    22430 raw   right:  -106966 raw    rawT=   -84536
+t= 739474356 us  left :    25104 raw   right:  -107448 raw    rawT=   -82344
+t= 740215737 us  left :    25816 raw   right:  -107610 raw    rawT=   -81794
+t= 741041977 us  left :    26220 raw   right:  -107570 raw    rawT=   -81350
+t= 741863294 us  left :    26451 raw   right:  -107610 raw    rawT=   -81159
+
+############ MARK t= 741864058 us: J17 wet grounds back in, basket in place ############
+
+t= 742604580 us  left :    26599 raw   right:  -107600 raw    rawT=   -81001
+t= 743428134 us  left :    26758 raw   right:  -107528 raw    rawT=   -80770
+t= 744251695 us  left :    26839 raw   right:  -107503 raw    rawT=   -80664
+t= 744992882 us  left :    26938 raw   right:  -107405 raw    rawT=   -80467
+t= 745816435 us  left :    26973 raw   right:  -107392 raw    rawT=   -80419
+t= 746639964 us  left :    27049 raw   right:  -107340 raw    rawT=   -80291
+t= 747381151 us  left :    27062 raw   right:  -107301 raw    rawT=   -80239
+t= 748204793 us  left :    27103 raw   right:  -107267 raw    rawT=   -80164
+t= 749028575 us  left :    27145 raw   right:  -107201 raw    rawT=   -80056
+t= 749769979 us  left :    27168 raw   right:  -107186 raw    rawT=   -80018
+t= 750593759 us  left :    27227 raw   right:  -107122 raw    rawT=   -79895
+t= 751417522 us  left :    27262 raw   right:  -107118 raw    rawT=   -79856
+t= 752158903 us  left :    27274 raw   right:  -107046 raw    rawT=   -79772
+t= 752982689 us  left :    27291 raw   right:  -107019 raw    rawT=   -79728
+t= 753806431 us  left :    27289 raw   right:  -107009 raw    rawT=   -79720
+t= 754547808 us  left :    27302 raw   right:  -106966 raw    rawT=   -79664
+t= 755371563 us  left :    27341 raw   right:  -106900 raw    rawT=   -79559
+t= 756195316 us  left :    27371 raw   right:  -106915 raw    rawT=   -79544
+t= 756936710 us  left :    27405 raw   right:  -106863 raw    rawT=   -79458
+t= 757760491 us  left :    27405 raw   right:  -106859 raw    rawT=   -79454
+t= 758584293 us  left :    27376 raw   right:  -106977 raw    rawT=   -79601
+t= 759325726 us  left :    27372 raw   right:  -106756 raw    rawT=   -79384
+t= 760149558 us  left :    27443 raw   right:  -106703 raw    rawT=   -79260
+t= 760973342 us  left :    27461 raw   right:  -106654 raw    rawT=   -79193
+t= 761714756 us  left :    27456 raw   right:  -106592 raw    rawT=   -79136
+t= 762538560 us  left :    27503 raw   right:  -106563 raw    rawT=   -79060
+t= 763362357 us  left :    27474 raw   right:  -106521 raw    rawT=   -79047
+t= 764103793 us  left :    27498 raw   right:  -106451 raw    rawT=   -78953
+t= 764927597 us  left :    27509 raw   right:  -106423 raw    rawT=   -78914
+t= 765751398 us  left :    27502 raw   right:  -106394 raw    rawT=   -78892
+t= 766575196 us  left :    27560 raw   right:  -106319 raw    rawT=   -78759
+t= 767316614 us  left :    27558 raw   right:  -106287 raw    rawT=   -78729
+t= 768140404 us  left :    27565 raw   right:  -106215 raw    rawT=   -78650
+t= 768964206 us  left :    27547 raw   right:  -106183 raw    rawT=   -78636
+t= 769705605 us  left :    27580 raw   right:  -106138 raw    rawT=   -78558
+t= 770529406 us  left :    27595 raw   right:  -106072 raw    rawT=   -78477
+t= 771353193 us  left :    27633 raw   right:  -106041 raw    rawT=   -78408
+t= 772094611 us  left :    27660 raw   right:  -106015 raw    rawT=   -78355
+t= 772918331 us  left :    27684 raw   right:  -105965 raw    rawT=   -78281
+t= 773741940 us  left :    27661 raw   right:  -105912 raw    rawT=   -78251
+t= 774483275 us  left :    27671 raw   right:  -110879 raw    rawT=   -83208
+t= 775306826 us  left :    32769 raw   right:   -88431 raw    rawT=   -55662
+t= 776130402 us  left :    41701 raw   right:   -95076 raw    rawT=   -53375
+t= 776871626 us  left :    32567 raw   right:   -62425 raw    rawT=   -29858
+t= 777695199 us  left :   191260 raw   right:   -45049 raw    rawT=   146211
+t= 778518801 us  left :    60249 raw   right:   -77598 raw    rawT=   -17349
+t= 779260021 us  left :    32134 raw   right:   -76400 raw    rawT=   -44266
+t= 780083600 us  left :    30906 raw   right:   -76330 raw    rawT=   -45424
+t= 780910304 us  left :    30361 raw   right:   -76297 raw    rawT=   -45936
+t= 781648411 us  left :    30226 raw   right:   -82549 raw    rawT=   -52323
+t= 782472014 us  left :  -323704 raw   right:  -103182 raw    rawT=  -426886
+t= 783295797 us  left :    15454 raw   right:   -76946 raw    rawT=   -61492
+t= 784037199 us  left :    21888 raw   right:    26321 raw    rawT=    48209
+t= 784860992 us  left :   -46074 raw   right:   141442 raw    rawT=    95368
+t= 785684790 us  left :   -27945 raw   right:   129687 raw    rawT=   101742
+t= 786426209 us  left :   -27885 raw   right:   129140 raw    rawT=   101255
+t= 787252403 us  left :   -27926 raw   right:   128771 raw    rawT=   100845
+>>> state: Pannu on jonkun kädessä – kysy hetken päästä uudelleen.
+t= 788073803 us  left :   -27981 raw   right:   128522 raw    rawT=   100541
+t= 788815105 us  left :   -27964 raw   right:   128415 raw    rawT=   100451
+t= 789638765 us  left :   -27997 raw   right:   128217 raw    rawT=   100220
+t= 790462553 us  left :   -28041 raw   right:   128053 raw    rawT=   100012
+t= 791203963 us  left :   -28074 raw   right:   127939 raw    rawT=    99865
+t= 792027762 us  left :   -28132 raw   right:   127849 raw    rawT=    99717
+t= 792851560 us  left :   -28152 raw   right:   127741 raw    rawT=    99589
+t= 793675314 us  left :   -28205 raw   right:   127682 raw    rawT=    99477
+
+############ MARK t= 793680688 us: J18 carafe and wet grounds OUT together ############
+
+t= 794416541 us  left :   -28216 raw   right:   127613 raw    rawT=    99397
+t= 795240112 us  left :   -28246 raw   right:   127475 raw    rawT=    99229
+t= 796063689 us  left :   -28259 raw   right:   127434 raw    rawT=    99175
+t= 796804914 us  left :   -28318 raw   right:   127436 raw    rawT=    99118
+t= 797628625 us  left :   -28355 raw   right:   127348 raw    rawT=    98993
+t= 798452401 us  left :   -28356 raw   right:   127326 raw    rawT=    98970
+t= 799193808 us  left :   -28378 raw   right:   127281 raw    rawT=    98903
+t= 800017609 us  left :   -28419 raw   right:   127211 raw    rawT=    98792
+t= 800841402 us  left :   -28463 raw   right:   127167 raw    rawT=    98704
+t= 801582807 us  left :   -28445 raw   right:   127193 raw    rawT=    98748
+t= 802406606 us  left :   -28449 raw   right:   127128 raw    rawT=    98679
+t= 803230407 us  left :   -28470 raw   right:   127122 raw    rawT=    98652
+t= 803971818 us  left :   -28505 raw   right:   127097 raw    rawT=    98592
+t= 804795638 us  left :   -28493 raw   right:   127075 raw    rawT=    98582
+t= 805619427 us  left :   -28534 raw   right:   127023 raw    rawT=    98489
+t= 806360823 us  left :   -28539 raw   right:   127021 raw    rawT=    98482
+t= 807184606 us  left :   -28545 raw   right:   126976 raw    rawT=    98431
+t= 808008366 us  left :   -28554 raw   right:   126994 raw    rawT=    98440
+t= 808749771 us  left :   -28604 raw   right:   126946 raw    rawT=    98342
+t= 809573549 us  left :   -28577 raw   right:   126962 raw    rawT=    98385
+t= 810397317 us  left :   -28638 raw   right:   126906 raw    rawT=    98268
+t= 811138713 us  left :   -28597 raw   right:   126778 raw    rawT=    98181
+t= 811962502 us  left :   -29308 raw   right:   127018 raw    rawT=    97710
+t= 812786276 us  left :   -29315 raw   right:   126905 raw    rawT=    97590
+t= 813527685 us  left :   -28881 raw   right:   126857 raw    rawT=    97976
+t= 814351286 us  left :   -28844 raw   right:   126866 raw    rawT=    98022
+t= 815174852 us  left :   -28941 raw   right:   126879 raw    rawT=    97938
+t= 815916045 us  left :   -28888 raw   right:   126854 raw    rawT=    97966
+t= 816739674 us  left :   -28788 raw   right:   126878 raw    rawT=    98090
+t= 817563434 us  left :   -28835 raw   right:   126973 raw    rawT=    98138
+t= 818304832 us  left :   -28916 raw   right:   126968 raw    rawT=    98052
+t= 819128627 us  left :   -28934 raw   right:   126950 raw    rawT=    98016
+t= 819952393 us  left :   -28972 raw   right:   127011 raw    rawT=    98039
+t= 820693787 us  left :   -28966 raw   right:   126975 raw    rawT=    98009
+t= 821517566 us  left :   -28969 raw   right:   126985 raw    rawT=    98016
+t= 822341346 us  left :   -28967 raw   right:   126997 raw    rawT=    98030
+t= 823164984 us  left :   -28946 raw   right:   126970 raw    rawT=    98024
+t= 823906198 us  left :   -28960 raw   right:   126960 raw    rawT=    98000
+t= 824729757 us  left :   -28953 raw   right:   126982 raw    rawT=    98029
+t= 825553336 us  left :   -28942 raw   right:   126933 raw    rawT=    97991
+t= 826294748 us  left :   -28756 raw   right:   126481 raw    rawT=    97725
+t= 827118504 us  left :   -28993 raw   right:   126283 raw    rawT=    97290
+t= 827942262 us  left :   -29112 raw   right:   126516 raw    rawT=    97404
+t= 828683629 us  left :   -28978 raw   right:   126563 raw    rawT=    97585
+t= 829507203 us  left :   -29080 raw   right:   126541 raw    rawT=    97461
+t= 830330743 us  left :   -29153 raw   right:   126525 raw    rawT=    97372
+t= 831071930 us  left :   -29080 raw   right:   126571 raw    rawT=    97491
+t= 831895463 us  left :   -29056 raw   right:   126533 raw    rawT=    97477
+t= 832719036 us  left :   -29004 raw   right:   126506 raw    rawT=    97502
+t= 833460417 us  left :   -28969 raw   right:   126441 raw    rawT=    97472
+t= 834284162 us  left :   -28966 raw   right:   126494 raw    rawT=    97528
+t= 835107915 us  left :   -28999 raw   right:   126474 raw    rawT=    97475
+t= 835849296 us  left :   -29050 raw   right:   126409 raw    rawT=    97359
+t= 836673041 us  left :   -29075 raw   right:   126366 raw    rawT=    97291
+t= 837496788 us  left :   -29107 raw   right:   126354 raw    rawT=    97247
+t= 838238172 us  left :   -29112 raw   right:   126337 raw    rawT=    97225
+t= 839061935 us  left :   -29129 raw   right:   126332 raw    rawT=    97203
+t= 839885694 us  left :   -29142 raw   right:   126287 raw    rawT=    97145
+t= 840627084 us  left :   -29080 raw   right:   126277 raw    rawT=    97197
+t= 841450821 us  left :   -29126 raw   right:   126274 raw    rawT=    97148
+t= 842274588 us  left :   -29119 raw   right:   126245 raw    rawT=    97126
+t= 843015959 us  left :   -29130 raw   right:   126245 raw    rawT=    97115
+t= 843839707 us  left :   -29116 raw   right:   126232 raw    rawT=    97116
+t= 844663439 us  left :   -29106 raw   right:   126124 raw    rawT=    97018
+t= 845404803 us  left :   -26945 raw   right:   128629 raw    rawT=   101684
+t= 846228571 us  left :   -11215 raw   right:    64997 raw    rawT=    53782
+t= 847052307 us  left :     9399 raw   right:   -32576 raw    rawT=   -23177
+t= 847793699 us  left :     7859 raw   right:   -31308 raw    rawT=   -23449
+t= 848620408 us  left :     6755 raw   right:   -31329 raw    rawT=   -24574
+>>> state: 2 kuppia (keitetty klo 13.29)
+t= 849441223 us  left :     6903 raw   right:   -31978 raw    rawT=   -25075
+t= 850182572 us  left :     7759 raw   right:   -30792 raw    rawT=   -23033
+t= 851006326 us  left :     7221 raw   right:   -30630 raw    rawT=   -23409
+t= 851830088 us  left :     6732 raw   right:   -31316 raw    rawT=   -24584
+t= 852653827 us  left :     7462 raw   right:   -30151 raw    rawT=   -22689
+t= 853395198 us  left :     7635 raw   right:   -29978 raw    rawT=   -22343
+t= 854218974 us  left :     7038 raw   right:   -30778 raw    rawT=   -23740
+t= 855042728 us  left :     7221 raw   right:   -30164 raw    rawT=   -22943
+t= 855784119 us  left :     7689 raw   right:   -29848 raw    rawT=   -22159
+t= 856607873 us  left :     7397 raw   right:   -30151 raw    rawT=   -22754
+t= 857431645 us  left :     7234 raw   right:   -30046 raw    rawT=   -22812
+t= 858173001 us  left :     7557 raw   right:   -29724 raw    rawT=   -22167
+t= 858996756 us  left :     7616 raw   right:   -29698 raw    rawT=   -22082
+t= 859820517 us  left :     7406 raw   right:   -29852 raw    rawT=   -22446
+t= 860561888 us  left :     7482 raw   right:   -29599 raw    rawT=   -22117
+t= 861385644 us  left :     7646 raw   right:   -29401 raw    rawT=   -21755
+t= 862209393 us  left :     7561 raw   right:   -29528 raw    rawT=   -21967
+t= 862950768 us  left :     7502 raw   right:   -29492 raw    rawT=   -21990
+t= 863774525 us  left :     7659 raw   right:   -29198 raw    rawT=   -21539
+t= 864598261 us  left :     7693 raw   right:   -29232 raw    rawT=   -21539
+t= 865339632 us  left :     7607 raw   right:   -29246 raw    rawT=   -21639
+t= 866163373 us  left :     7622 raw   right:   -29085 raw    rawT=   -21463
+t= 866987132 us  left :     7737 raw   right:   -28962 raw    rawT=   -21225
+t= 867728511 us  left :     7696 raw   right:   -29031 raw    rawT=   -21335
+t= 868552254 us  left :     7655 raw   right:   -28921 raw    rawT=   -21266
+
+############ MARK t= 868662669 us: J19 carafe ON, poured 1.25 dl ############
+
+t= 869376022 us  left :     7714 raw   right:   -28822 raw    rawT=   -21108
+t= 870117421 us  left :     7739 raw   right:   -28788 raw    rawT=   -21049
+t= 870941208 us  left :     7740 raw   right:   -28770 raw    rawT=   -21030
+t= 871764865 us  left :     7775 raw   right:   -28650 raw    rawT=   -20875
+t= 872506044 us  left :     7826 raw   right:   -28587 raw    rawT=   -20761
+t= 873329614 us  left :     7793 raw   right:   -28548 raw    rawT=   -20755
+t= 874153144 us  left :     7809 raw   right:   -28470 raw    rawT=   -20661
+t= 874894339 us  left :     7858 raw   right:   -28426 raw    rawT=   -20568
+t= 875717897 us  left :     7893 raw   right:   -28406 raw    rawT=   -20513
+t= 876541580 us  left :     7841 raw   right:   -28352 raw    rawT=   -20511
+t= 877282992 us  left :     7833 raw   right:   -28325 raw    rawT=   -20492
+t= 878106780 us  left :     7875 raw   right:   -28252 raw    rawT=   -20377
+t= 878930570 us  left :     7866 raw   right:   -28213 raw    rawT=   -20347
+t= 879671982 us  left :     7833 raw   right:   -28197 raw    rawT=   -20364
+t= 880495763 us  left :     7925 raw   right:   -28155 raw    rawT=   -20230
+t= 881319544 us  left :     7909 raw   right:   -28088 raw    rawT=   -20179
+t= 882143316 us  left :     7911 raw   right:   -28011 raw    rawT=   -20100
+t= 882884718 us  left :     7913 raw   right:   -27992 raw    rawT=   -20079
+t= 883708512 us  left :     7977 raw   right:   -27934 raw    rawT=   -19957
+t= 884532282 us  left :     7974 raw   right:   -27902 raw    rawT=   -19928
+t= 885273724 us  left :     7989 raw   right:   -27871 raw    rawT=   -19882
+t= 886097508 us  left :     8000 raw   right:   -27811 raw    rawT=   -19811
+t= 886921288 us  left :     7997 raw   right:   -27893 raw    rawT=   -19896
+t= 887662670 us  left :     8739 raw   right:    30585 raw    rawT=    39324
+t= 888486443 us  left :   -31418 raw   right:   124898 raw    rawT=    93480
+t= 889310223 us  left :   -28332 raw   right:   124195 raw    rawT=    95863
+t= 890051626 us  left :   -28439 raw   right:   123965 raw    rawT=    95526
+t= 890878723 us  left :   -28531 raw   right:   123807 raw    rawT=    95276
+>>> state: Pannu on jonkun kädessä – kysy hetken päästä uudelleen.
+t= 891699190 us  left :   -28538 raw   right:   123684 raw    rawT=    95146
+t= 892440603 us  left :   -28591 raw   right:   123590 raw    rawT=    94999
+t= 893264373 us  left :   -28615 raw   right:   123486 raw    rawT=    94871
+t= 894088151 us  left :   -28662 raw   right:   123446 raw    rawT=    94784
+
+############ MARK t= 894148680 us: J20 carafe OUT for final measure ############
+
+t= 894829556 us  left :   -28656 raw   right:   123425 raw    rawT=    94769
+t= 895653334 us  left :   -28735 raw   right:   123361 raw    rawT=    94626
+t= 896477101 us  left :   -28736 raw   right:   123326 raw    rawT=    94590
+t= 897218383 us  left :   -28790 raw   right:   123256 raw    rawT=    94466
+t= 898041948 us  left :   -28774 raw   right:   123257 raw    rawT=    94483
+t= 898865517 us  left :   -28825 raw   right:   123174 raw    rawT=    94349
+t= 899606722 us  left :   -28849 raw   right:   123153 raw    rawT=    94304
+t= 900430293 us  left :   -28866 raw   right:   123107 raw    rawT=    94241
+t= 901253855 us  left :   -28846 raw   right:   123082 raw    rawT=    94236
+t= 901995087 us  left :   -28875 raw   right:   123051 raw    rawT=    94176
+t= 902818656 us  left :   -28878 raw   right:   122991 raw    rawT=    94113
+t= 903642222 us  left :   -28882 raw   right:   123005 raw    rawT=    94123
+t= 904383440 us  left :   -28902 raw   right:   122920 raw    rawT=    94018
+t= 905207027 us  left :   -28947 raw   right:   122944 raw    rawT=    93997
+t= 906030612 us  left :   -28925 raw   right:   122941 raw    rawT=    94016
+t= 906771837 us  left :   -28935 raw   right:   122884 raw    rawT=    93949
+t= 907595390 us  left :   -28916 raw   right:   122897 raw    rawT=    93981
+t= 908418951 us  left :   -28922 raw   right:   122860 raw    rawT=    93938
+t= 909160148 us  left :   -28938 raw   right:   122845 raw    rawT=    93907
+t= 909901350 us  left :   -28967 raw   right:   122863 raw    rawT=    93896
+t= 910724909 us  left :   -28966 raw   right:   122845 raw    rawT=    93879
+t= 911466123 us  left :   -28919 raw   right:   122859 raw    rawT=    93940
+t= 912289712 us  left :   -28960 raw   right:   122867 raw    rawT=    93907
+t= 913113453 us  left :   -28963 raw   right:   122836 raw    rawT=    93873
+t= 913854853 us  left :   -28952 raw   right:   122829 raw    rawT=    93877
+t= 914678641 us  left :   -28910 raw   right:   122812 raw    rawT=    93902
+t= 915502403 us  left :   -29688 raw   right:   122648 raw    rawT=    92960
+t= 916243806 us  left :   -29402 raw   right:   122807 raw    rawT=    93405
+t= 917067583 us  left :   -29211 raw   right:   122718 raw    rawT=    93507
+t= 917891361 us  left :   -29188 raw   right:   122725 raw    rawT=    93537
+t= 918632785 us  left :   -29192 raw   right:   122702 raw    rawT=    93510
+t= 919456550 us  left :   -29184 raw   right:   122709 raw    rawT=    93525
+t= 920280313 us  left :   -29152 raw   right:   122689 raw    rawT=    93537
+t= 921021619 us  left :   -29169 raw   right:   122698 raw    rawT=    93529
+t= 921845182 us  left :   -29172 raw   right:   122710 raw    rawT=    93538
+t= 922668865 us  left :   -29251 raw   right:   122758 raw    rawT=    93507
+t= 923410264 us  left :   -29208 raw   right:   122735 raw    rawT=    93527
+t= 924234043 us  left :   -29218 raw   right:   122803 raw    rawT=    93585
+t= 925057806 us  left :   -29168 raw   right:   122757 raw    rawT=    93589
+t= 925799215 us  left :   -29216 raw   right:   122822 raw    rawT=    93606
+t= 926622976 us  left :   -29203 raw   right:   122851 raw    rawT=    93648
+t= 927446727 us  left :   -29198 raw   right:   122875 raw    rawT=    93677
+t= 928187973 us  left :   -29239 raw   right:   122920 raw    rawT=    93681
+t= 929011506 us  left :   -29208 raw   right:   122906 raw    rawT=    93698
+t= 929835026 us  left :   -29196 raw   right:   122916 raw    rawT=    93720
+t= 930658559 us  left :   -29176 raw   right:   122928 raw    rawT=    93752
+t= 931399862 us  left :   -29148 raw   right:   122890 raw    rawT=    93742
+t= 932223595 us  left :   -29172 raw   right:   122854 raw    rawT=    93682
+t= 933047318 us  left :   -29140 raw   right:   122833 raw    rawT=    93693
+t= 933788688 us  left :   -29175 raw   right:   122793 raw    rawT=    93618
+t= 934612434 us  left :   -29103 raw   right:   122485 raw    rawT=    93382
+t= 935436217 us  left :   -29180 raw   right:   122112 raw    rawT=    92932
+t= 936177574 us  left :   -29302 raw   right:   122266 raw    rawT=    92964
+t= 937001353 us  left :   -29147 raw   right:   122319 raw    rawT=    93172
+t= 937825116 us  left :   -29249 raw   right:   122343 raw    rawT=    93094
+t= 938566510 us  left :   -29285 raw   right:   122343 raw    rawT=    93058
+t= 939390078 us  left :   -29312 raw   right:   122353 raw    rawT=    93041
+t= 940213638 us  left :   -29230 raw   right:   122395 raw    rawT=    93165
+t= 940954829 us  left :   -29273 raw   right:   122410 raw    rawT=    93137
+t= 941778388 us  left :   -29340 raw   right:   122483 raw    rawT=    93143
+t= 942601924 us  left :   -29347 raw   right:   122478 raw    rawT=    93131
+t= 943343105 us  left :   -29363 raw   right:   122517 raw    rawT=    93154
+t= 944166658 us  left :   -29357 raw   right:   122583 raw    rawT=    93226
+t= 944990397 us  left :   -29351 raw   right:   122581 raw    rawT=    93230
+t= 945731776 us  left :   -29397 raw   right:   122548 raw    rawT=    93151
+t= 946555517 us  left :   -29380 raw   right:   122535 raw    rawT=    93155
+t= 947379250 us  left :   -29372 raw   right:   122513 raw    rawT=    93141
+t= 948120639 us  left :   -29396 raw   right:   122504 raw    rawT=    93108
+t= 948944383 us  left :   -29385 raw   right:   122453 raw    rawT=    93068
+t= 949768120 us  left :   -29418 raw   right:   122499 raw    rawT=    93081
+t= 950509462 us  left :   -29367 raw   right:   122489 raw    rawT=    93122
+t= 951333214 us  left :   -29396 raw   right:   122478 raw    rawT=    93082
+t= 952156957 us  left :   -29387 raw   right:   122541 raw    rawT=    93154
+
+############ MARK t= 952162662 us: J21 remaining 1.75 dl measured ############
+
+t= 952898341 us  left :   -29383 raw   right:   122473 raw    rawT=    93090
+t= 953722090 us  left :   -29373 raw   right:   122508 raw    rawT=    93135
+t= 954545840 us  left :   -29380 raw   right:   122485 raw    rawT=    93105
+t= 955287034 us  left :   -29386 raw   right:   122447 raw    rawT=    93061
+t= 956110579 us  left :   -29362 raw   right:   122396 raw    rawT=    93034
+t= 956934127 us  left :   -29341 raw   right:   122454 raw    rawT=    93113
+t= 957757727 us  left :   -29324 raw   right:   122482 raw    rawT=    93158
+t= 958499083 us  left :   -29353 raw   right:   122434 raw    rawT=    93081
+t= 959322818 us  left :   -29367 raw   right:   122479 raw    rawT=    93112
+t= 960146567 us  left :   -29345 raw   right:   122461 raw    rawT=    93116
+t= 960887940 us  left :   -29346 raw   right:   122425 raw    rawT=    93079
+t= 961711699 us  left :   -29356 raw   right:   122429 raw    rawT=    93073
+t= 962535427 us  left :   -29388 raw   right:   122345 raw    rawT=    92957
+t= 963276811 us  left :   -29319 raw   right:   122298 raw    rawT=    92979
+t= 964100497 us  left :   -29321 raw   right:   120080 raw    rawT=    90759
+t= 964924004 us  left :   -21259 raw   right:    48717 raw    rawT=    27458
+t= 965665175 us  left :   -52252 raw   right:   -12559 raw    rawT=   -64811
+t= 966488687 us  left :   -21006 raw   right:     6107 raw    rawT=   -14899
+t= 967312215 us  left :    -3644 raw   right:    13624 raw    rawT=     9980
+t= 968053388 us  left :    -3018 raw   right:    13836 raw    rawT=    10818
+t= 968879416 us  left :    -2967 raw   right:    13965 raw    rawT=    10998
+>>> state: Tyhjä
+t= 969700478 us  left :    -2916 raw   right:    14136 raw    rawT=    11220
+t= 970441659 us  left :    -2918 raw   right:    14212 raw    rawT=    11294
+t= 971265177 us  left :    -2827 raw   right:    14342 raw    rawT=    11515
+
+############ MARK t= 971270631 us: J22 carafe ON empty ############
+
+t= 972088717 us  left :    -2779 raw   right:    14433 raw    rawT=    11654
+t= 972829896 us  left :    -2768 raw   right:    14540 raw    rawT=    11772
+t= 973653405 us  left :    -2762 raw   right:    14589 raw    rawT=    11827
+t= 974476916 us  left :    -2751 raw   right:    14629 raw    rawT=    11878
+t= 975218075 us  left :    -2703 raw   right:    14701 raw    rawT=    11998
+t= 976041593 us  left :    -2690 raw   right:    14821 raw    rawT=    12131
+t= 976865103 us  left :    -2673 raw   right:    14817 raw    rawT=    12144
+t= 977606276 us  left :    -2637 raw   right:    14915 raw    rawT=    12278
+t= 978429770 us  left :    -2613 raw   right:    14933 raw    rawT=    12320
+t= 979253299 us  left :    -2639 raw   right:    14967 raw    rawT=    12328
+t= 980076811 us  left :    -2634 raw   right:    15042 raw    rawT=    12408
+t= 980818158 us  left :    -2551 raw   right:    15130 raw    rawT=    12579
+t= 981641897 us  left :    -2606 raw   right:    15163 raw    rawT=    12557
+t= 982465633 us  left :    -2560 raw   right:    15246 raw    rawT=    12686
+t= 983206993 us  left :    -2525 raw   right:    15273 raw    rawT=    12748
+t= 984030731 us  left :    -2548 raw   right:    15297 raw    rawT=    12749
+t= 984854473 us  left :    -2491 raw   right:    15408 raw    rawT=    12917
+t= 985595828 us  left :    -2516 raw   right:    15428 raw    rawT=    12912
+t= 986419568 us  left :    -2462 raw   right:    15470 raw    rawT=    13008
+t= 987243285 us  left :    -2495 raw   right:    15548 raw    rawT=    13053
+t= 987984667 us  left :    -2460 raw   right:    15590 raw    rawT=    13130
+t= 988808390 us  left :    -2430 raw   right:    15631 raw    rawT=    13201
+t= 989632114 us  left :    -2434 raw   right:    15677 raw    rawT=    13243
+t= 990373503 us  left :    -2428 raw   right:    15747 raw    rawT=    13319
+t= 991197223 us  left :    -2396 raw   right:    15793 raw    rawT=    13397
+t= 992020955 us  left :    -2403 raw   right:    15855 raw    rawT=    13452
+t= 992762306 us  left :    -2403 raw   right:    15876 raw    rawT=    13473
+t= 993585813 us  left :    -2387 raw   right:    15943 raw    rawT=    13556
+t= 994409531 us  left :    -2364 raw   right:    16020 raw    rawT=    13656
+t= 995150868 us  left :    -2377 raw   right:    16035 raw    rawT=    13658
+t= 995974603 us  left :    -2350 raw   right:    16070 raw    rawT=    13720
+t= 996798318 us  left :    -2339 raw   right:    16133 raw    rawT=    13794
+t= 997539649 us  left :    -2307 raw   right:    16165 raw    rawT=    13858
+t= 998363153 us  left :    -2284 raw   right:    16185 raw    rawT=    13901
+t= 999186680 us  left :    -2296 raw   right:    16249 raw    rawT=    13953
+t= 999927851 us  left :    -2311 raw   right:    16271 raw    rawT=    13960
+t=1000751367 us  left :    -2250 raw   right:    16381 raw    rawT=    14131
+t=1001574885 us  left :    -2246 raw   right:    16440 raw    rawT=    14194
+t=1002316017 us  left :    -2248 raw   right:    16447 raw    rawT=    14199
+t=1003139536 us  left :    -2212 raw   right:    16470 raw    rawT=    14258
+t=1003963258 us  left :    -2246 raw   right:    16564 raw    rawT=    14318
+t=1004704619 us  left :    -2216 raw   right:    16565 raw    rawT=    14349
+t=1005528336 us  left :    -2200 raw   right:    16613 raw    rawT=    14413
+t=1006352032 us  left :    -2182 raw   right:    16668 raw    rawT=    14486
+t=1007175713 us  left :    -2149 raw   right:    16712 raw    rawT=    14563
+t=1007916886 us  left :    -2124 raw   right:    16705 raw    rawT=    14581
+t=1008740397 us  left :    -2160 raw   right:    16764 raw    rawT=    14604
+t=1009563910 us  left :    -2140 raw   right:    16749 raw    rawT=    14609
+t=1010305051 us  left :    -2114 raw   right:    16740 raw    rawT=    14626
+t=1011128554 us  left :    -2098 raw   right:    16755 raw    rawT=    14657
+t=1011952150 us  left :    -2102 raw   right:    16765 raw    rawT=    14663
+t=1012693494 us  left :    -2114 raw   right:    16786 raw    rawT=    14672
+t=1013517091 us  left :    -2090 raw   right:    16774 raw    rawT=    14684
+t=1014340599 us  left :    -2069 raw   right:    16836 raw    rawT=    14767
+t=1015081730 us  left :    -2054 raw   right:    16825 raw    rawT=    14771
+t=1015905215 us  left :    -2092 raw   right:    16870 raw    rawT=    14778
+t=1016728856 us  left :    -2050 raw   right:    16871 raw    rawT=    14821
+t=1017470150 us  left :    -2053 raw   right:    16899 raw    rawT=    14846
+t=1018293827 us  left :    -2042 raw   right:    16895 raw    rawT=    14853
+t=1019117496 us  left :    -2026 raw   right:    16898 raw    rawT=    14872
+t=1019858808 us  left :    -2023 raw   right:    16964 raw    rawT=    14941
+t=1020682487 us  left :    -1994 raw   right:    16915 raw    rawT=    14921
+t=1021506149 us  left :    -1964 raw   right:    16968 raw    rawT=    15004
+t=1022247474 us  left :    -1939 raw   right:    16914 raw    rawT=    14975
+t=1023071121 us  left :    -1944 raw   right:    16896 raw    rawT=    14952
+t=1023894802 us  left :    -1938 raw   right:    16917 raw    rawT=    14979
+t=1024636090 us  left :    -2059 raw   right:     7638 raw    rawT=     5579
+t=1025459755 us  left :   -37220 raw   right:     1812 raw    rawT=   -35408
+t=1026283430 us  left :   -37709 raw   right:     -913 raw    rawT=   -38622
+t=1027024767 us  left :   -39014 raw   right:     5650 raw    rawT=   -33364
+t=1027848499 us  left :   -51562 raw   right:      659 raw    rawT=   -50903
+t=1028672156 us  left :    -2918 raw   right:    -6930 raw    rawT=    -9848
+t=1029413458 us  left :  -139934 raw   right:   -51038 raw    rawT=  -190972
+t=1030237154 us  left :  -106357 raw   right:     1595 raw    rawT=  -104762
+t=1031060807 us  left :    -1433 raw   right:      641 raw    rawT=     -792
+t=1031884474 us  left :     -377 raw   right:   -12207 raw    rawT=   -12584
+t=1032625748 us  left :  -178755 raw   right:  -105958 raw    rawT=  -284713
+t=1033449407 us  left :  -374088 raw   right:    33247 raw    rawT=  -340841
+t=1034273082 us  left :   -24694 raw   right:     2480 raw    rawT=   -22214
+t=1035014386 us  left :    -3714 raw   right:     1897 raw    rawT=    -1817
+t=1035838000 us  left :    -6762 raw   right:    14293 raw    rawT=     7531
+t=1036661454 us  left :     -323 raw   right:     2975 raw    rawT=     2652
+t=1037402597 us  left :    -1775 raw   right:     1518 raw    rawT=     -257
+t=1038226028 us  left :    -1415 raw   right:     1539 raw    rawT=      124
+t=1039049652 us  left :    -1176 raw   right:     1519 raw    rawT=      343
+t=1039790765 us  left :    -1006 raw   right:     1508 raw    rawT=      502
+t=1040614209 us  left :     -879 raw   right:     1513 raw    rawT=      634
+t=1041437665 us  left :     -762 raw   right:     1545 raw    rawT=      783
+t=1042178793 us  left :     -640 raw   right:     1510 raw    rawT=      870
+t=1043002278 us  left :     -563 raw   right:     1591 raw    rawT=     1028
+t=1043825873 us  left :     -531 raw   right:     1572 raw    rawT=     1041
+t=1044566991 us  left :     -435 raw   right:     1602 raw    rawT=     1167
+
+############ MARK t=1044572631 us: J22.5 bask cover ON ############
+
+t=1045390465 us  left :     -398 raw   right:     1653 raw    rawT=     1255
+t=1046213919 us  left :     -320 raw   right:     1646 raw    rawT=     1326
+t=1046955032 us  left :     -252 raw   right:     1611 raw    rawT=     1359
+t=1047778506 us  left :     -211 raw   right:     1601 raw    rawT=     1390
+t=1048601968 us  left :     -200 raw   right:     1633 raw    rawT=     1433
+t=1049343084 us  left :     -125 raw   right:     1683 raw    rawT=     1558
+t=1050166547 us  left :      -79 raw   right:     1651 raw    rawT=     1572
+t=1050990004 us  left :      -37 raw   right:     1659 raw    rawT=     1622
+t=1051731216 us  left :      -19 raw   right:     1676 raw    rawT=     1657
+t=1052554882 us  left :       18 raw   right:     1701 raw    rawT=     1719
+t=1053378557 us  left :       45 raw   right:     1679 raw    rawT=     1724
+t=1054119838 us  left :       37 raw   right:     1745 raw    rawT=     1782
+t=1054861137 us  left :       85 raw   right:     1748 raw    rawT=     1833
+t=1055684812 us  left :       94 raw   right:     1767 raw    rawT=     1861
+t=1056426104 us  left :      141 raw   right:     1785 raw    rawT=     1926
+t=1057249778 us  left :      187 raw   right:     1826 raw    rawT=     2013
+t=1058073435 us  left :      159 raw   right:     1825 raw    rawT=     1984
+t=1058814731 us  left :      237 raw   right:     1828 raw    rawT=     2065
+
+############ MARK t=1058819620 us: J23 machine off ############
+
+t=1059638407 us  left :      260 raw   right:     1863 raw    rawT=     2123
+t=1060462074 us  left :      229 raw   right:     1878 raw    rawT=     2107
+t=1061203393 us  left :      285 raw   right:     1895 raw    rawT=     2180
+t=1062027086 us  left :      298 raw   right:     1910 raw    rawT=     2208
+t=1062850744 us  left :      297 raw   right:     1927 raw    rawT=     2224
+t=1063591988 us  left :      340 raw   right:     1874 raw    rawT=     2214
+t=1064415445 us  left :      354 raw   right:     1861 raw    rawT=     2215
+t=1065238924 us  left :      348 raw   right:     1922 raw    rawT=     2270
+t=1065980029 us  left :      363 raw   right:     1898 raw    rawT=     2261
+t=1066803534 us  left :      428 raw   right:     1564 raw    rawT=     1992
+t=1067627005 us  left :      418 raw   right:     1688 raw    rawT=     2106
+t=1068368137 us  left :      445 raw   right:     2053 raw    rawT=     2498
+
+############ MARK t=1068373588 us: J24 end ############
+
+t=1069191604 us  left :      468 raw   right:     2040 raw    rawT=     2508
+t=1070015075 us  left :      469 raw   right:     2098 raw    rawT=     2567
+t=1070756189 us  left :      486 raw   right:     2078 raw    rawT=     2564
+t=1071497312 us  left :      505 raw   right:     2113 raw    rawT=     2618

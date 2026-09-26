@@ -1,0 +1,11 @@
+# Kahvibotti flash layout. DO NOT CHANGE after the first flash: moving "spiffs" loses the stats.
+# app0 = the USB-flashed firmware (a USB upload always boots it; the web updater never writes it)
+# app1 = the one firmware uploaded from the admin panel (replaced by the next upload, deletable)
+# nvs stays at the default offset, so saved Wi-Fi and bot state survive the switch from the default table.
+# Name,   Type, SubType, Offset,  Size, Flags
+nvs,      data, nvs,     0x9000,  0x5000,
+otadata,  data, ota,     0xe000,  0x2000,
+app0,     app,  ota_0,   0x10000, 0x180000,
+app1,     app,  ota_1,   0x190000,0x180000,
+spiffs,   data, spiffs,  0x310000,0xE0000,
+coredump, data, coredump,0x3F0000,0x10000,

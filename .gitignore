@@ -1,0 +1,7 @@
+# Private settings: copy firmware/kahvibotti/secrets.example.h to secrets.h
+secrets.h
+# Build output (contains the compiled-in secrets)
+build/
+*.bin
+*.elf
+*.map
