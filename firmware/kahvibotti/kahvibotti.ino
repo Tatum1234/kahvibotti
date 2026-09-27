@@ -48,10 +48,26 @@ time_t brewedEpoch = 0;  // wall-clock time of the last finished brew, 0 = unkno
 int64_t seenBrewedAt = 0;
 float lastL = 0, lastR = 0;  // latest raw sample, for the admin page
 
-// Stats: a finished brew waits here (under coreLock) until the main loop has a valid clock to date it.
-struct { bool has; int64_t ms; uint16_t waterG; } pendingBrew = {};
+// Stats: finished brews wait here (under coreLock) until the main loop has a valid clock to date them and
+// saves them. Normally at once; after a power cut that also took the internet down, there's no clock (no
+// NTP, no Telegram) until it's back, so several can wait. They are in RAM only: panel restarts wait for them
+// (at most 20 min). The automatic low-memory and Telegram-silent restarts don't: those recover a device that
+// may never get a clock otherwise, which is worth more than a few unsaved brews.
+constexpr int PENDING_MAX = 8;
+struct PendingBrew { int64_t ms; uint16_t waterG; };
+PendingBrew pending[PENDING_MAX];
+int pendingN = 0;
 float statTotal = 0;  // cups brewed, all time (cached sum of the stats file)
 int statBrews = 0;
+// The stats file is in time order (brews are appended as they finish), so the Tilastot page can jump to the
+// part it shows. Checked at boot and on every append; a clock step back of more than a day (it never happens
+// normally) clears it, and the page then reads the whole file (stats::fillPage).
+bool statsOrdered = true;
+uint32_t statLastEpoch = 0;
+static void noteOrder(uint32_t epoch) {
+  if (epoch + stats::PAGE_MARGIN < statLastEpoch) statsOrdered = false;
+  if (epoch > statLastEpoch) statLastEpoch = epoch;
+}
 int msAnnounced = 0;  // cups of the last milestone sent to the group (NVS "stats"/"ms")
 const char* STATS_FILE = "/brews.bin";
 bool fsOk = false;  // stats storage mounted
@@ -128,15 +144,29 @@ static void statsBegin() {
     if (blank) fsOk = LittleFS.begin(true);  // first use: create the file system
     if (!fsOk) { Serial.println("!!! stats storage can't be mounted; NOT formatting it (the data may be recoverable)"); return; }
   }
+  if (LittleFS.exists("/bench.bin")) LittleFS.remove("/bench.bin");  // left by a "bench" cut short by a reset
   File f = LittleFS.open(STATS_FILE, "r");
   stats::Brew b;
-  while (f && f.read((uint8_t*)&b, sizeof b) == sizeof b) { statTotal += stats::cups(b); statBrews++; }
+  while (f && f.read((uint8_t*)&b, sizeof b) == sizeof b) {
+    statTotal += stats::cups(b);
+    statBrews++;
+    noteOrder(b.epoch);
+  }
   if (f) f.close();
   Preferences p;
   p.begin("stats", true);
   msAnnounced = p.getInt("ms", 0);
   p.end();
-  Serial.printf(">>> stats: %.1f cups in %d brews, last milestone sent: %d\n", statTotal, statBrews, msAnnounced);
+  // No stats file = no brews yet (or "Tyhjennä tilastot" was cut short by a power cut after removing it):
+  // milestones then count from zero, or they would never be announced again.
+  if (!LittleFS.exists(STATS_FILE) && msAnnounced) {
+    msAnnounced = 0;
+    p.begin("stats", false);
+    p.putInt("ms", 0);
+    p.end();
+  }
+  Serial.printf(">>> stats: %.1f cups in %d brews, last milestone sent: %d%s\n", statTotal, statBrews, msAnnounced,
+                statsOrdered ? "" : " (file not in time order: Tilastot reads all of it)");
 }
 
 // Main loop: write a finished brew once the clock can date it (usually at once; after a boot
@@ -144,18 +174,26 @@ static void statsBegin() {
 static void statsFlush() {
   if (!clockValid() || !fsOk) return;
   xSemaphoreTake(coreLock, portMAX_DELAY);
-  auto pb = pendingBrew;
-  pendingBrew.has = false;
+  bool any = pendingN > 0;
+  PendingBrew pb = any ? pending[0] : PendingBrew{};  // oldest first: the file stays in time order
+  if (any) {
+    for (int i = 1; i < pendingN; i++) pending[i - 1] = pending[i];
+    pendingN--;
+  }
   xSemaphoreGive(coreLock);
-  if (!pb.has || pb.waterG == 0) return;
+  if (!any || pb.waterG == 0) return;
   stats::Brew b = {(uint32_t)(time(nullptr) - (nowMs() - pb.ms) / 1000), pb.waterG, 0};
   File f = LittleFS.open(STATS_FILE, "a");
-  if (f && f.write((const uint8_t*)&b, sizeof b) == sizeof b) {
+  size_t before = f ? f.size() : 0;
+  // write() only fills stdio's buffer (it says 8 even with the storage full): flush it to flash and check
+  // that the file really grew, or a brew on a full file system would be counted but lost at the next boot.
+  if (f && f.write((const uint8_t*)&b, sizeof b) == sizeof b && (f.flush(), f.size() == before + sizeof b)) {
     statTotal += stats::cups(b);
     statBrews++;
+    noteOrder(b.epoch);
     Serial.printf(">>> stats: brew of %u g saved, total %.1f cups\n", b.waterG, statTotal);
   } else {
-    Serial.println("!!! stats: could not save the brew");
+    Serial.println("!!! stats: could not save the brew (stats storage full?)");
   }
   if (f) f.close();
 }
@@ -354,8 +392,23 @@ static void sensorTask(void*) {
       if (core.brewedAt != seenBrewedAt) {  // a brew just finished, or 0: machine came back, fresh start
         seenBrewedAt = core.brewedAt;
         brewedEpoch = core.brewedAt && clockValid() ? time(nullptr) - (nowMs() - core.brewedAt) / 1000 : 0;
-        if (core.brewedAt) pendingBrew = {true, core.brewedAt, (uint16_t)lroundf(core.brewWaterG)};
+        if (core.brewedAt && fsOk && core.brewWaterG >= 1) {  // nothing to wait for without stats storage
+          if (pendingN == PENDING_MAX) {  // 8 brews without a clock: keep the newest
+            for (int i = 1; i < PENDING_MAX; i++) pending[i - 1] = pending[i];
+            pendingN--;
+          }
+          pending[pendingN++] = {core.brewedAt, (uint16_t)lroundf(core.brewWaterG)};
+        }
       }
+      // A fresh start (panel reset, the machine put back) with no brew since boot leaves brewedAt at 0, so
+      // the check above doesn't see it: forget the brew time restored at boot too.
+      static uint32_t seenFresh = 0;
+      if (core.freshStarts != seenFresh) {
+        seenFresh = core.freshStarts;
+        brewedEpoch = 0;
+      }
+      // A brew that finished before there was a clock gets its time once the clock is known.
+      if (!brewedEpoch && core.brewedAt && clockValid()) brewedEpoch = time(nullptr) - (nowMs() - core.brewedAt) / 1000;
       saveIfChanged();
       xSemaphoreGive(coreLock);
       Serial.printf("t=%10llu us  left : %8ld raw   right: %8ld raw    rawT=%9ld\n", esp_timer_get_time(), l, r, l + r);
@@ -554,7 +607,9 @@ static void upkeep() {
   static int low = 0;
   if (nowMs() - last < 60000 || admin::restartAt) return;
   last = nowMs();
+  xSemaphoreTake(coreLock, portMAX_DELAY);
   bool idle = !core.brewing && !core.flowing;
+  xSemaphoreGive(coreLock);
   size_t freeHeap = ESP.getFreeHeap(), block = heap_caps_get_largest_free_block(MALLOC_CAP_8BIT);
   low = (freeHeap < 30000 || block < 16000) ? low + 1 : 0;
   static int64_t lastMem = -600000;

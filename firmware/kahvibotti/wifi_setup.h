@@ -86,9 +86,10 @@ inline bool saveNet(const String& ssid, const String& pass) {
   p.begin("wifi", false);
   for (int i = 0; slot < 0 && i < MAX_SAVED; i++)
     if (!p.getString(key('s', i).c_str(), "").length()) slot = i;
-  if (slot >= 0) {
-    p.putString(key('s', slot).c_str(), ssid);
+  if (slot >= 0) {  // password first: the name marks the slot as used, so a power cut in between leaves no
+                    // network with a missing password
     p.putString(key('p', slot).c_str(), pass);
+    p.putString(key('s', slot).c_str(), ssid);
   }
   p.end();
   loadNets();

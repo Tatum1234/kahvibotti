@@ -81,6 +81,7 @@ struct Core {
   int64_t flowCand = -1, candT0 = 0;
   float candL0 = 0;
   int64_t flowStart = 0, flowLastSeen = 0, flowEnd = 0, doneAt = 0, brewedAt = 0;
+  uint32_t freshStarts = 0;  // how many freshStart()s: tells the device to forget its stored brew time
   float brewWaterG = 0, potBeforeBrew = 0, L0 = 0, movedG = 0, movedAtReturn = 0;
   // Drip-stop: while the carafe is away mid-brew, the basket holds the coffee back and releases it after
   // the return. The scale can't see that (basket and carafe are both on the right side), so a return
@@ -214,6 +215,7 @@ struct Core {
     brewing = flowing = carafeTouched = false;
     brewExpected = -1; pouredInBrew = 0; liftedInBrew = false;
     brewedAt = 0;  // any old brew time no longer applies
+    freshStarts++;
   }
 
  private:

@@ -24,10 +24,33 @@ inline float cups(const Brew& b) { return b.waterG / CUP_WATER_G; }
 // ---------- milestones (Telegram "easter eggs") ----------
 
 struct Milestone { int cups; const char* text; };
+// The organisation's own list (2026-09-26), sorted by cups (due() relies on it).
+// At ~5 000 cups a year the last ones will never come: they're jokes. Stored per device is only the cups
+// of the last one sent (NVS "stats"/"ms"), so changing this list needs no flash clean-up.
 const Milestone MILESTONES[] = {
-  {100, "☕ Ensimmäiset 100 kuppia keitetty!"},
-  {5000, "🏆 5000 kuppia keitetty! Se on noin 625 litraa kahvia."},
-  {10000, "🏆🏆 10 000 KUPPIA! Legendaarinen saavutus."},
+  {10, "Ensimmäiset 10 kuppia keitetty! Keittämiseen kului noin 150 Wh sähköä, eli saman verran kuin 11 puhelimen lataukseen."},
+  {100, "100 kuppia keitetty! Hervannan ratikka ajaisi keittämiseen kuluneella sähköllä noin 230 metriä."},
+  {1200, "1200 kuppia keitetty! Se on täyden kylpyammeen verran vettä."},
+  {4000, "4000 kuppia keitetty! Keittämiseen on mennyt vettä noin maalämpökaivon keruuliuoksen verran."},
+  {6000, "6000 kuppia keitetty! Keittämiseen kulunut sähkö (noin 90 kWh) riittäisi ratikalle koko linjan 3 matkaan Hervantajärveltä Sorin aukiolle."},
+  {8500, "8500 kuppia keitetty! Kahvipuruja on kulunut noin 60kg eli yhden kahvisäkin verran."},
+  {10000, "10 000 kuppia keitetty! Keittämiseen on kulunut 1250 litraa vettä, sillä täyttäisi teekkarisaunan paljun."},
+  {13600, "13 600 kuppia keitetty! Vettä on keitetty 2500 kVA:n jakelumuuntajan öljyn verran."},
+  {15000, "15 000 kuppia keitetty! Sähköä on kulunut noin 230kWh. Olkiluoto 3 tuottaa saman noin puolessa sekunnissa."},
+  {20000, "20 000 kuppia keitetty! Keittämiseen kuluneella sähköllä (noin 300 kWh) saisi elektrolyysillä noin 6 kg vetyä. Vetyautolla sillä ajaisi yli 600 km."},
+  {25000, "25 000 kuppia keitetty! Keittämiseen on kulunut noin 380 kWh sähköä, vähän enemmän kuin 400 watin aurinkopaneeli tuottaa Suomessa vuodessa."},
+  {30000, "30 000 kuppia keitetty! Keittämiseen on kulunut noin 460 kWh sähköä, eli noin 50 saunakerran verran."},
+  {35000, "35 000 kuppia keitetty! Keittämiseen on kulunut noin 530 kWh sähköä. Koko Suomi kuluttaa saman määrän sähköä noin viidesosasekunnissa."},
+  {40000, "40 000 kuppia keitetty! Vettä on kulunut 5 000 litraa, eli 25 täyttä kylpyammetta."},
+  {45000, "45 000 kuppia keitetty! Kahvipuruja on kulunut noin 315 kg, eli yli viiden kahvisäkin verran."},
+  {50000, "50 000 kuppia keitetty! Keittämiseen on kulunut noin 760kWh sähköä. Yksi Tesla Megapack akkukontti (3,9 MWh) riittäisi noin viisi kertaa näin monen kupin keittämiseen."},
+  {64000, "64 000 kuppia keitetty! 110 kV sähköaseman päämuuntajan öljyn verran."},
+  {100000, "100 000 kuppia keitetty! En usko että tämä on mahdollista!"},
+  {240000, "240 000 kuppia keitetty! Keittämiseen on kulunut kahvia maitorekan säiliön verran (30 000 l)."},
+  {560000, "560 000 kuppia keitetty! Juoksuttaessa Tammerkoskesta menee sama määrän vettä sekunnissa."},
+  {1000000, "Miljoona kuppia!! Lopettakaa jo se kahvin juonti."},
+  {8000000, "8 Mijoonaa kuppia!! Hervannan vesitorniin menee tmän verran."},
+  {10000000, " 10 Miljoonaa kuppia! Pliis heittäkää tämä jo roskiin."},
 };
 constexpr int MILESTONE_COUNT = sizeof(MILESTONES) / sizeof(MILESTONES[0]);
 
@@ -149,6 +172,97 @@ inline float totalCups(const Brew* b, size_t n) {
   float s = 0;
   for (size_t i = 0; i < n; i++) s += cups(b[i]);
   return s;
+}
+
+// ---------- the Tilastot page, fast ----------
+// The page used to read the whole history and convert every record's time to a local date three times
+// (~25 us each on the C3): 3 s per view after 10 years of brews, 7.6 s with the storage full. Records are
+// appended as brews finish, so the file is in time order: the page now jumps (binary search) to the part it
+// shows and converts each record once. Constant time however many years are stored. The plain add*
+// functions above stay as the reference; test/stats_test.cpp checks that both give the same numbers.
+
+// "Now" for the totals, worked out once per page instead of once per record.
+struct Today {
+  int y, m, d, week, weekYear, acad;
+  Today(int y_, int m_, int d_)
+      : y(y_), m(m_), d(d_), week(isoWeek(y_, m_, d_)), weekYear(isoWeekYear(y_, m_, d_)), acad(acadYear(y_, m_)) {}
+};
+
+// What one view shows. Only the kind that was asked for is complete: `month` for a month view, `yearDay`/
+// `yearMonth` for a year view (the other holds just what the read range happened to contain). `t.all`/
+// `t.brews` are not filled: the device keeps them as running sums.
+struct Page {
+  Totals t;
+  float month[32] = {};                          // cups per day of the viewed month (1..31)
+  float yearDay[367] = {}, yearMonth[13] = {};   // the viewed year: per day of year (1..366), per month
+};
+
+// One record into the page, with a single local-date conversion. Totals only when `totals`.
+inline void addPage(const Brew& b, const Today& n, int y, int m, bool totals, Page& p) {
+  int yy, mm, dd;
+  localDate(b.epoch, yy, mm, dd);
+  float c = cups(b);
+  if (totals) {
+    if (yy == n.y) p.t.year += c;
+    if (acadYear(yy, mm) == n.acad) p.t.acad += c;
+    if (yy == n.y && mm == n.m) p.t.month += c;
+    if (yy == n.y && mm == n.m && dd == n.d) p.t.today += c;
+    if (isoWeek(yy, mm, dd) == n.week && isoWeekYear(yy, mm, dd) == n.weekYear) p.t.week += c;
+  }
+  if (yy == y) {
+    if (mm == m) p.month[dd] += c;
+    p.yearDay[dayOfYear(yy, mm, dd)] += c;
+    p.yearMonth[mm] += c;
+  }
+}
+
+// Local midnight of y-m-d as epoch seconds (the TZ must be set). 64-bit: page years go past 2106.
+inline int64_t localMidnight(int y, int m, int d) {
+  struct tm t = {};
+  t.tm_year = y - 1900;
+  t.tm_mon = m - 1;
+  t.tm_mday = d;
+  t.tm_isdst = -1;  // let mktime decide (DST)
+  return (int64_t)mktime(&t);
+}
+
+constexpr int64_t PAGE_MARGIN = 86400;  // read a day extra at each edge: DST and clock-step slack
+
+// Index of the first record with epoch >= e in a time-ordered file of `count` records; at(i) = epoch of i.
+template <typename At> inline size_t firstAtOrAfter(size_t count, int64_t e, At at) {
+  size_t lo = 0, hi = count;
+  while (lo < hi) {
+    size_t mid = lo + (hi - lo) / 2;
+    if ((int64_t)at(mid) < e) lo = mid + 1;
+    else hi = mid;
+  }
+  return lo;
+}
+
+// Fills p for one view (month y-m, or year y when yearView). count = records in the file; at(i) = epoch of
+// record i; each(from, to, fn) calls fn(record) for records [from, to). If the file isn't in time order
+// (`ordered` false: a big clock step once), every record is read, still with one conversion each.
+// Pass 1: from the earliest date the totals need (1 January or the academic year's 1 August, whichever is
+// earlier) to the end: totals + whatever of the viewed period is in it. Pass 2, only when browsing an older
+// period: just that period, up to where pass 1 began (split by index, so nothing is counted twice).
+template <typename At, typename Each>
+inline void fillPage(size_t count, bool ordered, At at, Each each, const Today& n, int y, int m, bool yearView,
+                     Page& p) {
+  p = Page();
+  auto both = [&](const Brew& b) { addPage(b, n, y, m, true, p); };
+  if (!ordered) { each(0, count, both); return; }
+  int64_t totalsFrom = localMidnight(n.y, 1, 1);
+  int64_t acadFrom = localMidnight(n.acad, 8, 1);
+  if (acadFrom < totalsFrom) totalsFrom = acadFrom;
+  size_t cur = firstAtOrAfter(count, totalsFrom - PAGE_MARGIN, at);
+  each(cur, count, both);
+  int64_t viewFrom = yearView ? localMidnight(y, 1, 1) : localMidnight(y, m, 1);
+  size_t v0 = firstAtOrAfter(cur, viewFrom - PAGE_MARGIN, at);  // only records before pass 1 matter here
+  if (v0 < cur) {
+    int64_t viewTo = yearView ? localMidnight(y + 1, 1, 1) : localMidnight(m == 12 ? y + 1 : y, m == 12 ? 1 : m + 1, 1);
+    size_t v1 = firstAtOrAfter(cur, viewTo + PAGE_MARGIN, at);
+    each(v0, v1, [&](const Brew& b) { addPage(b, n, y, m, false, p); });
+  }
 }
 
 // ---------- calendar layout ----------

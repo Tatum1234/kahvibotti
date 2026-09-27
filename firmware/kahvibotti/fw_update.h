@@ -139,16 +139,20 @@ inline void bootCheck() {
       Serial.println(">>> the failed update was deleted");
     }
   } else {
-    int fails = p.getInt("fails", 0) + 1;
-    p.putInt("fails", fails);
-    if (fails >= 3) {
+    // Count only runs of this version that ended in a crash (panic or a watchdog), not power cuts or
+    // planned restarts: three power flickers soon after boot must not throw away a working update.
+    esp_reset_reason_t why = esp_reset_reason();
+    bool crashed = why == ESP_RST_PANIC || why == ESP_RST_INT_WDT || why == ESP_RST_TASK_WDT || why == ESP_RST_WDT ||
+                   why == ESP_RST_CPU_LOCKUP;
+    int fails = p.getInt("fails", 0) + (crashed ? 1 : 0);
+    if (crashed) p.putInt("fails", fails);
+    if (fails >= 3 && esp_ota_set_boot_partition(app(0)) == ESP_OK) {  // (if that fails, keep running this one)
       p.putInt("fails", 0);
       p.putBool("fellback", true);
       p.putInt("fbreason", (int)esp_reset_reason());
       p.putBool("erase1", true);  // app0 deletes this failed slot at its next boot
       p.end();
-      Serial.println("!!! updated firmware restarted 3 times without settling: back to the original");
-      esp_ota_set_boot_partition(app(0));
+      Serial.println("!!! updated firmware crashed 3 times without settling: back to the original");
       ESP.restart();
     }
   }
@@ -213,12 +217,13 @@ inline void clearCrash() {
 
 // Boot the original next time; optionally delete the uploaded firmware (done at that boot, since a
 // running slot can't be erased).
-inline void bootOriginal(bool deleteUpdate) {
+inline bool bootOriginal(bool deleteUpdate) {  // false: the boot slot couldn't be set (nothing changes)
+  if (esp_ota_set_boot_partition(app(0)) != ESP_OK) return false;
   Preferences p;
   p.begin("fw", false);
   if (deleteUpdate) p.putBool("erase1", true);
   p.end();
-  esp_ota_set_boot_partition(app(0));
+  return true;
 }
 
 inline bool bootUpdate() { return hasFirmware(1) && esp_ota_set_boot_partition(app(1)) == ESP_OK; }

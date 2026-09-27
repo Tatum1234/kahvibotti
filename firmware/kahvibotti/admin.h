@@ -148,8 +148,10 @@ inline String head(const String& title) {
 // Every streamed page goes out through part(). A client that stops reading (a phone locking its screen
 // mid-page) makes each network write wait up to 10 s (NetworkClient: 10 retries x 1 s) and a chunk is 3
 // writes; the main loop would sit there until the 60 s watchdog restarted the board. So: reset the watchdog
-// before each piece, and after PAGE_MAX_MS drop the client and skip the rest of the page.
-constexpr int64_t PAGE_MAX_MS = 30000;
+// before each piece, and drop the client when one piece takes over STALL_MS (it isn't reading: a moving
+// download sends a 2 KB piece in milliseconds), or the whole response over PAGE_MAX_MS. A slow but moving
+// download (a full-history CSV is ~2 MB) still finishes.
+constexpr int64_t STALL_MS = 10000, PAGE_MAX_MS = 180000;
 int64_t pageStart = 0;
 bool pageDead = false;
 inline void pageBegin(const char* type) {  // headers for a streamed response; starts the page's clock
@@ -161,14 +163,14 @@ inline void pageBegin(const char* type) {  // headers for a streamed response; s
 }
 inline void part(const char* p, size_t n) {
   if (pageDead) return;
-  if (nowMs() - pageStart > PAGE_MAX_MS) {
+  esp_task_wdt_reset();
+  int64_t t = nowMs();
+  if (t - pageStart <= PAGE_MAX_MS) server.sendContent(p, n);
+  if (nowMs() - t > STALL_MS || t - pageStart > PAGE_MAX_MS) {
     pageDead = true;
     server.client().stop();
-    Serial.println("!!! web: client too slow, page dropped");
-    return;
+    Serial.println("!!! web: client stopped reading, page dropped");
   }
-  esp_task_wdt_reset();
-  server.sendContent(p, n);
 }
 inline void part(const String& s) { part(s.c_str(), s.length()); }
 inline void pageEnd() { if (!pageDead) server.sendContent(""); }  // the terminating chunk
@@ -264,6 +266,7 @@ inline String infoText() {
     "ja keittimen reunat tasan alustan reunojen kanssa.</li>"
     "<li><b>Keitin ja alusta oikein päin:</b> alustassa on kirjaimet L (vasen) ja R (oikea). Kun katsot keitintä "
     "edestä, L:n pitää olla vasemmalla ja R:n oikealla puolella.</li>"
+    "<li>Alusta on tasaisella ja puhtaalla pinnalla.</li>"
     "<li>Kupit lasketaan keittimen vesisäiliön asteikolla: 1 kuppi = 1,25 dl, täysi pannu = 10 kuppia.</li>"
     "<li>Arvio olettaa, että kuppia kohden käytetään noin 7g kahvipuruja, 1 pieni kahvimitta. Jos puruja käytetään "
     "liikaa mittatarkkuus kärsii.</li>"
@@ -355,16 +358,39 @@ inline void pageTila() {
 // Streams the stats file into fn, one record at a time (the history never has to fit in RAM).
 // Reads 64 records (512 B) per call: 10 years of brews (~40 000) is ~600 reads instead of 40 000. Resets the
 // watchdog as it goes, since the caller (a web page) may stream a slow client meanwhile.
+// Records [from, to) of the file (default: all).
 inline stats::Brew brewBuf[64];  // one shared buffer, off the stack; only the main loop (web + stats) reads
-template <typename F> inline void eachBrew(F fn, const char* path = STATS_FILE) {
+template <typename F> inline void eachBrew(F fn, const char* path = STATS_FILE, size_t from = 0, size_t to = SIZE_MAX) {
   File f = LittleFS.open(path, "r");
+  if (f && from && !f.seek(from * sizeof(stats::Brew))) from = to;  // past the end: nothing to read
   stats::Brew* b = brewBuf;
-  size_t n;
-  while (f && (n = f.read((uint8_t*)b, sizeof brewBuf) / sizeof b[0]) > 0) {
-    for (size_t i = 0; i < n; i++) fn(b[i]);
+  for (size_t i = from; f && i < to;) {
+    size_t want = to - i < 64 ? to - i : 64;
+    size_t n = f.read((uint8_t*)b, want * sizeof b[0]) / sizeof b[0];
+    if (!n) break;
+    for (size_t k = 0; k < n; k++) fn(b[k]);
+    i += n;
     esp_task_wdt_reset();
   }
   if (f) f.close();
+}
+
+// One Tilastot view of a stats file (stats::fillPage over the file). The result lives in one static Page
+// (~1.6 KB off the stack), valid until the next call. Main loop only.
+inline const stats::Page& statsPage(const char* path, bool ordered, const stats::Today& n, int y, int m, bool yearView) {
+  static stats::Page p;
+  File f = LittleFS.open(path, "r");
+  if (f) f.setBufferSize(sizeof(stats::Brew));  // for the binary search's 8-byte reads, not a 4 KB refill each
+  size_t count = f ? f.size() / sizeof(stats::Brew) : 0;
+  auto at = [&](size_t i) -> uint32_t {  // epoch of record i
+    stats::Brew b = {};
+    if (f.seek(i * sizeof b)) f.read((uint8_t*)&b, sizeof b);
+    return b.epoch;
+  };
+  auto each = [&](size_t from, size_t to, auto fn) { eachBrew(fn, path, from, to); };
+  stats::fillPage(count, ordered, at, each, n, y, m, yearView, p);
+  if (f) f.close();
+  return p;
 }
 
 inline const char* heat(float c, float max) {  // 5-step coffee scale
@@ -394,17 +420,12 @@ inline void pageStats() {
   if (m < 1 || m > 12 || y < 2000 || y > 2200) { y = ty; m = tm_; }
   bool yearView = server.arg("v") == "vuosi";
 
-  stats::Totals t;
-  static float mc[32], yd[367], ym[13];  // static: keep ~1.6 KB off the web task's stack
-  static int mb[32];
-  for (int i = 0; i < 32; i++) { mc[i] = 0; mb[i] = 0; }
-  for (int i = 0; i < 367; i++) yd[i] = 0;
-  for (int i = 0; i < 13; i++) ym[i] = 0;
-  eachBrew([&](const stats::Brew& b) {
-    stats::addTotals(b, ty, tm_, td, t);
-    stats::addMonth(b, y, m, mc, mb);
-    stats::addYear(b, y, yd, ym);
-  });
+  // Only the part of the history this view shows is read: constant time, however many years are stored.
+  // The all-time total is the running sum kept since boot.
+  const stats::Page& p = statsPage(STATS_FILE, statsOrdered, stats::Today(ty, tm_, td), y, m, yearView);
+  const stats::Totals& t = p.t;
+  const float *mc = p.month, *yd = p.yearDay, *ym = p.yearMonth;
+  float all = statTotal;
 
   Chunked h("Tilastot");  // streamed: see Chunked
   h += "<table>";
@@ -414,7 +435,7 @@ inline void pageStats() {
   h += row("Vuosi " + String(ty), num(t.year) + " kuppia");
   h += row("Lukuvuosi " + String(stats::acadYear(ty, tm_)) + "–" + String(stats::acadYear(ty, tm_) + 1),
            num(t.acad) + " kuppia");
-  h += row("Kaikkiaan", num(t.all) + " kuppia (≈ " + pans(t.all) + ")");
+  h += row("Kaikkiaan", num(all) + " kuppia (≈ " + pans(all) + ")");
   h += "</table>";
 
   if (!yearView) {
@@ -538,14 +559,18 @@ inline void statsBench(int n) {
   time_t tn = now;
   struct tm lt;
   localtime_r(&tn, &lt);
+  int ly = lt.tm_year + 1900, lm = lt.tm_mon + 1, ld = lt.tm_mday;
   stats::Totals t;
   static float mc[32], yd[367], ym[13];
   static int mb[32];
-  eachBrew([&](const stats::Brew& r) {  // = what the Tilastot page does per view
-    stats::addTotals(r, lt.tm_year + 1900, lt.tm_mon + 1, lt.tm_mday, t);
-    stats::addMonth(r, lt.tm_year + 1900, lt.tm_mon + 1, mc, mb);
-    stats::addYear(r, lt.tm_year + 1900, yd, ym);
+  eachBrew([&](const stats::Brew& r) {  // the old Tilastot: every record, three date conversions each
+    stats::addTotals(r, ly, lm, ld, t);
+    stats::addMonth(r, ly, lm, mc, mb);
+    stats::addYear(r, ly, yd, ym);
   }, "/bench.bin");
+  int64_t t3a = nowMs();
+  float fast = 0;  // today's Tilastot (statsPage): this month's view and this year's
+  for (bool yv : {false, true}) fast += statsPage("/bench.bin", true, stats::Today(ly, lm, ld), ly, lm, yv).t.year;
   int64_t t3 = nowMs();
   size_t csv = 0;
   eachBrew([&](const stats::Brew& r) {  // = the CSV download, minus the network
@@ -558,9 +583,10 @@ inline void statsBench(int n) {
   }, "/bench.bin");
   int64_t t4 = nowMs();
   LittleFS.remove("/bench.bin");
-  Serial.printf(">>> bench %d brews (%u KB): write %lld ms, boot sum %lld ms (%.0f cups), Tilastot %lld ms (all %.0f), "
-                "CSV %lld ms (%u KB), heap %u -> %u, flash free %u KB of %u KB\n",
-                n, n * 8 / 1024, t1 - t0, t2 - t1, sum, t3 - t2, t.all, t4 - t3, csv / 1024, heap0, ESP.getFreeHeap(),
+  Serial.printf(">>> bench %d brews (%u KB): write %lld ms, boot sum %lld ms (%.0f cups), Tilastot before %lld ms (all %.0f), "
+                "Tilastot now %lld ms per view (year %.0f = %.0f), CSV %lld ms (%u KB), heap %u -> %u, flash free %u KB of %u KB\n",
+                n, n * 8 / 1024, t1 - t0, t2 - t1, sum, t3a - t2, t.all, (t3 - t3a) / 2, fast / 2, t.year, t4 - t3,
+                csv / 1024, heap0, ESP.getFreeHeap(),
                 freeFs / 1024, LittleFS.totalBytes() / 1024);
 }
 
@@ -575,7 +601,8 @@ String fwMsg;
 // A complete, checked firmware upload (app1 is set to boot): note it and restart into it.
 inline void uploadAccepted() {
   fw::clearFailureFlag();  // a new upload replaces any earlier failure notice (and keeps the upload!)
-  fwMsg = "Päivitys ladattu ja tarkistettu. Käynnistetään uuteen versioon – päivitä sivu noin 30 s kuluttua.";
+  fwMsg = "Päivitys ladattu ja tarkistettu. Käynnistetään uuteen versioon – päivitä sivu noin 30 s kuluttua "
+          "(jos kahvia keitetään juuri, vasta keiton jälkeen).";
   xSemaphoreTake(coreLock, portMAX_DELAY);
   logEvent(nowMs(), "Ohjelmistopäivitys ladattu", 0, 0);
   xSemaphoreGive(coreLock);
@@ -602,7 +629,8 @@ inline void pageHuolto() {
       huoltoMsg = "Kahvitila nollattu. Botti olettaa nyt keittimen olevan ohjeen mukaisessa tilassa: "
                   "tyhjä lasikannu ja tyhjä suodatinsuppilo paikallaan, vesisäiliö tyhjä.";
     } else if (a == "restart") {
-      huoltoMsg = "Käynnistetään uudelleen… Päivitä sivu noin 20 sekunnin päästä.";
+      huoltoMsg = "Käynnistetään uudelleen… Päivitä sivu noin 20 sekunnin päästä (jos kahvia keitetään juuri, vasta "
+                  "keiton jälkeen).";
       restartAt = nowMs() + 3000;  // let the redirect and the page reach the browser first
     } else if (a == "tgtest") {
       xSemaphoreTake(coreLock, portMAX_DELAY);
@@ -646,12 +674,19 @@ inline void pageHuolto() {
       } else if (p1.length() < 8 || p1.length() > 63) {
         huoltoMsg = "Tunnusta ei vaihdettu: salasanassa pitää olla 8–63 merkkiä (se on myös setup-verkon salasana).";
       } else {
+        // Password first, user name last: a power cut in between leaves the old name with the new password
+        // (the user knows both), never a new name with an old password nobody may remember.
         Preferences pr;
         pr.begin("admin", false);
-        pr.putString("user", u);
         pr.putString("pass", p1);
+        pr.putString("user", u);
         pr.end();
         loadPanelAccount();
+        if (panelUser != u || panelPass != p1) {
+          huoltoMsg = "Tunnuksen tallennus epäonnistui – kokeile uudelleen. Salasana (myös setup-verkon) saattoi jo "
+                      "vaihtua.";
+          return backTo("/huolto");
+        }
         Session* me = currentSession();
         for (Session& x : sessions) if (&x != me) x.tok = "";  // everyone else logs in again
         xSemaphoreTake(coreLock, portMAX_DELAY);
@@ -661,11 +696,16 @@ inline void pageHuolto() {
                     "salasana on nyt myös EmuKahviBottiHotspot-verkon salasana.";
       }
     } else if (a == "clear") {
-      if (server.arg("confirm") == "TYHJENNÄ") {
-        LittleFS.remove(STATS_FILE);
+      if (server.arg("confirm") != "TYHJENNÄ") {
+        huoltoMsg = "Tilastoja ei tyhjennetty: kirjoita TYHJENNÄ vahvistukseksi.";
+      } else if (!fsOk || (LittleFS.exists(STATS_FILE) && !LittleFS.remove(STATS_FILE))) {
+        huoltoMsg = "Tilastojen tyhjennys epäonnistui (tiedostoa ei voitu poistaa). Mitään ei muutettu.";
+      } else {
         xSemaphoreTake(coreLock, portMAX_DELAY);  // milestones() reads these from the Telegram task
         statTotal = 0;
         statBrews = 0;
+        statsOrdered = true;  // an empty file is in order
+        statLastEpoch = 0;
         msAnnounced = 0;  // milestones count again from zero
         Preferences p;
         p.begin("stats", false);
@@ -674,8 +714,6 @@ inline void pageHuolto() {
         logEvent(nowMs(), "Tilastot tyhjennetty (Huolto)", 0, 0);
         xSemaphoreGive(coreLock);
         huoltoMsg = "Tilastot tyhjennetty.";
-      } else {
-        huoltoMsg = "Tilastoja ei tyhjennetty: kirjoita TYHJENNÄ vahvistukseksi.";
       }
     }
     backTo("/huolto");
@@ -690,6 +728,7 @@ inline void pageHuolto() {
        "<form method=post action=/huolto onsubmit=\"return confirm('Onko keitin ohjeen mukaisessa tilassa? Nollataanko kahvitila?')\">"
        "<input type=hidden name=a value=reset><p>Käytä, jos botti on jumissa väärässä tilassa (esim. väittää lasikannun "
        "olevan poissa). <b>Laita keitin ensin tähän tilaan:</b></p><ul>"
+       "<li>alusta on tasaisella ja puhtaalla pinnalla</li>"
        "<li>keittimen neljä jalkaa alustan koloihin ja keittimen reunat tasan alustan reunojen kanssa</li>"
        "<li>suodatinsuppilo paikallaan tyhjänä, suppilon kansi päällä</li>"
        "<li>vesisäiliö tyhjä, vesisäiliön kansi päällä</li>"
@@ -699,11 +738,19 @@ inline void pageHuolto() {
        "<form method=post action=/huolto onsubmit=\"return confirm('Käynnistetäänkö uudelleen?')\"><input type=hidden name=a value=restart>"
        "<button>Käynnistä uudelleen</button><p class=note>Tila, tilastot ja Wi-Fi-asetukset säilyvät. "
        "Yhteys tähän sivuun katkeaa uudelleenkäynnistyksen ajaksi (noin 20–30 s) – päivitä sivu sen jälkeen. "
-       "Telegram-botti ei vastaa sillä välin.</p></form>"
+       "Telegram-botti ei vastaa sillä välin. Jos kahvia keitetään juuri, uudelleenkäynnistys odottaa keiton "
+       "loppuun.</p></form>"
        "<form method=post action=/huolto><input type=hidden name=a value=clear>"
        "<p>Tyhjennä tilastot – kirjoita <b>TYHJENNÄ</b>:<br><input name=confirm autocomplete=off></p>"
        "<button style='background:#9b2c2c'>Tyhjennä tilastot</button><p class=note>Poistaa kaikki keitot ja "
        "aloittaa virstanpylväät alusta. Ei voi perua – lataa ensin CSV Tilastot-sivulta.</p></form>";
+  size_t fsTotal = fsOk ? LittleFS.totalBytes() : 0;
+  if (fsTotal) {  // ~100 000 brews fit (~25 years at 11 a day); when it's full, new brews are no longer saved
+    int pct = (int)((uint64_t)LittleFS.usedBytes() * 100 / fsTotal);
+    h += pct >= 90 ? "<p><b style='color:#9b2c2c'>⚠ Tilastotila on " + String(pct) + " % täynnä. Kun se täyttyy, uusia "
+                     "keittoja ei enää tallenneta: lataa CSV talteen ja tyhjennä tilastot.</b></p>"
+                   : "<p class=note>Tilastotilaa käytetty " + String(pct) + " %.</p>";
+  }
   {  // Telegram
     xSemaphoreTake(coreLock, portMAX_DELAY);
     int64_t lastOk = tgLastOk;
@@ -837,12 +884,20 @@ inline void pageFirmware() {
   if (server.method() == HTTP_POST) {
     String a = server.arg("a");
     if (a == "orig" || a == "origdel") {
-      fw::bootOriginal(a == "origdel");
-      fwMsg = a == "origdel" ? "Palataan alkuperäiseen versioon ja poistetaan päivitys…" : "Palataan alkuperäiseen versioon…";
-      restartAt = nowMs() + 3000;
+      if (fw::bootOriginal(a == "origdel")) {
+        fwMsg = a == "origdel" ? "Palataan alkuperäiseen versioon ja poistetaan päivitys…" : "Palataan alkuperäiseen versioon…";
+        restartAt = nowMs() + 3000;
+      } else {
+        fwMsg = "Vaihto alkuperäiseen versioon epäonnistui. Laite jatkaa nykyisellä versiolla.";
+      }
     } else if (a == "upd") {
-      fwMsg = fw::bootUpdate() ? "Käynnistetään päivitettyyn versioon…" : "Päivitettyä versiota ei ole.";
-      if (fw::hasFirmware(1)) restartAt = nowMs() + 3000;
+      if (fw::bootUpdate()) {
+        fwMsg = "Käynnistetään päivitettyyn versioon…";
+        restartAt = nowMs() + 3000;
+      } else {
+        fwMsg = fw::hasFirmware(1) ? "Vaihto päivitettyyn versioon epäonnistui. Laite jatkaa nykyisellä versiolla."
+                                   : "Päivitettyä versiota ei ole.";
+      }
     } else if (a == "del") {
       fwMsg = fw::deleteUpdateNow() ? "Päivitys poistettu. Jäljellä on vain alkuperäinen versio." : "Poisto ei onnistunut.";
     } else if (a == "ok") {
@@ -1020,12 +1075,22 @@ inline void begin() {
 inline void loop() {
   server.handleClient();
   if (restartAt && nowMs() > restartAt) {
-    if (!restartWhy) restartWhy = fw::PLANNED_PANEL;
-    fw::notePlanned(restartWhy);
-    // A deliberate restart means this firmware works well enough to serve the panel, so don't let the
-    // bootloader treat it as a failed update. Switching back to the original sets the boot slot itself.
-    if (esp_ota_get_boot_partition() == esp_ota_get_running_partition()) fw::markValid();
-    ESP.restart();
+    // Not in the middle of a brew, or with brews still waiting to be saved (RAM only): they'd be lost.
+    // Wait for it (a brew is over in ~10 min), but at most 20 min. The panel keeps working meanwhile.
+    static int64_t waitingSince = 0;
+    xSemaphoreTake(coreLock, portMAX_DELAY);
+    bool busy = core.brewing || core.flowing || pendingN;
+    if (busy && !waitingSince) logEvent(nowMs(), "Uudelleenkäynnistys odottaa, kunnes keitto on valmis", 0, 0);
+    xSemaphoreGive(coreLock);
+    if (busy && !waitingSince) waitingSince = nowMs();
+    if (!busy || nowMs() - waitingSince > 20 * 60000) {
+      if (!restartWhy) restartWhy = fw::PLANNED_PANEL;
+      fw::notePlanned(restartWhy);
+      // A deliberate restart means this firmware works well enough to serve the panel, so don't let the
+      // bootloader treat it as a failed update. Switching back to the original sets the boot slot itself.
+      if (esp_ota_get_boot_partition() == esp_ota_get_running_partition()) fw::markValid();
+      ESP.restart();
+    }
   }
   static bool mdns = false;
   if (!mdns && WiFi.status() == WL_CONNECTED && MDNS.begin("emukahvibotti")) {

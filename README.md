@@ -114,8 +114,9 @@ Load cell to HX711: red → E+, black → E−, green → A+, white → A− (B+
 
 - **Telegram `/kahvi`**: works in the group (and in private chat). The bot answers each chat at most once
   per 10 seconds, so a burst of 20 `/kahvi` gets a single answer.
-- **Milestones posted to the group**: "☕ Ensimmäiset 100 kuppia keitetty!" *(the first 100 cups brewed!)*,
-  then 5 000, then 10 000 ("Legendaarinen saavutus").
+- **Milestones posted to the group**: 23 of them, from 10 cups to 10 million, each comparing the coffee to
+  something from electricity and renewables or from Hervanta. For example, at 6 000 cups: *the electricity
+  used for brewing (about 90 kWh) would run the tram the whole of line 3 from Hervantajärvi to Sorin aukio.*
 - **A web panel on the office network** at `http://emukahvibotti.local`, in Finnish:
   - **Info** (public): the coffee status, what the answers mean, how to keep the measurement accurate.
   - **Tilastot** (public): a calendar heatmap of cups per day, week totals, a year view, totals for the
@@ -128,6 +129,8 @@ Load cell to HX711: red → E+, black → E−, green → A+, white → A− (B+
   that joins lands on the Wi-Fi settings page.
 - **Safe browser updates**: the original firmware stays in its own flash slot. A new version has to run
   healthy for a while before it's accepted; otherwise the bootloader rolls back by itself.
+- **Tilastot stays fast however long the history is**: the page jumps straight to the part of the stats file
+  it shows (about 0.2 s per view on the device, with 10 years or a full storage of brews).
 - **Built to run for years**:
   - a watchdog on every task;
   - a timeout on every sensor read and network call;

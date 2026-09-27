@@ -2,6 +2,9 @@
 // midnight, month/year aggregation and milestones. Reference values from Python's datetime/zoneinfo.
 //   g++ -std=c++17 -O2 -o /tmp/stats_test firmware/kahvibotti/test/stats_test.cpp && /tmp/stats_test
 #include "../stats_core.h"
+#include <vector>
+#include <utility>
+#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
 #include <cmath>
@@ -83,6 +86,81 @@ int main() {
   check("totals on 31.12.2026: the 1.1.2027 brew is in the same ISO week (53)", fabsf(t2.week - 2) < .01f && fabsf(t2.year - 20) < .01f);
   check("month names", strcmp(monthName(9), "Syyskuu") == 0 && strcmp(monthName(12), "Joulukuu") == 0);
 
+  printf("== Tilastot fast path (fillPage) vs the reference (addTotals/addMonth/addYear over everything)\n");
+  {
+    // 12 years of brews, ~11 a day at varying times, in time order (as the device appends them).
+    std::vector<Brew> f;
+    uint32_t e = 1790357400u - 12u * 365 * 86400;
+    for (int i = 0; e < 1790357400u; i++) {
+      f.push_back({e, (uint16_t)(250 + 125 * (i % 9)), 0});
+      e += 3000 + (i * 7919) % 9000;  // 50 min - 3 h 20 min apart
+    }
+    auto at = [&](size_t i) { return f[i].epoch; };
+    size_t read = 0;
+    auto each = [&](size_t from, size_t to, auto fn) { for (size_t i = from; i < to; i++) { read++; fn(f[i]); } };
+    struct { int ty, tm, td, y, m; bool yv; } cases[] = {
+      {2026, 9, 25, 2026, 9, false}, {2026, 9, 25, 2026, 9, true},    // today's views
+      {2026, 9, 25, 2019, 3, false}, {2026, 9, 25, 2020, 1, true},    // browsing old periods (pass 2)
+      {2026, 9, 25, 2025, 11, false}, {2026, 9, 25, 2025, 1, true},   // periods straddling where pass 1 starts
+      {2026, 3, 29, 2026, 3, false},                                   // the DST switch day
+      {2026, 1, 1, 2026, 1, false}, {2026, 1, 2, 2025, 12, false},     // ISO week 1 starting in December
+      {2021, 1, 3, 2021, 1, false},                                    // ISO week 53 of 2020 in January 2021
+      {2026, 7, 31, 2026, 7, false}, {2026, 8, 1, 2026, 8, false},     // the academic year's last and first day
+      {2014, 10, 5, 2014, 10, false}, {2030, 6, 1, 2030, 6, true},     // the first weeks; long after the last
+    };
+    bool allSame = true, allFast = true;
+    for (auto& c : cases) {
+      // The file as it was at the end of that "today" (the device only ever has records up to now).
+      size_t n = firstAtOrAfter(f.size(), localMidnight(c.ty, c.tm, c.td + 1), at);
+      Totals rt;
+      static float rmc[32], ryd[367], rym[13];
+      static int rmb[32];
+      monthDays(f.data(), n, c.y, c.m, rmc, rmb);
+      yearDays(f.data(), n, c.y, ryd, rym);
+      for (size_t i = 0; i < n; i++) addTotals(f[i], c.ty, c.tm, c.td, rt);
+      for (bool ordered : {true, false}) {
+        static Page p;
+        read = 0;
+        fillPage(n, ordered, at, each, Today(c.ty, c.tm, c.td), c.y, c.m, c.yv, p);
+        auto eq = [](float a, float b) { return fabsf(a - b) < .01f; };
+        bool same = eq(p.t.today, rt.today) && eq(p.t.week, rt.week) && eq(p.t.month, rt.month) &&
+                    eq(p.t.year, rt.year) && eq(p.t.acad, rt.acad);
+        if (c.yv) for (int i = 0; i < 367; i++) same = same && eq(p.yearDay[i], ryd[i]) && (i > 12 || eq(p.yearMonth[i], rym[i]));
+        else for (int i = 0; i < 32; i++) same = same && eq(p.month[i], rmc[i]);
+        allSame = allSame && same;
+        // ~11 a day: a year and a half at most, never the whole history
+        if (ordered && read > 12000) { allFast = false; printf("  read %zu for %d.%d.%d\n", read, c.td, c.tm, c.ty); }
+        if (!same) printf("  DIFF: today %d.%d.%d, view %d-%d%s, %s\n", c.td, c.tm, c.ty, c.y, c.m, c.yv ? " (year)" : "",
+                          ordered ? "ordered" : "unordered");
+      }
+    }
+    check("14 views (DST day, ISO weeks 1/53, academic year edges, old periods): same numbers as the reference, "
+          "ordered and unordered", allSame);
+    check("ordered file: reads at most ~1.5 years of the 12 (not the whole history)", allFast);
+    // A clock step back of a few hours (NTP correcting a Telegram-set clock) leaves records slightly out of
+    // order: the day of margin must still catch them.
+    std::vector<Brew> g = f;
+    for (size_t i = 1000; i + 1 < g.size(); i += 997) std::swap(g[i].epoch, g[i + 1].epoch);
+    f.swap(g);
+    Totals rt;
+    for (auto& b : f) addTotals(b, 2026, 9, 25, rt);
+    static Page p;
+    fillPage(f.size(), true, at, each, Today(2026, 9, 25), 2026, 9, false, p);
+    check("records a few hours out of order: still the same totals", fabsf(p.t.year - rt.year) < .01f &&
+          fabsf(p.t.acad - rt.acad) < .01f && fabsf(p.t.week - rt.week) < .01f);
+    // Right at the edge where the page starts reading (1.1.2026 for "today" 25.9.2026): a New Year's Day brew
+    // stored before three New Year's Eve brews. The binary search must still start early enough to see it.
+    f.swap(g);  // back to the ordered file
+    size_t k = firstAtOrAfter(f.size(), localMidnight(2026, 1, 1), at);
+    std::rotate(f.begin() + (k - 3), f.begin() + k, f.begin() + k + 1);
+    Totals re;
+    for (auto& b : f) addTotals(b, 2026, 9, 25, re);
+    fillPage(f.size(), true, at, each, Today(2026, 9, 25), 2026, 9, false, p);
+    check("a brew stored out of order exactly at the start of the year is still counted (the day of margin)",
+          fabsf(p.t.year - re.year) < .01f);
+    fillPage(0, true, at, each, Today(2026, 9, 25), 2026, 9, true, p);
+    check("empty file: all zero", p.t.year == 0 && p.t.acad == 0 && p.yearMonth[9] == 0);
+  }
   printf("== HTTP Date (clock fallback)\n");
   check("\"Fri, 25 Sep 2026 17:30:00 GMT\" = 1790357400", httpDate("Fri, 25 Sep 2026 17:30:00 GMT") == 1790357400);
   check("lower case (headers are lowercased) + leap day 29 Feb 2028", httpDate("tue, 29 feb 2028 00:00:00 gmt") == 1835395200);
@@ -90,16 +168,26 @@ int main() {
   check("garbage and missing parts give -1", httpDate("nonsense") == -1 && httpDate("Fri, 25 Sep 2026") == -1 &&
         httpDate("Fri, 25 Xyz 2026 17:30:00 GMT") == -1);
   printf("== milestones\n");
-  check("99 cups: nothing due", due(99.9f, 0) == nullptr);
-  const Milestone* ms = due(100.2f, 0);
-  check("100 cups: the first one is due", ms && ms->cups == 100);
-  check("...and once sent, it isn't due again", due(150, 100) == nullptr);
-  check("next goal after 150 cups is 5000", nextGoal(150) && nextGoal(150)->cups == 5000);
-  ms = due(10050, 100);
-  check("offline past 5000 and 10000: 5000 comes first", ms && ms->cups == 5000);
-  check("...then 10000", due(10050, 5000) && due(10050, 5000)->cups == 10000);
-  check("all reached: no next goal", nextGoal(12000) == nullptr && due(12000, 10000) == nullptr);
-  check("the 5000 text is the approved one", strcmp(MILESTONES[1].text, "🏆 5000 kuppia keitetty! Se on noin 625 litraa kahvia.") == 0);
+  check("9.9 cups: nothing due", due(9.9f, 0) == nullptr);
+  const Milestone* ms = due(10.2f, 0);
+  check("10 cups: the first one is due", ms && ms->cups == 10);
+  check("...and once sent, it isn't due again", due(50, 10) == nullptr);
+  check("next goal after 50 cups is 100", nextGoal(50) && nextGoal(50)->cups == 100);
+  ms = due(6100, 100);
+  check("offline past 1200, 4000 and 6000: 1200 comes first", ms && ms->cups == 1200);
+  check("...then 4000", due(6100, 1200) && due(6100, 1200)->cups == 4000);
+  check("all reached: no next goal", nextGoal(1e8f) == nullptr && due(1e8f, 10000000) == nullptr);
+  bool sorted = true, texts = true;
+  for (int i = 0; i < MILESTONE_COUNT; i++) {
+    if (i && MILESTONES[i].cups <= MILESTONES[i - 1].cups) sorted = false;  // due() takes the first match
+    size_t n = strlen(MILESTONES[i].text);
+    if (n < 10 || n > 4096) texts = false;  // Telegram's message limit is 4096 characters
+  }
+  check("milestones sorted by cups, texts non-empty and within Telegram's limit", sorted && texts);
+  check("23 milestones, from 10 to 10 000 000 cups", MILESTONE_COUNT == 23 && MILESTONES[0].cups == 10 &&
+        MILESTONES[MILESTONE_COUNT - 1].cups == 10000000);
+  check("the 10-cup text is the approved one", strcmp(MILESTONES[0].text, "Ensimmäiset 10 kuppia keitetty! "
+        "Keittämiseen kului noin 150 Wh sähköä, eli saman verran kuin 11 puhelimen lataukseen.") == 0);
 
   printf("\n%s (%d failed)\n", fails ? "FAILED" : "all ok", fails);
   return fails ? 1 : 0;
