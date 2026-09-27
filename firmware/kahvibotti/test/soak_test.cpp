@@ -15,7 +15,20 @@
 static uint64_t rng = 12345;
 static double rnd() { rng = rng * 6364136223846793005ULL + 1442695040888963407ULL; return (rng >> 11) * (1.0 / 9007199254740992.0); }
 
+// The platform's response, per geometry (runs A-R vs run S): how a right-side step splits between the
+// cells, the reservoir's split, L and R per gram moved while brewing, and the whole machine's step.
+struct Geo {
+  const char* name;
+  kahvi::Calib cal;
+  float carL, resL, brewL, brewR, machL, machR;
+};
+const Geo GEOS[] = {
+  {"A-R", kahvi::CALIB_A_R, -0.3f, 0.67f, 214.4f, -251.4f, 190000, 450000},
+  {"S", kahvi::CALIB_S, 0.26f, 0.85f, 131.7f, -123.3f, 380000, 268000},
+};
+
 struct Sim {
+  const Geo* g;
   kahvi::Core c;
   int64_t t = 1000;
   double L = 0, R = 0, drift = 0;
@@ -27,8 +40,8 @@ struct Sim {
       t += 1000;
     }
   }
-  void right(double dT) { L += -0.3 * dT; R += 1.3 * dT; }  // carafe/basket pattern (dT > 0 = removed)
-  void reservoir(double dT) { L += 0.67 * dT; R += 0.33 * dT; }
+  void right(double dT) { L += g->carL * dT; R += (1 - g->carL) * dT; }  // carafe/basket (dT > 0 = removed)
+  void reservoir(double dT) { L += g->resL * dT; R += (1 - g->resL) * dT; }
   void expect(const char* what, const char* want) {
     kahvi::Reply r = c.reply(t);
     const char* got = r.kind == kahvi::EMPTY ? "E" : r.kind == kahvi::AWAY ? "A" : r.kind == kahvi::BREWING ? "B" :
@@ -51,12 +64,17 @@ static int band(double cups) { return cups < 1 ? 0 : kahvi::band((float)cups); }
 
 int main() {
   auto t0 = std::chrono::steady_clock::now();
-  printf("soak: 2 simulated years...\n");  // stdio allocates its buffer on first use: before measuring
+  printf("soak: 2 simulated years per platform geometry...\n");  // stdio allocates its buffer on first use: before measuring
   size_t mem0 = mallinfo2().uordblks;
-  Sim s;
-  s.tick(30);
   const int DAYS = 730;
+  long totalFails = 0;
+  for (const Geo& g : GEOS) {  // both platform geometries; the core gets the matching calibration
+  Sim s;
+  s.g = &g;
+  s.c.cal = g.cal;
+  s.tick(30);
   long brews = 0;
+  const double E = g.cal.emptyCarafe, P = g.cal.potPerG, SEAT = 20000 * P / 252;  // seating error scales too
   for (int day = 0; day < DAYS; day++) {
     int nBrews = 1 + (int)(rnd() * 3);
     for (int b = 0; b < nBrews; b++) {
@@ -68,7 +86,7 @@ int main() {
       s.reservoir(-213 * W); s.tick(15);                 // fill
       s.reservoir(-14000); s.tick(20);                   // lid on
       double rate = 4.2 * (0.8 + rnd() * 0.4);           // g/s, varies with grind
-      for (double moved = 0; moved < W; moved += rate) { s.L += 214.4 * rate; s.R += -251.4 * rate; s.tick(1); }
+      for (double moved = 0; moved < W; moved += rate) { s.L += g.brewL * rate; s.R += g.brewR * rate; s.tick(1); }
       s.expect("brewing", "B");
       s.tick(260);                                        // drip tail, the longest is ~231 s
       int want = band(W * 0.84 / 105);
@@ -79,34 +97,37 @@ int main() {
       double pot = W * 0.84;
       while (pot > 60) {
         s.tick(300 + (int)(rnd() * 3000));
-        double carafe = 90000 + pot * 252;
+        double carafe = E + pot * P;
         s.right(carafe); s.tick(20 + (int)(rnd() * 40));
         s.expect("carafe away", "A");
         pot = fmax(0, pot - 105 * (1 + (int)(rnd() * 3)));
-        double seat = (rnd() - .5) * 20000;               // seating error, measured up to +-22k
-        s.right(-(90000 + pot * 252) + seat); s.tick(20);
-        int wb = band((pot - seat / 252) / 105);
+        double seat = (rnd() - .5) * SEAT;                // seating error, measured up to +-22k (A-R)
+        s.right(-(E + pot * P) + seat); s.tick(20);
+        int wb = band((pot - seat / P) / 105);
         snprintf(w, sizeof w, "%d", wb);
         char alt[24]; snprintf(alt, sizeof alt, "%s|%d|%d|E", wb ? w : "E", wb + 2, wb > 2 ? wb - 2 : 0);
         s.expect("carafe back", alt);                    // the seating error may shift one band
       }
-      s.right(90000 + pot * 252); s.tick(15); s.right(-90000); s.tick(20);  // emptied and rinsed
+      s.right(E + pot * P); s.tick(15); s.right(-E); s.tick(20);  // emptied and rinsed
       s.expect("empty", "E");
       s.right(3000 + 694 * dose); s.tick(20);            // wet grounds lifted out in place (13-53k, runs B-J)
     }
     if (day % 30 == 29) {  // machine taken away and back once a month
-      s.L += 190000; s.R += 450000; s.tick(600);
+      s.L += g.machL; s.R += g.machR; s.tick(600);
       s.expect("machine away", "M");
-      s.L -= 190000; s.R -= 450000; s.tick(30);
+      s.L -= g.machL; s.R -= g.machR; s.tick(30);
       s.expect("machine back", "E");
     }
     s.tick((int)(86400 * 0.1));  // the rest of the day, in part (keeps the run short; drift continues)
   }
+  printf("== core, geometry %s: %d days, %ld brews, %lld samples, %ld checks, %ld failed\n", g.name, DAYS, brews,
+         (long long)((s.t - 1000) / 1000), s.checks, s.fails);
+  totalFails += s.fails;
+  }
   size_t mem1 = mallinfo2().uordblks;
   double secs = std::chrono::duration<double>(std::chrono::steady_clock::now() - t0).count();
-  printf("== core: %d days, %ld brews, %lld samples, %ld checks, %ld failed, %.1f s, heap %zu -> %zu bytes\n",
-         DAYS, brews, (long long)((s.t - 1000) / 1000), s.checks, s.fails, secs, mem0, mem1);
-  int fails = s.fails ? 1 : 0;
+  printf("== core total: %.1f s, heap %zu -> %zu bytes\n", secs, mem0, mem1);
+  int fails = totalFails ? 1 : 0;
   if (mem1 != mem0) { printf("  FAIL heap grew\n"); fails = 1; }
 
   // 30 years of brew records through the stats aggregation, streamed like the device does

@@ -686,6 +686,8 @@ void setup() {
   left.begin(7, 21);
   right.begin(20, 10);
   long zero;  // readability only: the core works on steps, the zero doesn't matter
+  left.wait_ready_timeout(1000, 1);  // the first conversion after power-on can take longer than avgRead's 300 ms
+  right.wait_ready_timeout(1000, 1);
   if (avgRead(left, 20, zero)) left.set_offset(zero);
   else Serial.println("!!! left HX711 not answering at start");
   if (avgRead(right, 20, zero)) right.set_offset(zero);

@@ -147,9 +147,9 @@ Load cell to HX711: red → E+, black → E−, green → A+, white → A− (B+
 
 ## Tests
 
-Every decision the bot makes is tested on a PC against **real recorded brews**. The 13 labelled logs in
+Every decision the bot makes is tested on a PC against **real recorded brews**. The 14 labelled logs in
 [`test-data/`](test-data/) cover 2 to 10 cups, grounds loaded in place, the drip-stop, the machine lifted
-off, hands and leaning, and rubber pads. Each mark in a log says what `/kahvi` should answer at that moment.
+off, hands and leaning, rubber pads, and a recalibration after a load cell moved. Each mark in a log says what `/kahvi` should answer at that moment.
 
 ```sh
 # from the repo root, no hardware needed
@@ -182,8 +182,10 @@ The same checks ran on the real device:
      --build-property upload.maximum_size=1572864 firmware/kahvibotti
    ```
    For later updates through the web panel, upload `kahvibotti.ino.bin` (not the merged image).
-5. **Calibrate for your machine:** the constants in `kahvi_core.h` are measured for a Moccamaster on this
-   platform (empty pot ≈ 90 000 counts, about 250 counts per gram of coffee).
+5. **Calibrate for your machine:** the values that depend on how the load cells sit are one set,
+   `kahvi::Calib` in `kahvi_core.h`. `CALIB_S` is the current one (empty pot ≈ 74 500 counts, 210 counts per
+   gram of coffee), measured again after a load cell moved; `CALIB_A_R` is the original geometry that the
+   older test logs were recorded with, and the tests still check those logs against it.
    - For a different machine or platform, use [`firmware/calibration`](firmware/calibration/calibration.ino):
      put known amounts of water in the tank, pot and filter, and type `# label` marks as you go.
    - Record a few brews, and add the logs to `test-data/` with the answers you expect.

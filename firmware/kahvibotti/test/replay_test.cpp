@@ -70,78 +70,79 @@ static void hold(kahvi::Core& c, int secs, float L, float R) {  // steady platfo
 }
 static int synthetic() {
   int fails = 0;
+  const kahvi::Calib& K = kahvi::CALIB_A_R;  // these patterns use the A-R geometry (carafe dL/dT -0.3)
   auto check = [&](const char* what, bool good) { printf("  %s %s\n", good ? "ok  " : "FAIL", what); if (!good) fails++; };
   printf("== synthetic failsafes\n");
   // carafe pattern, dT > 0 = removed: dL = -0.3 * dT, dR = +1.3 * dT (A10: -26k / +115k for +87k)
   auto right = [](float dT, float& L, float& R) { L += -0.3f * dT; R += 1.3f * dT; };
   {  // 1. single-sample glitch
-    kahvi::Core c; T0 = 1000; hold(c, 10, 0, 0);
+    kahvi::Core c; c.cal = K; T0 = 1000; hold(c, 10, 0, 0);
     c.feed(T0, 3e6, -1e6); T0 += 1000; hold(c, 10, 0, 0);
     check("one wild sample changes nothing", code(c.reply(T0)) == "E");
   }
   {  // 2. whole machine taken away (machine pattern: dL/dT ~ +0.3) and brought back
-    kahvi::Core c; T0 = 1000; c.potG = 500; hold(c, 10, 0, 0);
+    kahvi::Core c; c.cal = K; T0 = 1000; c.potG = 500; hold(c, 10, 0, 0);
     hold(c, 10, 180000, 420000);
     bool away = code(c.reply(T0)) == "M";
     hold(c, 10, 0, 0);
     check("machine off -> 'Kahvinkeitin ei ole paikallaan', back -> fresh start (Tyhjä)", away && code(c.reply(T0)) == "E");
   }
   {  // 2b. someone leans hard on the machine (machine-sized, same pattern) and lets go
-    kahvi::Core c; T0 = 1000; c.potG = 500; hold(c, 10, 0, 0);
+    kahvi::Core c; c.cal = K; T0 = 1000; c.potG = 500; hold(c, 10, 0, 0);
     hold(c, 10, -180000, -420000); hold(c, 10, 0, 0);
     check("heavy lean + release is not 'machine away' (keeps 4 kuppia)", code(c.reply(T0)) == "4");
   }
   {  // 3. a missed carafe lift self-heals at the set-down
-    kahvi::Core c; T0 = 1000; float L = 0, R = 0; hold(c, 10, L, R);
-    right(-(kahvi::EMPTY_CARAFE + 500 * kahvi::POT_PER_G), L, R);  // a carafe-sized set-down, "carafe already on"
+    kahvi::Core c; c.cal = K; T0 = 1000; float L = 0, R = 0; hold(c, 10, L, R);
+    right(-(K.emptyCarafe + 500 * K.potPerG), L, R);  // a carafe-sized set-down, "carafe already on"
     hold(c, 10, L, R);
     check("carafe-sized set-down while 'on' is read as a return (4 kuppia)", code(c.reply(T0)) == "4");
   }
   {  // 4. carafe away a long time
-    kahvi::Core c; T0 = 1000; float L = 0, R = 0; hold(c, 10, L, R);
-    right(kahvi::EMPTY_CARAFE, L, R); hold(c, 60, L, R);
+    kahvi::Core c; c.cal = K; T0 = 1000; float L = 0, R = 0; hold(c, 10, L, R);
+    right(K.emptyCarafe, L, R); hold(c, 60, L, R);
     bool a = code(c.reply(T0)) == "A";
     hold(c, 16 * 60, L, R);
     check("carafe away: A, after 15 min: 'Pannu ei ole paikallaan'", a && code(c.reply(T0)) == "G");
   }
   {  // 5. scale stops answering
-    kahvi::Core c; T0 = 1000; hold(c, 10, 0, 0);
+    kahvi::Core c; c.cal = K; T0 = 1000; hold(c, 10, 0, 0);
     check("no samples for 31 s -> FAULT", code(c.reply(T0 + 31000)) == "F");
     kahvi::Core fresh;
     check("no samples at all -> FAULT", code(fresh.reply(5000)) == "F");
   }
   {  // 6. flow-like movement for only 5 s (hand pushing the machine)
-    kahvi::Core c; T0 = 1000; float L = 0, R = 0; hold(c, 15, L, R);
+    kahvi::Core c; c.cal = K; T0 = 1000; float L = 0, R = 0; hold(c, 15, L, R);
     for (int i = 0; i < 5; i++) { L += 900; R -= 900; hold(c, 1, L, R); }
     hold(c, 30, L, R);
     check("5 s of flow-like movement is not a brew", code(c.reply(T0)) == "E");
   }
   {  // 7. flow that never stops (drift, stuck pattern) ends after 15 min
-    kahvi::Core c; T0 = 1000; float L = 0, R = 0; hold(c, 15, L, R);
+    kahvi::Core c; c.cal = K; T0 = 1000; float L = 0, R = 0; hold(c, 15, L, R);
     for (int i = 0; i < 20 * 60; i++) { L += 500; R -= 500; hold(c, 1, L, R); }
     hold(c, 5 * 60, L, R);
     check("endless flow stops being 'brewing' (15 min cap + tail)", code(c.reply(T0)) != "B");
   }
   {  // 8. an old fill that was never brewed doesn't inflate the next brew
-    kahvi::Core c; T0 = 1000; float L = 0, R = 0; hold(c, 10, L, R);
+    kahvi::Core c; c.cal = K; T0 = 1000; float L = 0, R = 0; hold(c, 10, L, R);
     c.fillG = 1250;  // stale: 10 cups "poured" earlier, but this brew is 2 cups
     for (int i = 0; i < 60; i++) { L += 214 * 4.2f; R -= 214 * 4.2f; hold(c, 1, L, R); }  // ~250 g moves
     hold(c, 5 * 60, L, R);
     check("stale 10-cup fill vs 2-cup brew -> 2 kuppia, not 10", code(c.reply(T0)) == "2");
   }
   {  // 9. power cut while the carafe was away; it was put back (with coffee) during the outage
-    kahvi::Core c; T0 = 1000; float L = 0, R = 0;
+    kahvi::Core c; c.cal = K; T0 = 1000; float L = 0, R = 0;
     c.carafeOn = false; c.basketOn = true; c.potG = 0;  // what NVS restored
     hold(c, 10, L, R);
-    right(kahvi::EMPTY_CARAFE + 600 * kahvi::POT_PER_G, L, R); hold(c, 10, L, R);   // someone lifts it
+    right(K.emptyCarafe + 600 * K.potPerG, L, R); hold(c, 10, L, R);   // someone lifts it
     bool away = code(c.reply(T0)) == "A";
-    right(-(kahvi::EMPTY_CARAFE + 400 * kahvi::POT_PER_G), L, R); hold(c, 10, L, R); // pours, returns
+    right(-(K.emptyCarafe + 400 * K.potPerG), L, R); hold(c, 10, L, R); // pours, returns
     check("restored 'away' + real carafe lift/return self-heals (away, then 4 kuppia)", away && code(c.reply(T0)) == "4");
     right(38300, L, R); hold(c, 10, L, R);  // then the basket is emptied
     check("  ...and the basket afterwards is still the basket (4 kuppia)", code(c.reply(T0)) == "4");
   }
   {  // 10. grounds handled with the basket left in place (the most common workflow)
-    kahvi::Core c; T0 = 1000; float L = 0, R = 0; c.potG = 1000; hold(c, 10, L, R);  // fresh 10-cup pot
+    kahvi::Core c; c.cal = K; T0 = 1000; float L = 0, R = 0; c.potG = 1000; hold(c, 10, L, R);  // fresh 10-cup pot
     right(51300, L, R); hold(c, 10, L, R);   // wet paper + grounds lifted out, basket stays
     bool first = code(c.reply(T0)) == "10";
     right(-19600, L, R); hold(c, 10, L, R);  // new paper + 70 g grounds put in place
@@ -149,52 +150,52 @@ static int synthetic() {
     check("in-place grounds removal twice is never read as the carafe (10 kuppia)", first && code(c.reply(T0)) == "10");
   }
   {  // 11. grounds added (heavy dose) while the carafe is at the sink
-    kahvi::Core c; T0 = 1000; float L = 0, R = 0; hold(c, 10, L, R);
-    right(kahvi::EMPTY_CARAFE, L, R); hold(c, 10, L, R);  // carafe taken to be washed
+    kahvi::Core c; c.cal = K; T0 = 1000; float L = 0, R = 0; hold(c, 10, L, R);
+    right(K.emptyCarafe, L, R); hold(c, 10, L, R);  // carafe taken to be washed
     right(-22000, L, R); hold(c, 10, L, R);               // 80 g grounds + paper into the basket
     check("grounds added while the carafe is away don't count as the carafe returning", code(c.reply(T0)) == "A");
-    right(-kahvi::EMPTY_CARAFE, L, R); hold(c, 10, L, R);
+    right(-K.emptyCarafe, L, R); hold(c, 10, L, R);
     check("  ...the carafe coming back does (Tyhjä)", code(c.reply(T0)) == "E");
   }
   {  // 12. water first, then grounds (basket lifted out for the grounds)
-    kahvi::Core c; T0 = 1000; float L = 0, R = 0; hold(c, 10, L, R);
+    kahvi::Core c; c.cal = K; T0 = 1000; float L = 0, R = 0; hold(c, 10, L, R);
     L -= 0.67f * 160000; R -= 0.33f * 160000; hold(c, 10, L, R);  // 7.5 dl into the reservoir
     right(38300, L, R); hold(c, 10, L, R); right(-38300 - 12400, L, R); hold(c, 10, L, R);  // basket out, back with 42 g
     check("water first, then grounds: fill kept (~750 g)", fabsf(c.fillG - 751) < 30);
   }
   {  // 13. reservoir filled to the brim (13.75 dl, run L) and brewed; carafe lifted with ~1150 g of coffee
-    kahvi::Core c; T0 = 1000; float L = 0, R = 0; hold(c, 10, L, R);
+    kahvi::Core c; c.cal = K; T0 = 1000; float L = 0, R = 0; hold(c, 10, L, R);
     L += 0.67f * -291000; R += 0.33f * -291000; hold(c, 20, L, R);  // 1375 g fill (-211.7/g measured)
     for (int i = 0; i < 330; i++) { L += 214.4f * 4.2f; R += -251.4f * 4.2f; hold(c, 1, L, R); }  // ~1375 g moves
     bool brewing = code(c.reply(T0)) == "B";
     hold(c, 300, L, R);
     bool full = code(c.reply(T0)) == "10";
-    right(90000 + 1150 * kahvi::POT_PER_G, L, R); hold(c, 20, L, R);  // ~380k lift: must be the carafe, not the machine
+    right(90000 + 1150 * K.potPerG, L, R); hold(c, 20, L, R);  // ~380k lift: must be the carafe, not the machine
     bool away = code(c.reply(T0)) == "A";
-    right(-(90000 + 1150 * kahvi::POT_PER_G), L, R); hold(c, 20, L, R);
+    right(-(90000 + 1150 * K.potPerG), L, R); hold(c, 20, L, R);
     check("brim-full brew: brewing, then 10 kuppia; its 380k carafe lift is the carafe (not the machine); back = 10",
           brewing && full && away && code(c.reply(T0)) == "10");
-    right(90000 + 1250 * kahvi::POT_PER_G, L, R); hold(c, 20, L, R);  // extreme ~405k (> the 400k machine size)
+    right(90000 + 1250 * K.potPerG, L, R); hold(c, 20, L, R);  // extreme ~405k (> the 400k machine size)
     check("  ...even a 405k carafe lift (over the machine size) is read as the carafe", code(c.reply(T0)) == "A");
   }
   {  // 14. drip-stop: carafe taken the moment the reservoir empties (the basket holds the rest back)
-    kahvi::Core c; T0 = 1000; float L = 0, R = 0; hold(c, 10, L, R);
+    kahvi::Core c; c.cal = K; T0 = 1000; float L = 0, R = 0; hold(c, 10, L, R);
     L += 0.67f * -213000; R += 0.33f * -213000; hold(c, 20, L, R);  // 1000 g fill (8 cups)
     for (int i = 0; i < 240; i++) { L += 214.4f * 4.2f; R += -251.4f * 4.2f; hold(c, 1, L, R); }
     hold(c, 20, L, R);  // reservoir empty (flow ended), drip tail running: 840 g will reach the carafe
-    right(90000 + 600 * kahvi::POT_PER_G, L, R); hold(c, 60, L, R);   // lifted with 600 g, 240 g held in the basket
-    right(-(90000 + 350 * kahvi::POT_PER_G), L, R); hold(c, 300, L, R);  // 250 g poured, back; the basket drains in
+    right(90000 + 600 * K.potPerG, L, R); hold(c, 60, L, R);   // lifted with 600 g, 240 g held in the basket
+    right(-(90000 + 350 * K.potPerG), L, R); hold(c, 300, L, R);  // 250 g poured, back; the basket drains in
     check("drip-stop, lifted at reservoir empty: 840 - 250 poured = 590 g -> 6 kuppia (old logic: 350 g -> 4)",
           code(c.reply(T0)) == "6");
   }
   {  // 15. drip-stop: carafe taken mid-brew, coffee poured, back while still brewing. Harsh version: the
      //     flow even pauses while the carafe is away (really it keeps filling the basket), so the bot first
      //     sees a false "reservoir empty" and then the flow resumes.
-    kahvi::Core c; T0 = 1000; float L = 0, R = 0; hold(c, 10, L, R);
+    kahvi::Core c; c.cal = K; T0 = 1000; float L = 0, R = 0; hold(c, 10, L, R);
     L += 0.67f * -213000; R += 0.33f * -213000; hold(c, 20, L, R);
     for (int i = 0; i < 120; i++) { L += 214.4f * 4.2f; R += -251.4f * 4.2f; hold(c, 1, L, R); }  // half
-    right(90000 + 380 * kahvi::POT_PER_G, L, R); hold(c, 40, L, R);   // lifted with 380 g
-    right(-(90000 + 255 * kahvi::POT_PER_G), L, R); hold(c, 10, L, R);  // 125 g poured, back
+    right(90000 + 380 * K.potPerG, L, R); hold(c, 40, L, R);   // lifted with 380 g
+    right(-(90000 + 255 * K.potPerG), L, R); hold(c, 10, L, R);  // 125 g poured, back
     for (int i = 0; i < 120; i++) { L += 214.4f * 4.2f; R += -251.4f * 4.2f; hold(c, 1, L, R); }  // rest
     hold(c, 300, L, R);
     check("drip-stop, lifted mid-brew (even with a flow pause): 840 - 125 poured = 715 g -> 6 kuppia", code(c.reply(T0)) == "6");
@@ -223,7 +224,11 @@ static int synthetic() {
 
 int main() {
   // mark label prefix -> expected reply. Truth from the design notes result tables.
-  struct Run { const char* file; std::vector<std::pair<const char*, const char*>> want; };
+  struct Run {
+    const char* file;
+    std::vector<std::pair<const char*, const char*>> want;
+    const kahvi::Calib* cal = &kahvi::CALIB_A_R;  // the platform geometry the log was recorded with
+  };
   std::vector<Run> runs = {
     {"calibration_log_20260923_1406.txt", {  // A: dry machine, covers, basket, carafe
       {"A0", "E"}, {"A1 r1", "E"}, {"A6 r1", "E"}, {"A7 r3", "E"}, {"A8", "E"}, {"A9", "E"},
@@ -275,6 +280,16 @@ int main() {
     {"calibration_log_20260925_1518.txt", {  // R: drip-stop, carafe taken mid-brew (truth 296 g; R7 mark is false)
       {"R0", "E"}, {"R1", "E"}, {"R2", "E"}, {"R4", "B|E"}, {"R5", "B|A"}, {"R6", "B"},
       {"R8", "2"}, {"R9", "A"}, {"R10", "A|E"}, {"R11", "E"}, {"R12", "E"}}},
+    {"calibration_log_20260927_1521.txt", {  // S: recalibration after a load cell moved; 6 cups, 42 g grounds
+      {"S1 ", "-"},  // lifted before this first mark, where the replay starts
+      {"S2 ", "E"}, {"S3 ", "A"}, {"S4 ", "E"}, {"S5 ", "A"}, {"S6 ", "E"},
+      {"S7 ", "E"}, {"S8 ", "E"}, {"S9 ", "E"}, {"S10", "E"}, {"S11", "E"}, {"S12", "E"},
+      {"S13", "E"}, {"S14", "E"}, {"S15", "E"}, {"S16", "E"}, {"S17", "B|E"}, {"S18", "B"},
+      {"S19", "B|6"}, {"S20", "6"}, {"S21", "A"}, {"S22", "6"}, {"S23", "A"}, {"S24", "6"}, {"S25", "A"},
+      {"S26", "A"}, {"S27", "E"},
+      {"S28", "-"}, {"S29", "-"},  // basket + 42 g of wet grounds (66.6k) lifted with the carafe empty: reads as
+                                    // the carafe (as it did with A-R's geometry for big doses); self-heals below
+      {"S30", "M"}, {"S31", "E"}, {"S32", "E"}}, &kahvi::CALIB_S},
   };
 
   int fails = 0, checks = 0;
@@ -290,6 +305,7 @@ int main() {
       cp[i] = c;
     }
     kahvi::Core core;
+    core.cal = *run.cal;
     std::map<size_t, std::string> got;
     // Start at the first mark: log A begins before the calibration sketch's tare, and that jump
     // (-992k -> 0) looks exactly like the whole machine being lifted off. The bot never tares mid-run.

@@ -18,19 +18,34 @@
 namespace kahvi {
 
 // --- calibration (counts) ---
-constexpr float POT_PER_G = 252;        // carafe/basket zone, counts per gram (A15 water reference)
-constexpr float RES_PER_G = 213;        // reservoir fill, counts per gram (194 at 250 g, 213 from 750 g)
-constexpr float MOVE_L_PER_G = 214;     // L change per gram moved reservoir -> right side while brewing
+// The values that depend on how the platform's load cells sit. After a cell moved (2026-09-27) the carafe
+// read 17 % lighter and its left/right pattern flipped sign, while the basket, reservoir and machine steps
+// stayed put, so these are a set: CALIB_S is the device's (run S), CALIB_A_R the geometry the labelled logs
+// A-R were recorded with (the replay and soak tests use it for those).
+struct Calib {
+  float potPerG;      // carafe, counts per gram of coffee
+  float emptyCarafe;  // empty carafe lift/return step
+  float carafeMargin; // carafe seating error allowance
+  float moveLPerG;    // L change per gram moved reservoir -> right side while brewing
+  float machineDLdT;  // whole-machine steps have dL/dT above this; carafe lifts below
+};
+// Run S (2026-09-27): empty carafe 73.8-75.7k; full carafe 213k - 75k = 138k for ~660 g of coffee (750 g
+// water - 73 g held by 42 g grounds - steam; 6,8 dl poured) = 210/g; 98.8k of L for 750 g moved = 132/g;
+// carafe dL/dT +0.24..+0.28, machine +0.58: threshold between them. Margin: the old 22k seating error x 0.83.
+constexpr Calib CALIB_S = {210, 74500, 21000, 132, 0.42f};
+// Runs A-R (2026-09-21..25): empty carafe 84-94k, 252/g (A15 water reference), 214/g moved, carafe dL/dT
+// -0.29 vs machine +0.22..+0.41, seating error up to 22k.
+constexpr Calib CALIB_A_R = {252, 90000, 25000, 214, 0.1f};
+
+constexpr float RES_PER_G = 213;        // reservoir fill, counts per gram (194 at 250 g, 213 from 750 g; run S ~217)
 constexpr float CUP_G = 105;            // 1 kuppi = 105 g coffee (125 ml water minus retention and steam)
 constexpr float YIELD = 0.84f;          // coffee in pot / water brewed (= CUP_G / 125)
-constexpr float EMPTY_CARAFE = 90000;   // empty carafe lift/return step, 84-94k measured
 constexpr float BASKET_MAX = 100000;    // heaviest basket step seen: 90.9k (70 g grounds, wet)
-constexpr float CARAFE_MARGIN = 25000;  // carafe seating error seen up to 22k
 constexpr float STEP_MIN = 6000;        // smaller stable-to-stable changes are creep, tracked silently
 constexpr float STABLE_SPREAD = 2000;   // 3 consecutive samples within this = a stable level
 constexpr float BIG_STEP = 20000;       // right-side object steps (carafe, basket) are all above this
-constexpr float MACHINE_STEP = 400000;  // whole machine off/on: 530-692k measured (run K). A full carafe
-constexpr float MACHINE_DLDT = 0.1f;    //   lift is <= ~417k and has dL/dT ~ -0.29; the machine +0.22..+0.41
+constexpr float MACHINE_STEP = 400000;  // whole machine off/on: 530-692k measured (runs K, S); a brim-full
+                                        // carafe lift is up to ~417k (A-R) / ~310k (S): see machineDLdT
 constexpr float IGNORE_STEP = 600000;   // larger without the machine's pattern: someone leaning hard, ignore
 constexpr int64_t LEAN_PAIR_MS = 120000;  // a machine-sized "lift" this soon after an equal set-down = a lean released
 constexpr float POT_MAX_G = 1300;       // a 10-cup pot holds ~1000-1130 g
@@ -72,6 +87,7 @@ inline int band(float cups) {  // 1-3 -> 2, 3-5 -> 4, ... >= 9 -> 10
 inline float clampf(float v, float lo, float hi) { return v < lo ? lo : (v > hi ? hi : v); }
 
 struct Core {
+  Calib cal = CALIB_S;      // the platform geometry (tests set CALIB_A_R for the old logs)
   // what the bot believes. Boot assumes the "ready" state: carafe and basket on, pot empty.
   bool carafeOn = true, basketOn = true, machineAway = false;
   float potG = 0;           // coffee in the carafe, grams
@@ -168,13 +184,13 @@ struct Core {
 
   void carafeOff(int64_t t, float dT) {
     carafeOn = false; carafeTouched = true; awaySince = t;
-    potG = clampf((dT - EMPTY_CARAFE) / POT_PER_G, 0, POT_MAX_G);
+    potG = clampf((dT - cal.emptyCarafe) / cal.potPerG, 0, POT_MAX_G);
     if (brewing) { liftedInBrew = true; potAtLift = potG; }  // the basket keeps dripping into itself now
     ev("Lasikannu nostettu (g kahvia, askel)", potG, dT);
   }
   void carafeBack(float a) {
     carafeOn = true; carafeTouched = true;
-    potG = clampf((a - EMPTY_CARAFE) / POT_PER_G, 0, POT_MAX_G);
+    potG = clampf((a - cal.emptyCarafe) / cal.potPerG, 0, POT_MAX_G);
     movedAtReturn = movedG;
     if (liftedInBrew) {  // lifted while this brew was still dripping (even if it's back only now)
       liftedInBrew = false;
@@ -220,7 +236,7 @@ struct Core {
 
  private:
   void onStep(int64_t t, float dT, float dL) {
-    if (fabsf(dT) >= MACHINE_STEP && dL / dT > MACHINE_DLDT) { onMachineStep(t, dT); return; }
+    if (fabsf(dT) >= MACHINE_STEP && dL / dT > cal.machineDLdT) { onMachineStep(t, dT); return; }
     if (machineAway) return;               // empty platform: nothing else can happen until it's back
     if (fabsf(dT) > IGNORE_STEP) { ev("Iso tuntematon askel ohitettu", dT); return; }  // hard lean
     // Reservoir: water or its lid. L-dominant (dL/dT ~ +0.67). Carafe/basket have dL/dT ~ -0.2..-0.3.
@@ -236,16 +252,16 @@ struct Core {
     // L baseline by it, so "water moved" (from L) doesn't count the step as water.
     if (brewing) L0 += dL;  // the whole brew: the flow may resume after a pause (test 15)
     if (fabsf(dT) < BIG_STEP) return;  // basket cover, grounds added, bumps
-    // Size decides first: the empty carafe alone is 84-94k, so anything under CARAFE_MIN is the
-    // basket or just its paper + grounds (lifted in or out with the basket left in place: 13-53k).
-    // Only the 65-100k band (an almost empty carafe vs a full basket) needs the beliefs.
-    const float CARAFE_MIN = EMPTY_CARAFE - CARAFE_MARGIN;
+    // Size decides first: the empty carafe alone is 84-94k (A-R) / ~75k (S), so anything under CARAFE_MIN
+    // is the basket or just its paper + grounds (lifted in or out with the basket left in place: 13-53k).
+    // Only the band up to BASKET_MAX (an almost empty carafe vs a full basket) needs the beliefs.
+    const float CARAFE_MIN = cal.emptyCarafe - cal.carafeMargin;
     if (dT > 0) {  // something lifted off the right side
       if (dT < CARAFE_MIN) {
         basketOn = false;  // basket, or its contents
         ev("Suodatinsuppilo, kansi tai porot pois (askel)", dT);
       } else if (dT < BASKET_MAX && basketOn &&
-                 (!carafeOn || dT < EMPTY_CARAFE + potG * POT_PER_G - CARAFE_MARGIN)) {
+                 (!carafeOn || dT < cal.emptyCarafe + potG * cal.potPerG - cal.carafeMargin)) {
         basketOn = false;  // a full basket; a carafe with this much coffee would be heavier
         ev("Täysi suodatinsuppilo pois (askel)", dT);
       } else {
@@ -295,7 +311,7 @@ struct Core {
     if (flowing) {
       // Only while the flow pattern is actually seen: a lift/return disturbs L for a few seconds, and the
       // flow may end on that very sample (drip-stop test 14 caught it reading 672 g instead of 1010 g).
-      if (flow) movedG = (L - L0) / MOVE_L_PER_G;
+      if (flow) movedG = (L - L0) / cal.moveLPerG;
       // A fill misread as smaller (e.g. a lid step near the reservoir threshold) can't be less
       // than what has already left the reservoir.
       if (brewWaterG > 100 && movedG > brewWaterG) brewWaterG = movedG;
